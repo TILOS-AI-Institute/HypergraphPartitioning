@@ -1,0 +1,12 @@
+[INFO] runtime : 18.895 s
+[INFO] cutsize : 245
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=2,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=1/neuron.hgr.k.2.UBfactor.10.seed.0 245 [50.07, 49.93]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=1,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=2/neuron.hgr.k.2.UBfactor.10.seed.0 245 [50.84, 49.16]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=1,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/neuron.hgr.k.2.UBfactor.10.seed.0 245 [50.84, 49.16]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=3,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/neuron.hgr.k.2.UBfactor.10.seed.0 253 [47.94, 52.06]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=3,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=2/neuron.hgr.k.2.UBfactor.10.seed.0 270 [40.51, 59.49]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=5,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/neuron.hgr.k.2.UBfactor.10.seed.0 400 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=4,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/neuron.hgr.k.2.UBfactor.10.seed.0 581 [40.7, 59.3]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=4,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/neuron.hgr.k.2.UBfactor.10.seed.0 581 [40.7, 59.3]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=4,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/neuron.hgr.k.2.UBfactor.10.seed.0 635 [59.66, 40.34]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/neuron/CType=4,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=3/neuron.hgr.k.2.UBfactor.10.seed.0 680 [41.46, 58.54]

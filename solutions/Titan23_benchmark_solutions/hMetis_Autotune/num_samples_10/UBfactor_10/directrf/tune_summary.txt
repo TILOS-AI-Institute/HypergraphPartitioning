@@ -1,0 +1,12 @@
+[INFO] runtime : 228.976 s
+[INFO] cutsize : 376
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=3,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=3/directrf.hgr.k.2.UBfactor.10.seed.0 376 [40.11, 59.89]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=3,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=2/directrf.hgr.k.2.UBfactor.10.seed.0 376 [40.11, 59.89]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=3,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/directrf.hgr.k.2.UBfactor.10.seed.0 376 [40.11, 59.89]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=1,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=1/directrf.hgr.k.2.UBfactor.10.seed.0 376 [59.89, 40.11]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=1,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=1/directrf.hgr.k.2.UBfactor.10.seed.0 376 [59.89, 40.11]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=2,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=3/directrf.hgr.k.2.UBfactor.10.seed.0 378 [59.29, 40.71]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=4,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=3/directrf.hgr.k.2.UBfactor.10.seed.0 378 [59.29, 40.71]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=5,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=3/directrf.hgr.k.2.UBfactor.10.seed.0 382 [40.0, 60.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=2,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=1/directrf.hgr.k.2.UBfactor.10.seed.0 641 [56.6, 43.4]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/directrf/CType=2,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/directrf.hgr.k.2.UBfactor.10.seed.0 843 [59.63, 40.37]
