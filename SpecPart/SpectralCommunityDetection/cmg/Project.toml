@@ -1,0 +1,16 @@
+name = "CombinatorialMultigrid"
+uuid = "44808c39-7784-4d8d-8dbc-3ef853c709a1"
+authors = ["Bodhisatta Pramanik <bodhi91@iastate.edu>", "Yiannis Koutis <i.koutis@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+LDLFactorizations = "40e66cde-538c-5869-a4ad-c39174c6795b"
+Laplacians = "6f8e5838-0efe-5de0-80a3-5fb4f8dbb1de"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+
+[compat]
+LDLFactorizations = "0.8.1"
+Laplacians = "1.2.0"
+julia = "1.6"
