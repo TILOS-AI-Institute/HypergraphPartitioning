@@ -1,4 +1,5 @@
-# SpecPart-Results
+# SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement
+
 Results for SpecPart
 
 *******************************************************************************************
