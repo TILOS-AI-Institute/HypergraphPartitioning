@@ -17,9 +17,14 @@ Current file tree:
 
 
     .
+    |── Leaderboard
+    |   └── Leaderboard_ISPD98                # Leaderboard of cuts for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
+    |   └── Leaderboard_Titan23               # Leaderboard of cuts for Titan23 benchmarks
+    |
     ├── SpecPart                              # SpecPart Impelementation
     │   ├── SpectralCommunityDetection
     │   │   ├── cmg                           # Combinatorial Multigrid Implementation
+    |
     ├── benchmark                             # hypergraph files for each benchmark
     │   ├── ISPD_benchmark                    # ISPD98 VLSI Circuit Benchmark Suite
     │   ├── ISPD_weight_benchmark             # ISPD98 VLSI Circuit Benchmark Suite with vertex weight
