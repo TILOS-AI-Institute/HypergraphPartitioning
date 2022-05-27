@@ -10,13 +10,16 @@ This repository serves the following purposes:
 4. We provide a "Golden Evaluator" which processes a partition file to report the cutsize and the block balances. 
 5. We provide a leaderboard of best cuts found on the ISPD98 benchmarks and the Titan23 benchmarks. We encourage fellow researchers to update the leaderboard if better solutions are found. 
 
-*******************************************************************************************
-
 We acknowledge that further improvement on existing solutions is possible and we will continue to update the leaderboard and maintain the repository as we keep on doing so. 
 
+*******************************************************************************************
+Current file tree: 
 
 
     .
+    ├── SpecPart                              # SpecPart Impelementation
+    │   ├── SpectralCommunityDetection
+    │   │   ├── cmg                           # Combinatorial Multigrid Implementation
     ├── benchmark                             # hypergraph files for each benchmark
     │   ├── ISPD_benchmark                    # ISPD98 VLSI Circuit Benchmark Suite
     │   ├── ISPD_weight_benchmark             # ISPD98 VLSI Circuit Benchmark Suite with vertex weight
@@ -76,5 +79,5 @@ We acknowledge that further improvement on existing solutions is possible and we
                 ├── UBfactor_2
                 └── UBfactor_20  
     
-  
+  *******************************************************************************************
 
