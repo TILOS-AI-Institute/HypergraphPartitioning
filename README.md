@@ -2,7 +2,7 @@
 
 *******************************************************************************************
 
-This repository serves the following purpuses:
+This repository serves the following purposes:
 
 1. We provide the ISPD98 benchmarks (with unit vertex weights and actual vertex weights) and Titan23 benchmarks in hMETIS format. To understand this format please refer to the hMETIS manual. 
 2. We provde source code for the Julia implementation of SpecPart. We also provide the implementation of CMG (Combinatorial Multigrid) preconditioner with this package. 
