@@ -81,7 +81,7 @@ Current file tree:
     
 *******************************************************************************************
   
-In order to run SpecPart please do the following: 
+In order to run SpecPart please do the following in Julia REPL: 
 ``` 
 include("SpectralRefinement.jl")
 using Main.SpecPart
