@@ -85,6 +85,6 @@ In order to run SpecPart please do the following:
 ``` 
 include("SpectralRefinement.jl")
 using Main.SpecPart
-SpecPart.SpectralRefinement(hg = "Hypergraph file", pfile = "Partition file", Nparts = "Number of partitions", cycles = \zeta, hyperedges_threshold = \gamma, ub = \epsilon, nev = m, refine_iters = \beta, best_solns = \delta)
+SpecPart.SpectralRefinement(hg = "Hypergraph file", pfile = "Partition file", Nparts = "Number of partitions", cycles = ζ, hyperedges_threshold = γ, ub = ε, nev = m, refine_iters = β, best_solns = δ)
 ```
 
