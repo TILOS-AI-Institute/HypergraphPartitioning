@@ -79,5 +79,12 @@ Current file tree:
                 ├── UBfactor_2
                 └── UBfactor_20  
     
-  *******************************************************************************************
+*******************************************************************************************
+  
+In order to run SpecPart please do the following: 
+``` 
+include("SpectralRefinement.jl")
+using Main.SpecPart
+SpecPart.SpectralRefinement(hg = "Hypergraph file", pfile = "Partition file", Nparts = "Number of partitions", cycles = \zeta, hyperedges_threshold = \gamma, ub = \epsilon, nev = m, refine_iters = \beta, best_solns = \delta)
+```
 
