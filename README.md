@@ -100,3 +100,5 @@ m is the number of eigenvectors (we recommend m=2)
 δ is the number of solutions picked from candidate solutions for overlay based clustering (we recommend δ=5)
 
 ```
+
+Please note that current version of SpecPart supprorts bipartitions only. We will publish future versions of the code to tackle k-way partitions. 
