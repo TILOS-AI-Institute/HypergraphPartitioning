@@ -87,4 +87,10 @@ include("SpectralRefinement.jl")
 using Main.SpecPart
 SpecPart.SpectralRefinement(hg = "Hypergraph file", pfile = "Partition file", Nparts = "Number of partitions", cycles = ζ, hyperedges_threshold = γ, ub = ε, nev = m, refine_iters = β, best_solns = δ)
 ```
+ζ is the number of graph cycles (we recommend ζ=2)
+γ is the threshold number of hyperedges to run ILP (we recommend γ=600)
+ε is the imbalance factor (ε =1-49)
+m is the number of eigenvectors (we recommend m=2)
+β is the number of SpecPart iterations (we recommend β=2)
+δ is the number of solutions picked from candidate solutions for overlay based clustering (we recommend δ=5)
 
