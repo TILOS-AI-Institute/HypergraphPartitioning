@@ -13,7 +13,7 @@ This repository serves the following purposes:
 We acknowledge that further improvement on existing solutions is possible and we will continue to update the leaderboard and maintain the repository as we keep on doing so. 
 
 *******************************************************************************************
-Markup :  # Current File/Directory Tree #
+# Current File/Directory Tree #
 
 
     .
