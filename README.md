@@ -18,8 +18,8 @@ Current file tree:
 
     .
     |── Leaderboard
-    |   └── Leaderboard_ISPD98                # Leaderboard of cuts for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
-    |   └── Leaderboard_Titan23               # Leaderboard of cuts for Titan23 benchmarks
+    |   └── ISPD98_Leaderboard                # Leaderboard of cuts for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
+    |   └── Titan23_Leaderboard               # Leaderboard of cuts for Titan23 benchmarks
     |
     ├── SpecPart                              # SpecPart Impelementation
     │   ├── SpectralCommunityDetection
