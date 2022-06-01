@@ -147,6 +147,8 @@ Current Leaderboard of Cuts on ISPD98 testcases with unit vertex weights and act
 |     IBM18    |   210613   |    201920    |      1521     |     1521     |     1521     |      1520     |
 | IBM18_weight |   210613   |    201920    |      1641     |     1588     |     1520     |      1520     |
 
+*******************************************************************************************
+
 Current Leaderboard of Cuts on Titan23 testcases: 
 
 |               | Statistics |             |    Cutsize   |              |              |               |               |
