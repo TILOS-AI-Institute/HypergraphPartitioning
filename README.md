@@ -1,4 +1,6 @@
-# SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement
+# SpecPart
+
+SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement
 
 *******************************************************************************************
 
@@ -181,3 +183,6 @@ Current Leaderboard of Cuts on Titan23 testcases:
 | bitcoin_miner |   1089284  |   1448151   |     1512     |     1297     |     1232     |      1232     |      1225     |
 
 *******************************************************************************************
+
+## Authors ##
+Ismail Bustany, Andrew Kahng, Yiannis Koutis, Bodhisatta Pramanik, Zhiang Wang
