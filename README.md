@@ -13,7 +13,7 @@ This repository serves the following purposes:
 We acknowledge that further improvement on existing solutions is possible and we will continue to update the leaderboard and maintain the repository as we keep on doing so. 
 
 *******************************************************************************************
-Current file tree: 
+Markup :  # Current File/Directory Tree #
 
 
     .
@@ -178,4 +178,3 @@ Current Leaderboard of Cuts on Titan23 testcases:
 | bitcoin_miner |   1089284  |   1448151   |     1512     |     1297     |     1232     |      1232     |      1225     |
 
 *******************************************************************************************
-
