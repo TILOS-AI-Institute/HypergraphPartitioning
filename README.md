@@ -90,6 +90,8 @@ We acknowledge that further improvement on existing solutions is possible and we
 *******************************************************************************************
   
 ## Run Instructions ## 
+
+Open Julia REPL and do the following: 
 ``` 
 include("SpectralRefinement.jl")
 using Main.SpecPart
