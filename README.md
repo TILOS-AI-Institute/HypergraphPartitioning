@@ -2,6 +2,8 @@
 
 *******************************************************************************************
 
+## Description ##
+
 This repository serves the following purposes:
 
 1. We provide the ISPD98 benchmarks (with unit vertex weights and actual vertex weights) and Titan23 benchmarks in hMETIS format. To understand this format please refer to the hMETIS manual. 
@@ -13,8 +15,7 @@ This repository serves the following purposes:
 We acknowledge that further improvement on existing solutions is possible and we will continue to update the leaderboard and maintain the repository as we keep on doing so. 
 
 *******************************************************************************************
-# Current File/Directory Tree #
-
+## Current File/Directory Tree ##
 
     .
     |── Leaderboard
@@ -86,7 +87,7 @@ We acknowledge that further improvement on existing solutions is possible and we
     
 *******************************************************************************************
   
-In order to run SpecPart please do the following in Julia REPL: 
+## Run Instructions ## 
 ``` 
 include("SpectralRefinement.jl")
 using Main.SpecPart
@@ -104,6 +105,8 @@ m is the number of eigenvectors (we recommend m=2)
 Please note that current version of SpecPart supprorts bipartitions only. We will publish future versions of the code to tackle k-way partitions. 
 
 *******************************************************************************************
+
+## Leaderboards ##
 
 Current Leaderboard of Cuts on ISPD98 testcases with unit vertex weights and actual weights: 
 
