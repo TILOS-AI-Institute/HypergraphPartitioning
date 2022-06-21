@@ -19,7 +19,7 @@ We acknowledge that further improvement on existing solutions is possible and we
 
 ## Table of Contents ##
 
-1. Current file/directory tree
+1. Current file/directory tree and description
 2. Installation and run instructions
 3. Leaderboard of minimum hyperedge cutsize values
 4. External links
