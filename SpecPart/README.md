@@ -36,9 +36,9 @@ SpecPart accepts the following parameters:
 # SpecPart Example #
 
 ```
-include("SpectralRefinement.jl")
-using Main.SpecPart
-SpecPart.SpectralRefinement(hg = "ibm01.hgr", pfile = "ibm01.hgr.2", Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
+julia> include("SpectralRefinement.jl")
+julia> using Main.SpecPart
+julia> SpecPart.SpectralRefinement(hg = "ibm01.hgr", pfile = "ibm01.hgr.2", Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
 
 [ Info: ================================================================================
 [ Info: STARTING SUPERVISED SPECTRAL PARTITIONING ENGINE
@@ -72,8 +72,6 @@ SpecPart.SpectralRefinement(hg = "ibm01.hgr", pfile = "ibm01.hgr.2", Nparts = 2,
 └    * Iterations limit: 80
 [ Info: [EIGEN VECTOR DETAILS] :: SOLVER TIME :: 0.860196429 seconds
 [ Info: [SPECTRAL ITERATION 2] MIN CUT FOUND :: 328 :: TREE GEN-SOLVE TIME :: 0.474149347 seconds
-[ Info: Cuts in pool: [408, 382, 328, 463, 610, 744, 438, 457]
-[ Info: Cuts picked: [328, 382, 408, 438, 457]
 [ Info: ================================================================================
 [ Info: SIZE OF CLUSTERED HYPERGRAPH IS: 430 VERTICES AND 636 HYPEREDGES
 [ Info: ================================================================================
