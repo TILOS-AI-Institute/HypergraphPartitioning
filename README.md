@@ -169,7 +169,7 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 |---------------|:----------:|:-----------:|:------------:|:------------:|:------------:|:-------------:|:-------------:|
 |    Testcase   |  #Vertices | #Hyperedges | ε = 1 | ε = 2 | ε = 5 | ε = 10 | ε = 20 |
 |  sparcT1_core |    91976   |    92827    |     1088     |     1012     |     1001     |      1090     |      903      |
-|     neuron    |    92290   |    125305   |      239     |      239     |      23(https://www.eecg.utoronto.ca/~kmurray/titan.html)9     |      239      |      206      |
+|     neuron    |    92290   |    125305   |      239     |      239     |      239     |      239      |      206      |
 |  stereovision |    94050   |    127085   |      186     |      180     |      180     |       91      |       91      |
 |     des90     |   111221   |    139557   |      416     |      402     |      393     |      393      |      358      |
 |  SLAM_spheric |   113115   |    142408   |     1061     |     1061     |     1061     |      1061     |      1061     |
