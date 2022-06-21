@@ -22,7 +22,7 @@ We acknowledge that further improvement on existing solutions is possible and we
 1. Current file/directory tree and description
 2. Installation and run instructions
 3. Leaderboard of minimum hyperedge cutsize values
-4. External links
+4. Authors
 
 *******************************************************************************************
 ## Current File/Directory Tree and Description ##
@@ -193,11 +193,6 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 | bitcoin_miner |   1089284  |   1448151   |     1512     |     1297     |     1232     |      1232     |      1225     |
 
 *******************************************************************************************
-
-## External links ##
-1. [ISPD98 suite](https://dl.acm.org/doi/10.1145/274535.274546)
-2. [Titan23 suite](https://www.eecg.utoronto.ca/~kmurray/titan.html) 
-
 
 ## Authors ##
 Ismail Bustany, Andrew Kahng, Yiannis Koutis, Bodhisatta Pramanik, Zhiang Wang
