@@ -21,6 +21,7 @@ We acknowledge that further improvement on existing solutions is possible and we
 1. Current file/directory tree
 2. Installation and run instructions
 3. Leaderboard of minimum hyperedge cutsize values
+4. External links
 
 *******************************************************************************************
 ## Current File/Directory Tree ##
@@ -118,11 +119,11 @@ Please note that current version of SpecPart supports bipartitions only. We will
 
 ## Leaderboards of minimum hyperedge cut values ##
 
-Current Leaderboard of Cuts on ISPD98 testcases with unit vertex weights and actual weights: 
+Current Leaderboard of minimum hyperedge cut values on ISPD98 testcases with unit vertex weights and actual weights with different imbalance factors (ε): 
 
 |   Testcase   | Statistics |              |    Cutsize    |              |              |               |
 |:------------:|:----------:|:------------:|:-------------:|:------------:|:------------:|:-------------:|
-|              | # Vertices | # Hyperedges | UBfactor  = 1 | UBfactor = 2 | UBfactor = 5 | UBfactor = 10 |
+|              | # Vertices | # Hyperedges | ε  = 1 | ε = 2 | ε = 5 | ε = 10 |
 |     IBM01    |    12752   |     14111    |      203      |      200     |      180     |      166      |
 | IBM01_wt |    12752   |     14111    |      216      |      215     |      215     |      215      |
 |     IBM02    |    19601   |     19584    |      341      |      307     |      262     |      262      |
@@ -166,7 +167,7 @@ Current Leaderboard of Cuts on Titan23 testcases:
 
 |               | Statistics |             |    Cutsize   |              |              |               |               |
 |---------------|:----------:|:-----------:|:------------:|:------------:|:------------:|:-------------:|:-------------:|
-|    Testcase   |  #Vertices | #Hyperedges | UBfactor = 1 | UBfactor = 2 | UBfactor = 5 | UBfactor = 10 | UBfactor = 20 |
+|    Testcase   |  #Vertices | #Hyperedges | ε = 1 | ε = 2 | ε = 5 | ε = 10 | ε = 20 |
 |  sparcT1_core |    91976   |    92827    |     1088     |     1012     |     1001     |      1090     |      903      |
 |     neuron    |    92290   |    125305   |      239     |      239     |      239     |      239      |      206      |
 |  stereovision |    94050   |    127085   |      186     |      180     |      180     |       91      |       91      |
@@ -191,6 +192,15 @@ Current Leaderboard of Cuts on Titan23 testcases:
 | bitcoin_miner |   1089284  |   1448151   |     1512     |     1297     |     1232     |      1232     |      1225     |
 
 *******************************************************************************************
+
+## External links ##
+
+1. hMETIS: 
+2. hMETIS manual: 
+3. KaHyPar: 
+4. ISPD98 suite: 
+5. Titan23 suite: 
+
 
 ## Authors ##
 Ismail Bustany, Andrew Kahng, Yiannis Koutis, Bodhisatta Pramanik, Zhiang Wang
