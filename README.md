@@ -195,11 +195,11 @@ Current Leaderboard of minimum hyperedge cut values on Titan23 testcases with di
 
 ## External links ##
 
-1. hMETIS: 
-2. hMETIS manual: 
-3. KaHyPar: 
-4. ISPD98 suite: 
-5. Titan23 suite: 
+1. [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
+2. [hMETIS manual]()
+3. [KaHyPar]()
+4. [ISPD98 suite]()
+5. [Titan23 suite]() 
 
 
 ## Authors ##
