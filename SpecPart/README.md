@@ -89,9 +89,9 @@ Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iter
 [ Info: ================================================================================
 [ Info: PARTITIONING CLUSTERED HYPERGRAPH .....
 [ Info: RUNNING CPLEX AS GOLDEN PARTITIONER
-[ Info: [POST TOOL CUT] CUT RECORDED IS 334
+[ Info: [POST TOOL CUT] CUT RECORDED IS 336
 [ Info: ================================================================================
-[ Info: [SUPERVISED SPECTRAL] CUTSIZE OBTAINED: 334
+[ Info: [SUPERVISED SPECTRAL] CUTSIZE OBTAINED: 336
 [ Info: [SUPERVISED SPECTRAL] AREA SPLIT OBTAINED: 10191 [0.52%] :: 9410 [0.48%]
 [ Info: ================================================================================
 [ Info: [RUNTIME] IO PROCESSING :: 0.11667171 SECONDS
