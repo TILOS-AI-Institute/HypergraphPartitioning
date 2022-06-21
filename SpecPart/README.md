@@ -47,9 +47,9 @@ SpecPart accepts the following parameters:
 We show how we run SpecPart on ISPD98 testcase IBM02.hgr with an input partition. As seen from this example SpecPart improves the initial partition of 339 to 334.
 
 ```
-julia> include("SpectralRefinement.jl")
+julia> include("SpecPart/SpectralRefinement.jl")
 julia> using Main.SpecPart
-julia> SpecPart.SpectralRefinement(hg = "ibm02.hgr", pfile = "ibm02.hgr.2", Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
+julia> SpecPart.SpectralRefinement(hg = "benchmark/ISPD_benchmark/ibm02.hgr", pfile = "solutions/ISPD_benchmark_solutions/hMetis/UBfactor_2/ibm02.hgr.k.2.UBfactor.2.seed.0", Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
 
 [ Info: ================================================================================
 [ Info: STARTING SUPERVISED SPECTRAL PARTITIONING ENGINE
