@@ -12,7 +12,7 @@ In order to run the golden evaluator on hypergraph solution files, follow the in
 Evaluator("benchmark file", "partition solution file", number_of_partitions, imbalance_factor)
 ```
 
-We show how we run the golden evaluator on a hypergraph partitioning solution file with number of partitions 2 and imbalance factor 2. 
+We show how we run the golden evaluator on the "ibm02.hgr" benchmark with a solution file and with number of partitions 2 and imbalance factor 2. 
 
 ```
 >>> from golden_evaluator import Evaluator
