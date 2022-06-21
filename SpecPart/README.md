@@ -17,7 +17,14 @@ In order to run SpecPart, the following requirements are mandatory:
   * [LinearMaps](https://github.com/JuliaLinearAlgebra/LinearMaps.jl)
 * [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290) 
 * [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
- 
+
+Libraries can be added by the fellowing:
+
+```
+julia> using Pkg
+julia> Pkg.add("Package name")
+```
+
 # SpecPart Parameters #
 
 SpecPart accepts the following parameters:
