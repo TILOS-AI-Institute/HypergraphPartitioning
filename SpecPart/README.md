@@ -21,6 +21,23 @@ In order to run SpecPart, the following requirements are mandatory:
 # SpecPart Parameters #
 
 SpecPart accepts the following parameters:
+
+| Parameter   | Description |
+| ----------- | ----------- |
+| hg      | The hypergraph file.       |
+| pfile   | The partition file.        |
+| Nparts   | The number of partitions. (Current implementation only allows bipartitions)         |
+| cycles   | The number of random cycles used for graph construction. (Default 2)        |
+| hyperedges_threshold   | The threshold number of hyperedges used for running ILP. (Default 300)        |
+| ub   | The imbalance factor.        |
+| nev   | The number of eigenvectors to be computed. (Default 2)        |
+| refine_iters   | The number of ISSHP iterations. (Default 2)        |
+| best_solns   | The number of partition solutions picked for overlay-clustering. (Default 5)        |
+| seed   | The random seed for SpecPart.        |
+| solver_iters   | The number of iterations of LOBPCG. (Default 80)        |
+
+
+
 * hg: The hypergraph file.
 * pfile: The partition file.
 * Nparts: The number of partitions. (Current implementation only allows bipartitions) 
