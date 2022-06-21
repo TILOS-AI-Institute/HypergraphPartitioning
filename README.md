@@ -26,12 +26,10 @@ We acknowledge that further improvement on existing solutions is possible and we
 *******************************************************************************************
 ## Current File/Directory Tree and Description ##
 
-#### Leaderboard: 
-
     .
     |── Leaderboard
-    |   └── ISPD98_Leaderboard                # Leaderboard of cuts for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
-    |   └── Titan23_Leaderboard               # Leaderboard of cuts for Titan23 benchmarks
+    |   └── ISPD98_Leaderboard                # Leaderboard of minimum hyperedge cut values for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
+    |   └── Titan23_Leaderboard               # Leaderboard of minimum hyperedge cut values for Titan23 benchmarks
     |
     ├── SpecPart                              # SpecPart Impelementation
     │   ├── SpectralCommunityDetection
