@@ -26,7 +26,7 @@ We acknowledge that further improvement on existing solutions is possible and we
 *******************************************************************************************
 ## Current File/Directory Tree and Description ##
 
-##### Leaderboard: 
+#### Leaderboard: 
 
     .
     |── Leaderboard
