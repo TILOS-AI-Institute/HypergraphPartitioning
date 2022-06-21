@@ -163,7 +163,7 @@ Current Leaderboard of minimum hyperedge cut values on ISPD98 testcases with uni
 
 *******************************************************************************************
 
-Current Leaderboard of Cuts on Titan23 testcases: 
+Current Leaderboard of minimum hyperedge cut values on Titan23 testcases with different imbalance factors (ε): 
 
 |               | Statistics |             |    Cutsize   |              |              |               |               |
 |---------------|:----------:|:-----------:|:------------:|:------------:|:------------:|:-------------:|:-------------:|
