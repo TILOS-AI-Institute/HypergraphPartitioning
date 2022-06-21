@@ -53,7 +53,7 @@ julia> SpecPart.SpectralRefinement(hg = "benchmark/ISPD_benchmark/ibm02.hgr", pf
 Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
 
 [ Info: ================================================================================
-[ Info: STARTING SUPERVISED SPECTRAL PARTITIONING ENGINE
+[ Info: STARTING SPECPART: SUPERVISED SPECTRAL PARTITIONING ENGINE
 [ Info: ================================================================================
 [ Info: TOTAL VERTICES: 19601
 [ Info: TOTAL HYPEREDGES: 19584
