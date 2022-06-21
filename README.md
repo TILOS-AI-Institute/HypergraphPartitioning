@@ -113,7 +113,7 @@ m is the number of eigenvectors (we recommend m=2)
 
 ```
 
-Please note that current version of SpecPart supports bipartitions only. We will publish future versions of the code to tackle k-way partitions. 
+Please note that current version of SpecPart supports bipartitions only. We will publish future versions of the code to tackle k-way partitions. For reference to user guide please check [here](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart/README.md). 
 
 *******************************************************************************************
 
