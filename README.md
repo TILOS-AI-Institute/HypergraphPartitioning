@@ -8,7 +8,7 @@ SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution I
 
 This repository serves the following purposes:
 
-1. We provide the ISPD98 benchmarks (with unit vertex weights and actual vertex weights) and Titan23 benchmarks in hMETIS format. To understand this format please refer to the hMETIS manual. 
+1. We provide the ISPD98 benchmarks (with unit vertex weights and actual vertex weights) and Titan23 benchmarks in [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview) format. To understand this format please refer to the [hMETIS manual](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/download). 
 2. We provde source code for the Julia implmentation of SpecPart. We also provide the implemefntation of CMG (Combinatorial Multigrid) preconditioner with this package. 
 3. We provide the best partitioning solutions for the ISPD98 benchmarks (both with unit vertex weights and actual vertex weights) and Titan23 benchmarks. 
 4. We provide a "Golden Evaluator" which processes a partition file to report the cutsize and the block balances. 
@@ -119,7 +119,7 @@ Please note that current version of SpecPart supports bipartitions only. We will
 
 ## Leaderboards of minimum hyperedge cut values ##
 
-Current Leaderboard of minimum hyperedge cut values on ISPD98 testcases with unit vertex weights and actual weights with different imbalance factors (ε): 
+Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) with unit vertex weights and actual weights with different imbalance factors (ε):  
 
 |   Testcase   | Statistics |              |    Cutsize    |              |              |               |
 |:------------:|:----------:|:------------:|:-------------:|:------------:|:------------:|:-------------:|
@@ -163,13 +163,13 @@ Current Leaderboard of minimum hyperedge cut values on ISPD98 testcases with uni
 
 *******************************************************************************************
 
-Current Leaderboard of minimum hyperedge cut values on Titan23 testcases with different imbalance factors (ε): 
+Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with different imbalance factors (ε): 
 
 |               | Statistics |             |    Cutsize   |              |              |               |               |
 |---------------|:----------:|:-----------:|:------------:|:------------:|:------------:|:-------------:|:-------------:|
 |    Testcase   |  #Vertices | #Hyperedges | ε = 1 | ε = 2 | ε = 5 | ε = 10 | ε = 20 |
 |  sparcT1_core |    91976   |    92827    |     1088     |     1012     |     1001     |      1090     |      903      |
-|     neuron    |    92290   |    125305   |      239     |      239     |      239     |      239      |      206      |
+|     neuron    |    92290   |    125305   |      239     |      239     |      23(https://www.eecg.utoronto.ca/~kmurray/titan.html)9     |      239      |      206      |
 |  stereovision |    94050   |    127085   |      186     |      180     |      180     |       91      |       91      |
 |     des90     |   111221   |    139557   |      416     |      402     |      393     |      393      |      358      |
 |  SLAM_spheric |   113115   |    142408   |     1061     |     1061     |     1061     |      1061     |      1061     |
@@ -196,10 +196,10 @@ Current Leaderboard of minimum hyperedge cut values on Titan23 testcases with di
 ## External links ##
 
 1. [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
-2. [hMETIS manual]()
-3. [KaHyPar]()
-4. [ISPD98 suite]()
-5. [Titan23 suite]() 
+2. [hMETIS manual](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/download)
+3. [KaHyPar](https://github.com/kahypar/kahypar)
+4. [ISPD98 suite](https://dl.acm.org/doi/10.1145/274535.274546)
+5. [Titan23 suite](https://www.eecg.utoronto.ca/~kmurray/titan.html) 
 
 
 ## Authors ##
