@@ -194,12 +194,8 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 *******************************************************************************************
 
 ## External links ##
-
-1. [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
-2. [hMETIS manual](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/download)
-3. [KaHyPar](https://github.com/kahypar/kahypar)
-4. [ISPD98 suite](https://dl.acm.org/doi/10.1145/274535.274546)
-5. [Titan23 suite](https://www.eecg.utoronto.ca/~kmurray/titan.html) 
+1. [ISPD98 suite](https://dl.acm.org/doi/10.1145/274535.274546)
+2. [Titan23 suite](https://www.eecg.utoronto.ca/~kmurray/titan.html) 
 
 
 ## Authors ##
