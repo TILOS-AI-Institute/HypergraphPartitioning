@@ -18,7 +18,7 @@ In order to run SpecPart, the following requirements are mandatory:
 * [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290) 
 * [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
 
-Libraries can be added by doing the following in Julia REPL:
+Julia libraries can be installed by doing the following in Julia REPL:
 
 ```
 julia> using Pkg
