@@ -10,7 +10,7 @@ This repository serves the following purposes:
 
 1. We provide the ISPD98 benchmarks (with unit vertex weights and actual vertex weights) and Titan23 benchmarks in [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview) format. To understand this format please refer to the [hMETIS manual](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/download). 
 2. We provde source code for the Julia implmentation of SpecPart. We also provide the implemefntation of CMG (Combinatorial Multigrid) preconditioner with this package. 
-3. We provide the best partitioning solutions for the ISPD98 benchmarks (both with unit vertex weights and actual vertex weights) and Titan23 benchmarks. 
+3. We provide the best partitioning solutions for the [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) (both with unit vertex weights and actual vertex weights) and [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html). 
 4. We provide a "Golden Evaluator" which processes a partition file to report the cutsize and the block balances. 
 5. We provide a leaderboard of minimum hyperedge cutsize values found on the ISPD98 benchmarks and the Titan23 benchmarks. We encourage fellow researchers to update the leaderboard if better solutions are found. 
 
