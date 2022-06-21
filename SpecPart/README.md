@@ -1,4 +1,4 @@
-# SpecPart #
+# SpecPart User Guide #
 
 SpecPart is the first supervised spectral hypergraph partitioning framework which enhances a given hypergraph partition solution.
 This directory contains the Julia implementation of SpecPart. 
@@ -37,59 +37,61 @@ SpecPart accepts the following parameters:
 | solver_iters   | The number of iterations of LOBPCG. (Default 80)        |
 
 # SpecPart Example #
+We show how we run SpecPart on ISPD98 testcase IBM02.hgr with an input partition. As seen from this example SpecPart improves the initial partition of 339 to 334.
 
 ```
 julia> include("SpectralRefinement.jl")
 julia> using Main.SpecPart
-julia> SpecPart.SpectralRefinement(hg = "ibm01.hgr", pfile = "ibm01.hgr.2", Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
+julia> SpecPart.SpectralRefinement(hg = "ibm02.hgr", pfile = "ibm02.hgr.2", Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iters = 2, best_solns = 5)
 
 [ Info: ================================================================================
 [ Info: STARTING SUPERVISED SPECTRAL PARTITIONING ENGINE
 [ Info: ================================================================================
-[ Info: TOTAL VERTICES: 12752
-[ Info: TOTAL HYPEREDGES: 14111
-[ Info: POST PROCESSING :: TOTAL VERTICES: 12752
-[ Info: POST PROCESSING :: TOTAL HYPEREDGES: 14111
-[ Info: SIZE OF LARGEST HYPEREDGE: 42
-[ Info: MAX CAPACITY CONSTRAINT: 6632
-[ Info: MIN CAPACITY CONSTRAINT: 6120
+[ Info: TOTAL VERTICES: 19601
+[ Info: TOTAL HYPEREDGES: 19584
+[ Info: POST PROCESSING :: TOTAL VERTICES: 19601
+[ Info: POST PROCESSING :: TOTAL HYPEREDGES: 19584
+[ Info: SIZE OF LARGEST HYPEREDGE: 134
+[ Info: MAX CAPACITY CONSTRAINT: 10193
+[ Info: MIN CAPACITY CONSTRAINT: 9408
 [ Info: ================================================================================
-[ Info: [HINT] CUT RECORDED IS 213
+[ Info: [HINT] CUT RECORDED IS 339
 ┌ Info: [EIGEN VECTOR DETAILS] :: Results of LOBPCG Algorithm
 │  * Algorithm: LOBPCG - CholQR
-│  * λ: [5.240705832350001e-8,2.0391573229227554e-7]
-│  * Residual norm(s): [4.816542606411436e-16,6.027634032547232e-10]
+│  * λ: [6.09867746662552e-8,8.185494183481112e-8]
+│  * Residual norm(s): [1.3833209684774178e-17,1.3317377476442714e-16]
 │  * Convergence
 │    * Iterations: 81
 │    * Converged: false
 └    * Iterations limit: 80
-[ Info: [EIGEN VECTOR DETAILS] :: SOLVER TIME :: 3.860059666 seconds
-[ Info: [SPECTRAL ITERATION 1] MIN CUT FOUND :: 330 :: TREE GEN-SOLVE TIME :: 10.548340258 seconds
+[ Info: [EIGEN VECTOR DETAILS] :: SOLVER TIME :: 1.712944723 seconds
+[ Info: [SPECTRAL ITERATION 1] MIN CUT FOUND :: 434 :: TREE GEN-SOLVE TIME :: 1.092160598 seconds
 ┌ Info: [EIGEN VECTOR DETAILS] :: Results of LOBPCG Algorithm
 │  * Algorithm: LOBPCG - CholQR
-│  * λ: [5.074271058145485e-8,1.9977580740832276e-7]
-│  * Residual norm(s): [6.266095133681997e-18,6.6504495135645066e-15]
+│  * λ: [6.063794065520354e-8,8.233442427641748e-8]
+│  * Residual norm(s): [9.10638903776076e-16,1.0476424071977864e-14]
 │  * Convergence
 │    * Iterations: 81
 │    * Converged: false
 └    * Iterations limit: 80
-[ Info: [EIGEN VECTOR DETAILS] :: SOLVER TIME :: 0.860196429 seconds
-[ Info: [SPECTRAL ITERATION 2] MIN CUT FOUND :: 328 :: TREE GEN-SOLVE TIME :: 0.474149347 seconds
+[ Info: [EIGEN VECTOR DETAILS] :: SOLVER TIME :: 1.905182079 seconds
+[ Info: [SPECTRAL ITERATION 2] MIN CUT FOUND :: 431 :: TREE GEN-SOLVE TIME :: 0.68814692 seconds
 [ Info: ================================================================================
-[ Info: SIZE OF CLUSTERED HYPERGRAPH IS: 430 VERTICES AND 636 HYPEREDGES
+[ Info: SIZE OF CLUSTERED HYPERGRAPH IS: 952 VERTICES AND 875 HYPEREDGES
 [ Info: ================================================================================
 [ Info: PARTITIONING CLUSTERED HYPERGRAPH .....
 [ Info: RUNNING CPLEX AS GOLDEN PARTITIONER
-[ Info: [POST TOOL CUT] CUT RECORDED IS 254
+[ Info: [POST TOOL CUT] CUT RECORDED IS 334
 [ Info: ================================================================================
-[ Info: [SUPERVISED SPECTRAL] CUTSIZE OBTAINED: 213
-[ Info: [SUPERVISED SPECTRAL] AREA SPLIT OBTAINED: 6500 [0.51%] :: 6252 [0.49%]
+[ Info: [SUPERVISED SPECTRAL] CUTSIZE OBTAINED: 334
+[ Info: [SUPERVISED SPECTRAL] AREA SPLIT OBTAINED: 10191 [0.52%] :: 9410 [0.48%]
 [ Info: ================================================================================
-[ Info: [RUNTIME] IO PROCESSING :: 0.297085323 SECONDS
-[ Info: [RUNTIME] SPECTRAL :: 16.228560581 SECONDS
-[ Info: [RUNTIME] CLUSTERING :: 0.157013099 SECONDS
-[ Info: [RUNTIME] PARTITION CLUSTERED HYPERGRAPH :: 1.082736077 SECONDS
+[ Info: [RUNTIME] IO PROCESSING :: 0.11667171 SECONDS
+[ Info: [RUNTIME] SPECTRAL :: 5.562175724 SECONDS
+[ Info: [RUNTIME] CLUSTERING :: 0.048536965 SECONDS
+[ Info: [RUNTIME] PARTITION CLUSTERED HYPERGRAPH :: 1.311114935 SECONDS
 [ Info: ================================================================================
-[ Info: [RUNTIME] TOTAL EXECUTION TIME :: 17.76539508 SECONDS
+[ Info: [RUNTIME] TOTAL EXECUTION TIME :: 7.038499334000001 SECONDS
 [ Info: ================================================================================
+
 ```
