@@ -40,7 +40,7 @@ SpecPart accepts the following parameters:
 | nev   | The number of eigenvectors to be computed. (Default 2)        |
 | refine_iters   | The number of ISSHP iterations. (Default 2)        |
 | best_solns   | The number of partition solutions picked for overlay-clustering. (Default 5)        |
-| seed   | The random seed for SpecPart.        |
+| seed   | The random seed for SpecPart. (Default 0)       |
 | solver_iters   | The number of iterations of LOBPCG. (Default 80)        |
 
 # SpecPart Example #
