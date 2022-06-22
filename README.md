@@ -1,6 +1,7 @@
 # Hypergraph Partitioning Leaderboard of Cuts and SpecPart
 
 Hypergraph Partitioning Leaderboard: Leaderboard of minimum hyperedge cut values for different testcases with multiple imbalance factors.
+
 SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement
 
 *******************************************************************************************
