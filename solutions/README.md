@@ -4,6 +4,8 @@ This directory contains the hypergraph solution files corresponding to the best 
 
 Following is a map of the directories in this folder: 
 
+'''
+
 ├── solutions                             # solutions for all the benchmarks with different imbalance factors
     │   ├── ISPD_benchmark_solutions          # solutions on ISPD98 testcases with unit vertex weights
     │   |   ├── hMetis                        # solutions using hMETIS
@@ -55,3 +57,4 @@ Following is a map of the directories in this folder:
             └── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS   
                 ├── UBfactor_2                # solutions with imbalance factor 2
                 └── UBfactor_20               # solutions with imbalance factor 20
+'''                
