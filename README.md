@@ -1,4 +1,4 @@
-# Hypergraph Partitioning Leaderboard of Cuts and SpecPart
+# Hypergraph Partitioning for VLSI: Benchmarks, Code and Leaderboard
 
 Hypergraph Partitioning Leaderboard: Leaderboard of minimum hyperedge cut values for different testcases with multiple imbalance factors.
 
@@ -8,20 +8,20 @@ SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution I
 
 ## Description ##
 
-This repository serves the following purposes:
+This repository supports "Data, Benchmarking and Roadmapping" goals for the balanced hypergraph min-cut partitioning problem, which is central to chip design and the divide-and-conquer paradigm. The repository is a one-stop shop" that serves the following purposes.
 
 1. We provide the [ISPD98 benchmarks](https://dl.acm.org/doi/10.1145/274535.274546) (with unit vertex weights and actual vertex weights) and [Titan23 benchmarks](https://www.eecg.utoronto.ca/~kmurray/titan.html) in [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview) format. To understand this format please refer to the [hMETIS manual](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/download). 
-2. We provde source code for the Julia implementation of SpecPart. We also provide the implementation of CMG (Combinatorial Multigrid) preconditioner with this package. 
-3. We provide the best partitioning solutions for the ISPD98 benchmarks (both with unit vertex weights and actual vertex weights) and Titan Benchmarks. 
+2. We provde open source code for the Julia implementation of a recent hypergraph partitioning code, SpecPart. We also provide the implementation of CMG (Combinatorial Multigrid) preconditioner with this package. 
+3. We provide the best known partitioning solutions for the ISPD98 benchmarks (both with unit vertex weights and actual vertex weights) and the Titan Benchmarks. 
 4. We provide a "Golden Evaluator" which processes a partition file to report the cutsize and the block balances. 
 5. We provide a leaderboard of minimum hyperedge cutsize values found on the ISPD98 benchmarks and the Titan23 benchmarks. We encourage fellow researchers to update the leaderboard if better solutions are found. 
 
-We acknowledge that further improvement on existing solutions is possible and we will continue to update the leaderboard and maintain the repository as we keep on doing so. 
+We hope to see pull requests with new solutions and optimization codes, and will continue to update the repository and leaderboard as we this happens.
 
 ## Table of Contents ##
 
 1. Current file/directory tree and description
-2. Installation and run instructions
+2. (SpecPart-specific) installation and run instructions
 3. Leaderboard of minimum hyperedge cutsize values
 4. Authors
 
@@ -33,16 +33,16 @@ We acknowledge that further improvement on existing solutions is possible and we
     |   └── ISPD98_Leaderboard                # Leaderboard of minimum hyperedge cut values for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
     |   └── Titan23_Leaderboard               # Leaderboard of minimum hyperedge cut values for Titan23 benchmarks
     |
-    ├── SpecPart                              # SpecPart Impelementation
+    ├── SpecPart                              # SpecPart Implementation
     │   ├── SpectralCommunityDetection
     │   │   ├── cmg                           # Combinatorial Multigrid Implementation
     |
     ├── benchmark                             # hypergraph files for each benchmark
-    │   ├── ISPD_benchmark                    # ISPD98 VLSI Circuit Benchmark Suite
-    │   ├── ISPD_weight_benchmark             # ISPD98 VLSI Circuit Benchmark Suite with vertex weight
+    │   ├── ISPD_benchmark                    # ISPD98 VLSI Circuit Benchmark Suite with unit vertex weights
+    │   ├── ISPD_weight_benchmark             # ISPD98 VLSI Circuit Benchmark Suite with actual vertex weights
     │   └── Titan23_benchmark                 # Titan23 Benchmark Suite
     │   
-    ├── golden_evaluator                      # script for evaluting partitioning solutions
+    ├── golden_evaluator                      # script for evaluating partitioning solutions
     │ 
     ├── solutions                             # solutions for all the benchmarks with different imbalance factors
     │   ├── ISPD_benchmark_solutions          # solutions on ISPD98 testcases with unit vertex weights
@@ -115,13 +115,13 @@ m is the number of eigenvectors (we recommend m=2)
 
 ```
 
-Please note that current version of SpecPart supports bipartitions only. We will publish future versions of the code to tackle k-way partitions. For reference to user guide please check [here](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart/README.md). 
+Please note that current version of SpecPart supports bipartitions only. We will publish future versions of the code to tackle k-way partitions. A user guide is available [here](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart/README.md). 
 
 *******************************************************************************************
 
 ## Leaderboards of minimum hyperedge cut values ##
 
-Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) with unit vertex weights and actual weights with different imbalance factors (ε):  
+Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) with unit vertex weights and actual vertex weights, with different imbalance factors (ε):  
 
 |   Testcase   | Statistics |              |    Cutsize    |              |              |               |
 |:------------:|:----------:|:------------:|:-------------:|:------------:|:------------:|:-------------:|
