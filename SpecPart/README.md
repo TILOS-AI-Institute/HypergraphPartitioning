@@ -44,7 +44,7 @@ SpecPart accepts the following parameters:
 | solver_iters   | The number of iterations of LOBPCG. (Default 80)        |
 
 # SpecPart Example #
-We show how we run SpecPart on ISPD98 testcase "ibm02.hgr" with an input partition. As seen from this example SpecPart improves the initial partition of 339 to 334.
+We show how we run SpecPart on ISPD98 testcase "ibm02.hgr" with an input partition. As seen from this example SpecPart improves the initial partition of 339 to 336.
 
 ```
 julia> include("SpecPart/SpectralRefinement.jl")
