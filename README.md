@@ -197,3 +197,8 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 
 ## Authors ##
 Ismail Bustany, Andrew Kahng, Yiannis Koutis, Bodhisatta Pramanik, Zhiang Wang
+
+## References ##
+
+To reference SpecPart, please cite: 
+I. Bustany, A. B. Kahng, Y. Koutis, B. Pramanik and Z. Wang, "SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement", Proc. ACM/IEEE International Conference on Computer-Aided Design, 2022 [link].
