@@ -103,3 +103,8 @@ Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iter
 [ Info: ================================================================================
 
 ```
+
+
+To reference this work, please cite: 
+
+I. Bustany, A. B. Kahng, Y. Koutis, B. Pramanik and Z. Wang, "SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement", Proc. ACM/IEEE International Conference on Computer-Aided Design, 2022 [link]
