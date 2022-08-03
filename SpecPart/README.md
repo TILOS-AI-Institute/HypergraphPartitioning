@@ -104,6 +104,33 @@ Nparts = 2, cycles = 2, hyperedges_threshold = 300, ub = 2, nev = 2, refine_iter
 
 ```
 
+# Experimental Results #
+
+Runtime comparison of SpecPart vs hMETIS on ISPD98 benchmark suite with unit vertex weights and actual vertex weights for an imbalance factor of 2: 
+
+|           |          |            | Unit weight     | Unit weight       | Actual weight   | Actual weight     |
+|-----------|----------|------------|-----------------|-------------------|-----------------|-------------------|
+| Benchmark | Vertices | Hyperedges | hMETIS time (s) | SpecPart time (s) | hMETIS time (s) | SpecPart time (s) |
+| IBM01     | 12752    | 14111      | 1.31            | 2.6               | 1.35            | 1.46              |
+| IBM02     | 19601    | 19584      | 2.54            | 5.65              | 2.49            | 5.63              |
+| IBM03     | 23136    | 27401      | 2.56            | 5.92              | 2.61            | 5.73              |
+| IBM04     | 27507    | 31970      | 2.53            | 6.32              | 3.02            | 7.26              |
+| IBM05     | 29347    | 28446      | 3.77            | 5.98              | 3.72            | 8.12              |
+| IBM06     | 32498    | 34826      | 3.15            | 6.17              | 4.08            | 7.82              |
+| IBM07     | 45926    | 48117      | 4.93            | 12.08             | 6.14            | 10.46             |
+| IBM08     | 51309    | 50513      | 6.67            | 13.48             | 7.86            | 12.58             |
+| IBM09     | 53395    | 60902      | 4.5             | 8.83              | 5.68            | 13.42             |
+| IBM10     | 69429    | 75196      | 8.3             | 14.24             | 9.23            | 16.53             |
+| IBM11     | 70558    | 81454      | 7.15            | 14.72             | 7.94            | 15.02             |
+| IBM12     | 71076    | 77240      | 9.18            | 18.68             | 10.28           | 19.74             |
+| IBM13     | 84199    | 99666      | 7.74            | 14.42             | 8.79            | 16.44             |
+| IBM14     | 147605   | 152772     | 17.62           | 30.32             | 19.59           | 37.73             |
+| IBM15     | 161570   | 186608     | 21.05           | 44.68             | 22.18           | 44.31             |
+| IBM16     | 183484   | 190048     | 22.27           | 48.19             | 26.51           | 47.83             |
+| IBM17     | 185495   | 189581     | 30.49           | 52.01             | 35.16           | 49.76             |
+| IBM18     | 210613   | 201920     | 27.54           | 52.84             | 29.58           | 54.27             |
+
+
 # Reference #
 
 To reference this work, please cite: 
