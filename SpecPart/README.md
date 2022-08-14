@@ -1,7 +1,7 @@
 # SpecPart User Guide #
 
 SpecPart is the first supervised spectral hypergraph partitioning framework which enhances a given hypergraph partition solution.
-This directory contains the Julia implementation of SpecPart. 
+This directory contains the Julia implementation of SpecPart. SpecPart can be accessed [here](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/SpecPart/SpecPart_final_submission.pdf). 
 
 # Requirements #
 
