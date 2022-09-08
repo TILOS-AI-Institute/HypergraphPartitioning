@@ -6,7 +6,7 @@ import pickle
 
 from utils import Evaluator
 
-algorithms = ["hMetis", "KaHyPar", "KaHyPar_new", "hMetis_SpecPart", "KaHyPar_SpecPart", "MtKaHyPar"]
+algorithms = ["hMetis", "KaHyPar", "hMetis_SpecPart", "KaHyPar_SpecPart", "MtKaHyPar"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument("result_dir", type=str)
@@ -14,6 +14,7 @@ parser.add_argument("instance_dir", type=str)
 
 args = parser.parse_args()
 
+is_weighted = "weight" in args.instance_dir
 best_results = { }
 ubfactors = []
 instances = []
@@ -35,6 +36,8 @@ for algorithm in algorithms:
         for solution in os.listdir(args.result_dir + "/" + algorithm + "/" + ubfactor):
           instance = solution.split('.')[0]
           instance_file = args.instance_dir + "/" + instance + ".hgr"
+          if is_weighted:
+            instance_file = args.instance_dir + "/" + instance + ".weight.hgr"
           solution_file = args.result_dir + "/" + algorithm + "/" + ubfactor + "/" + solution
           num_cut, blocks_balance, num_vertices, num_hyperedges = Evaluator(instance_file, solution_file, 2, epsilon)
           print("Processing algorithm " + algorithm + " and instance " + instance + " -> Cut: " + str(num_cut) + " - UBFactor " + str(epsilon))
@@ -43,6 +46,8 @@ for algorithm in algorithms:
               best_results_algo[instance] = {"cut": num_cut, "num_vertices": num_vertices, "num_hyperedges": num_hyperedges}
             elif num_cut < best_results_algo[instance]["cut"]:
               best_results_algo[instance]["cut"] = num_cut
+          else:
+            print("Solution is imbalanced!")
         # Cache Results
         with open(cached_result_file, "wb") as f:
           pickle.dump(best_results_algo, f)

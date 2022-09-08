@@ -89,6 +89,6 @@ def Evaluator(hypergraph_file, solution_file, Nparts, UBfactor):
         print("Error !!!")
         print("cutsize   :   ", num_cut)
         print("blocks_balance :  ",  blocks_balance)
-        return 1e9, None
+        return 1e9, blocks_balance, num_vertices, num_hyperedges
 
     return num_cut, blocks_balance, num_vertices, num_hyperedges
