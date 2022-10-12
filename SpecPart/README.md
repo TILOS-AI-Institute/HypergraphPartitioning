@@ -162,4 +162,4 @@ Runtime and cutsize comparison of SpecPart vs hMETIS on Titan23 benchmark suite 
 
 To reference this work, please cite: 
 
-I. Bustany, A. B. Kahng, Y. Koutis, B. Pramanik and Z. Wang, "SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement", Proc. ACM/IEEE International Conference on Computer-Aided Design, 2022 [link]
+I. Bustany, A. B. Kahng, Y. Koutis, B. Pramanik and Z. Wang, "SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement", Proc. ACM/IEEE International Conference on Computer-Aided Design, 2022 [link](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/SpecPart/SpecPart_final_submission.pdf)
