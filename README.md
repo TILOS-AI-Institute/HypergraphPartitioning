@@ -20,7 +20,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
 
 ## Table of Contents ##
 
-1. Current file/directory tree and description
+1. [Current file/directory tree](#current-file-directory-tree-and-description) and description
 2. (SpecPart-specific) installation and run instructions
 3. [Leaderboard](#leaderboards-of-minimum-hyperedge-cut-values) of minimum hyperedge cutsize values
 4. Authors
