@@ -126,7 +126,7 @@ Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https:
 |   Testcase   | Statistics |              |    Cutsize    |              |              |               |
 |:------------:|:----------:|:------------:|:-------------:|:------------:|:------------:|:-------------:|
 |              | # Vertices | # Hyperedges | ε  = 1 | ε = 2 | ε = 5 | ε = 10 |
-|     IBM01    |    12752   |     14111    |      203      |      200     |      180     |      166      |
+|     IBM01    |    12752   |     14111    |      203      |      [200](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/ISPD_weight_benchmark_solutions/hMetis_SpecPart/UBfactor_2/ibm01.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      180     |      166      |
 | IBM01_wt |    12752   |     14111    |      216      |      215     |      215     |      215      |
 |     IBM02    |    19601   |     19584    |      341      |      307     |      262     |      262      |
 | IBM02_wt |    19601   |     19584    |      266      |      266     |      260     |      207      |
