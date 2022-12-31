@@ -22,7 +22,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
 
 1. Current file/directory tree and description
 2. (SpecPart-specific) installation and run instructions
-3. [Leaderboard](#leaderboards of minimum hyperedge cut values) of minimum hyperedge cutsize values
+3. [Leaderboard](#leaderboards-of-minimum-hyperedge-cut-values) of minimum hyperedge cutsize values
 4. Authors
 
 *******************************************************************************************
