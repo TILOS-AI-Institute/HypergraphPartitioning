@@ -203,7 +203,7 @@ Ismail Bustany, Andrew Kahng, Yiannis Koutis, Bodhisatta Pramanik, Zhiang Wang
 To reference SpecPart, please cite:
 
 I. Bustany, A. B. Kahng, Y. Koutis, B. Pramanik and Z. Wang, "SpecPart: A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement", ([pdf](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/SpecPart/SpecPart_final_submission.pdf)),
-*Proc. ACM/IEEE International Conference on Computer-Aided Design*, 2022, to appear.
+*Proc. ACM/IEEE International Conference on Computer-Aided Design*, 2022.
 
 ## Acknowledgments ##
 This work was partially supported by NSF CCF-2112665, CCF-2039863, CCF-1813374, DARPA HR0011-18-0-2-0032
