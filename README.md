@@ -12,7 +12,7 @@ This repository supports "Data, Benchmarking and Roadmapping" goals for the bala
 
 1. We provide the [ISPD98 benchmarks](https://dl.acm.org/doi/10.1145/274535.274546) (with unit vertex weights and actual vertex weights) and [Titan23 benchmarks](https://www.eecg.utoronto.ca/~kmurray/titan.html) in [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview) format. To understand this format please refer to the [hMETIS manual](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/download). 
 2. We provde open source code for the Julia implementation of a recent hypergraph partitioning code, [SpecPart](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/SpecPart/SpecPart_final_submission.pdf). We also provide the implementation of CMG (Combinatorial Multigrid) preconditioner with this package. 
-3. We provide the best known partitioning solutions for the ISPD98 benchmarks (both with unit vertex weights and actual vertex weights) and the Titan Benchmarks. 
+3. We provide the best known partitioning solutions (for number of partitions 2,3, and 4) for the ISPD98 benchmarks (both with unit vertex weights and actual vertex weights) and the Titan Benchmarks. 
 4. We provide a "Golden Evaluator" which processes a partition file to report the cutsize and the block balances. 
 5. We provide a leaderboard of minimum hyperedge cutsize values found on the ISPD98 benchmarks and the Titan23 benchmarks. We encourage fellow researchers to update the leaderboard if better solutions are found. 
 
