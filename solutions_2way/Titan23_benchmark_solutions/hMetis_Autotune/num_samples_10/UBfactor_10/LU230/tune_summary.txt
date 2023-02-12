@@ -1,0 +1,12 @@
+[INFO] runtime : 215.83 s
+[INFO] cutsize : 3075
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=1,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=2/LU230.hgr.k.2.UBfactor.10.seed.0 3075 [40.72, 59.28]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=1,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=3/LU230.hgr.k.2.UBfactor.10.seed.0 3077 [40.09, 59.91]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=1,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/LU230.hgr.k.2.UBfactor.10.seed.0 3078 [59.7, 40.3]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=5,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/LU230.hgr.k.2.UBfactor.10.seed.0 3391 [59.84, 40.16]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=4,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=3/LU230.hgr.k.2.UBfactor.10.seed.0 3597 [59.27, 40.73]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=5,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=2/LU230.hgr.k.2.UBfactor.10.seed.0 3608 [59.87, 40.13]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=3,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/LU230.hgr.k.2.UBfactor.10.seed.0 3838 [59.8, 40.2]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=4,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=1/LU230.hgr.k.2.UBfactor.10.seed.0 3946 [57.39, 42.61]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=4,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=1/LU230.hgr.k.2.UBfactor.10.seed.0 4113 [59.66, 40.34]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/LU230/CType=4,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/LU230.hgr.k.2.UBfactor.10.seed.0 4113 [59.66, 40.34]

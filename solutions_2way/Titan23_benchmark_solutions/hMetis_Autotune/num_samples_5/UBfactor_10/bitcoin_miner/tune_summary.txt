@@ -1,0 +1,5 @@
+[INFO] runtime : 233.039 s
+[INFO] cutsize : 1232
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitcoin_miner/CType=5,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=3/bitcoin_miner.hgr.k.2.UBfactor.10.seed.0 1232 [54.53, 45.47]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitcoin_miner/CType=5,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/bitcoin_miner.hgr.k.2.UBfactor.10.seed.0 1310 [45.42, 54.58]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitcoin_miner/CType=5,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/bitcoin_miner.hgr.k.2.UBfactor.10.seed.0 1826 [59.12, 40.88]

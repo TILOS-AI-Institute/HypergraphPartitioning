@@ -1,0 +1,12 @@
+[INFO] runtime : 29.811 s
+[INFO] cutsize : 345
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=2,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/des90.hgr.k.2.UBfactor.10.seed.0 345 [58.65, 41.35]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=2,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/des90.hgr.k.2.UBfactor.10.seed.0 345 [58.65, 41.35]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=1,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=2/des90.hgr.k.2.UBfactor.10.seed.0 366 [52.6, 47.4]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=1,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=2/des90.hgr.k.2.UBfactor.10.seed.0 369 [45.33, 54.67]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=4,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=2/des90.hgr.k.2.UBfactor.10.seed.0 379 [41.39, 58.61]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=4,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/des90.hgr.k.2.UBfactor.10.seed.0 380 [59.65, 40.35]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=3,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=3/des90.hgr.k.2.UBfactor.10.seed.0 406 [50.05, 49.95]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=4,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/des90.hgr.k.2.UBfactor.10.seed.0 576 [57.87, 42.13]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=4,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/des90.hgr.k.2.UBfactor.10.seed.0 576 [57.87, 42.13]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/des90/CType=4,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=1/des90.hgr.k.2.UBfactor.10.seed.0 599 [50.99, 49.01]

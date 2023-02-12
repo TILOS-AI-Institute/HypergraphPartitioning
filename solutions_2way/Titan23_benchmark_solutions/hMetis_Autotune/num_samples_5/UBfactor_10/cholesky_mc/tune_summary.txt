@@ -1,0 +1,7 @@
+[INFO] runtime : 33.801 s
+[INFO] cutsize : 281
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/cholesky_mc/CType=2,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=2/cholesky_mc.hgr.k.2.UBfactor.10.seed.0 281 [52.01, 47.99]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/cholesky_mc/CType=4,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/cholesky_mc.hgr.k.2.UBfactor.10.seed.0 281 [47.99, 52.01]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/cholesky_mc/CType=5,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/cholesky_mc.hgr.k.2.UBfactor.10.seed.0 320 [48.35, 51.65]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/cholesky_mc/CType=3,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/cholesky_mc.hgr.k.2.UBfactor.10.seed.0 466 [44.93, 55.07]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/cholesky_mc/CType=5,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=2/cholesky_mc.hgr.k.2.UBfactor.10.seed.0 762 [40.31, 59.69]

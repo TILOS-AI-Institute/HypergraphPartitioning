@@ -29,10 +29,6 @@ We hope to see pull requests with new solutions and optimization codes, and will
 ## Current File/Directory Tree and Description ##
 
     .
-    |── Leaderboard
-    |   └── ISPD98_Leaderboard                # Leaderboard of minimum hyperedge cut values for ISPD98 benchmarks (unit vertex weights and actual vertex weights)
-    |   └── Titan23_Leaderboard               # Leaderboard of minimum hyperedge cut values for Titan23 benchmarks
-    |
     ├── SpecPart                              # SpecPart Implementation
     │   ├── SpectralCommunityDetection
     │   │   ├── cmg                           # Combinatorial Multigrid Implementation
@@ -44,7 +40,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
     │   
     ├── golden_evaluator                      # script for evaluating partitioning solutions
     │ 
-    ├── solutions                             # solutions for all the benchmarks with different imbalance factors
+    ├── solutions_2way                        # 2-way solutions for all the benchmarks with different imbalance factors
     │   ├── ISPD_benchmark_solutions          # solutions on ISPD98 testcases with unit vertex weights
     │   |   ├── hMetis                        # solutions using hMETIS
     │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
@@ -82,19 +78,28 @@ We hope to see pull requests with new solutions and optimization codes, and will
     │   |           └── UBfactor_10           # solutions with imbalance factor 10
     │   |       
     └── └── Titan23_benchmark_solutions       # solutions on Titan23 testcases
-            ├── hMetis                        # solutions with hMETIS
-            |   ├── UBfactor_2                # solutions with imbalance factor 2
-            |   └── UBfactor_20               # solutions with imbalance factor 20
-            |   
-            ├── hMetis_Autotune               # solutions with Autotuned hMETIS
-            |   └── UBfactor_10               # solutions with imbalance factor 10
-            |   
-            ├── hMetis_Autotune_SpecPart      # SpecPart with initial solution generated from Autotuned hMETIS   
-            |   └── UBfactor_10               # solutions with imbalance factor 10
-            |   
-            └── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS   
-                ├── UBfactor_2                # solutions with imbalance factor 2
-                └── UBfactor_20               # solutions with imbalance factor 20
+    │        ├── hMetis                       # solutions with hMETIS
+    │        |   ├── UBfactor_2               # solutions with imbalance factor 2
+    │        |   └── UBfactor_20              # solutions with imbalance factor 20
+    │        |   
+    │        ├── hMetis_Autotune              # solutions with Autotuned hMETIS
+    │        |   └── UBfactor_10              # solutions with imbalance factor 10
+    │        |   
+    │        ├── hMetis_Autotune_SpecPart     # SpecPart with initial solution generated from Autotuned hMETIS   
+    │        |   └── UBfactor_10              # solutions with imbalance factor 10
+    │        |   
+    │        └── hMetis_SpecPart              # SpecPart with initial solution generated from hMETIS   
+    │            ├── UBfactor_2               # solutions with imbalance factor 2
+    │            └── UBfactor_20              # solutions with imbalance factor 20
+    ├── solutions_kway                        # K-way solutions for all the benchmarks with different imbalance factors
+    │   ├── ISPD_benchmark_solutions          # K-way solutions on ISPD98 testcases with unit vertex weights  
+    │   ├── ISPD_weight_benchmark_solutions   # K-way solutions on ISPD98 testcases with actual vertex weights    
+    └── └── Titan23_benchmark_solutions       # K-way solutions on Titan23 testcases
+            └── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS 
+                ├── 3way                      # 3-way solutions
+                |   └── UBfactor_2            # 3-way solutions with imbalance factor 2
+                └── 4way                      # 4-way solutions
+                    └── UBfactor_2            # 4-way solutions with imbalance factor 2
     
 *******************************************************************************************
   
@@ -121,6 +126,7 @@ Please note that current version of SpecPart supports bipartitions only. We will
 
 ## Leaderboards of minimum hyperedge cut values ##
 
+# Number of partitions = 2 #
 Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) with unit vertex weights and actual vertex weights, with different imbalance factors (ε):  
 
 |   Testcase   | Statistics |              |    Cutsize    |              |              |               |
@@ -192,6 +198,40 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 | sparcT1_chip2 |   820886   |    821274   |     [1037](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_1/sparcT1_chip2.hgr.k.2.UBfactor.1.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [899](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_2/sparcT1_chip2.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [899](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_5/sparcT1_chip2.hgr.k.2.UBfactor.5.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [815](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/sparcT1_chip2.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)      |      [783](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_20/sparcT1_chip2.hgr.k.2.UBfactor.20.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)      |
 |    directrf   |   931275   |   1374742   |      [673](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_1/directrf.hgr.k.2.UBfactor.1.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [574](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_2/directrf.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [574](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_5/directrf.hgr.k.2.UBfactor.5.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [378](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_10/directrf.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)      |      [295](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_20/directrf.hgr.k.2.UBfactor.20.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)      |
 | bitcoin_miner |   1089284  |   1448151   |     [1512](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/directrf.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |     [1297](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_2/bitcoin_miner.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |     [1232](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_5/bitcoin_miner.hgr.k.2.UBfactor.5.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [1232](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/bitcoin_miner.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [1225](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_20/bitcoin_miner.hgr.k.2.UBfactor.20.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |
+
+# Number of partitions = 3 #
+(_This section is being updated_)
+Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with imbalance factor (ε) = 2: 
+|               | Statistics |             |    Cutsize   |
+|---------------|:----------:|:-----------:|:------------:|
+|    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
+|  sparcT1_core |    91976   |    92827    |  1914  |
+|     neuron    |    92290   |    125305   |  392   |
+|  stereovision |    94050   |    127085   |  324   |
+|     des90     |   111221   |    139557   |  508   |
+|  SLAM_spheric |   113115   |    142408   |  2678  |
+|  cholesky_mc  |   113250   |    144948   |  889   |
+|  segmentation |   138295   |    179051   |  439   |
+|  bitonic_mesh |   192064   |    235328   |  895   |
+|      dart     |   202354   |    223301   |  1165  |
+
+
+# Number of partitions = 4 #
+(_This section is being updated_)
+Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with different imbalance factors (ε): 
+|               | Statistics |             |    Cutsize   |
+|---------------|:----------:|:-----------:|:------------:|
+|    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
+|  sparcT1_core |    91976   |    92827    |  2480  |
+|     neuron    |    92290   |    125305   |  416   |
+|  stereovision |    94050   |    127085   |  324   |
+|     des90     |   111221   |    139557   |  765   |
+|  SLAM_spheric |   113115   |    142408   |  3398  |
+|  cholesky_mc  |   113250   |    144948   |  987   |
+|  segmentation |   138295   |    179051   |  486   |
+|  bitonic_mesh |   192064   |    235328   |  1302  |
+|      dart     |   202354   |    223301   |  1451  |
+
 
 *******************************************************************************************
 

@@ -1,0 +1,7 @@
+[INFO] runtime : 50.292 s
+[INFO] cutsize : 275
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stap_qrd/CType=1,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=1/stap_qrd.hgr.k.2.UBfactor.10.seed.0 275 [42.9, 57.1]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stap_qrd/CType=1,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=1/stap_qrd.hgr.k.2.UBfactor.10.seed.0 275 [42.9, 57.1]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stap_qrd/CType=4,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/stap_qrd.hgr.k.2.UBfactor.10.seed.0 455 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stap_qrd/CType=5,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=1/stap_qrd.hgr.k.2.UBfactor.10.seed.0 543 [59.02, 40.98]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stap_qrd/CType=4,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/stap_qrd.hgr.k.2.UBfactor.10.seed.0 623 [43.16, 56.84]

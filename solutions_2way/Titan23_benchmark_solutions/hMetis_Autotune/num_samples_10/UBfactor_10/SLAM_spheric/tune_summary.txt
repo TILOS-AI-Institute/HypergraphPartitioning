@@ -1,0 +1,12 @@
+[INFO] runtime : 34.422 s
+[INFO] cutsize : 1061
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=5,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=1/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=2,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=2/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=4,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=3,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=5,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=1/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=3,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=3,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=1/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=3,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=5,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=1/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
+./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/SLAM_spheric/CType=1,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/SLAM_spheric.hgr.k.2.UBfactor.10.seed.0 1061 [50.0, 50.0]
