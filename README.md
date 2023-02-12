@@ -200,7 +200,7 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 | bitcoin_miner |   1089284  |   1448151   |     [1512](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/directrf.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |     [1297](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_2/bitcoin_miner.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |     [1232](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_5/bitcoin_miner.hgr.k.2.UBfactor.5.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [1232](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/bitcoin_miner.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [1225](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_20/bitcoin_miner.hgr.k.2.UBfactor.20.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |
 
 # Number of partitions = 3 #
-(_This section is being updated_)
+(_This section is being updated with more results_)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with imbalance factor (ε) = 2: 
 |               | Statistics |             |    Cutsize   |
@@ -218,7 +218,7 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 
 
 # Number of partitions = 4 #
-(_This section is being updated_)
+(_This section is being updated with more results)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with different imbalance factors (ε): 
 |               | Statistics |             |    Cutsize   |
