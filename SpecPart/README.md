@@ -157,6 +157,7 @@ Runtime and cutsize comparison of SpecPart vs hMETIS on Titan23 benchmark suite 
 | sparcT1_chip2 | 820886   | 821274     | 57.06           | 123.12            | 1198           | 899              | 24.92         |
 | directrf      | 931275   | 1374742    | 71.34           | 143.19            | 588            | 574              | 2.38          |
 | bitcoin_miner | 1089284  | 1448151    | 83.26           | 165.34            | 1576           | 1514             | 3.93          |
+ 
 
 # Reference #
 
