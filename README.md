@@ -206,15 +206,15 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 |               | Statistics |             |    Cutsize   |
 |---------------|:----------:|:-----------:|:------------:|
 |    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
-|  sparcT1_core |    91976   |    92827    |  1914  |
-|     neuron    |    92290   |    125305   |  392   |
-|  stereovision |    94050   |    127085   |  324   |
-|     des90     |   111221   |    139557   |  508   |
-|  SLAM_spheric |   113115   |    142408   |  2678  |
-|  cholesky_mc  |   113250   |    144948   |  889   |
-|  segmentation |   138295   |    179051   |  439   |
-|  bitonic_mesh |   192064   |    235328   |  895   |
-|      dart     |   202354   |    223301   |  1165  |
+|  sparcT1_core |    91976   |    92827    |  [1914](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/sparcT1_core.hgr.specpart.part.3)  |
+|     neuron    |    92290   |    125305   |  [392](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/neuron.hgr.specpart.part.3)   |
+|  stereovision |    94050   |    127085   |  [324](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/stereo_vision.hgr.specpart.part.3)   |
+|     des90     |   111221   |    139557   |  [508](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/des90.hgr.specpart.part.3)   |
+|  SLAM_spheric |   113115   |    142408   |  [2678](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/SLAM_spheric.hgr.specpart.part.3)  |
+|  cholesky_mc  |   113250   |    144948   |  [889](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/cholesky_mc.hgr.specpart.part.3)   |
+|  segmentation |   138295   |    179051   |  [439](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/segmentation.hgr.specpart.part.3)   |
+|  bitonic_mesh |   192064   |    235328   |  [895](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/bitonic_mesh.hgr.specpart.part.3)   |
+|      dart     |   202354   |    223301   |  [1165](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
 
 
 # Number of partitions = 4 #
@@ -224,15 +224,15 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 |               | Statistics |             |    Cutsize   |
 |---------------|:----------:|:-----------:|:------------:|
 |    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
-|  sparcT1_core |    91976   |    92827    |  2480  |
-|     neuron    |    92290   |    125305   |  416   |
-|  stereovision |    94050   |    127085   |  324   |
-|     des90     |   111221   |    139557   |  765   |
-|  SLAM_spheric |   113115   |    142408   |  3398  |
-|  cholesky_mc  |   113250   |    144948   |  987   |
-|  segmentation |   138295   |    179051   |  486   |
-|  bitonic_mesh |   192064   |    235328   |  1302  |
-|      dart     |   202354   |    223301   |  1451  |
+|  sparcT1_core |    91976   |    92827    |  [2480]  |
+|     neuron    |    92290   |    125305   |  [416]   |
+|  stereovision |    94050   |    127085   |  [324]   |
+|     des90     |   111221   |    139557   |  [765]   |
+|  SLAM_spheric |   113115   |    142408   |  [3398]  |
+|  cholesky_mc  |   113250   |    144948   |  [987]   |
+|  segmentation |   138295   |    179051   |  [486]  |
+|  bitonic_mesh |   192064   |    235328   |  [1302]  |
+|      dart     |   202354   |    223301   |  [1451]  |
 
 
 *******************************************************************************************
