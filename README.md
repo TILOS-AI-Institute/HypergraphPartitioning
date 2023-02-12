@@ -23,7 +23,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
 * [Current file/directory tree](#current-file-directory-tree-and-description) and description
 * (SpecPart-specific) installation and run [instructions](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart)
 * [Leaderboard](#leaderboards-of-minimum-hyperedge-cut-values) of minimum hyperedge cutsize values
-  * [Leaderboard](#number-of-partitions-=-2) for number of partitions = 2
+  * [Leaderboard](#number-of-partitions-2) for number of partitions = 2
   * [Leaderboard](#number-of-partitions-=-3) for number of partitions = 3
   * [Leaderboard](#number-of-partitions-=-4) for number of partitions = 4
 * [Authors](#authors)
@@ -129,7 +129,7 @@ Please note that current version of SpecPart supports bipartitions only. We will
 
 ## Leaderboards of minimum hyperedge cut values ##
 
-# Number of partitions = 2 #
+# Number of partitions 2 #
 Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) with unit vertex weights and actual vertex weights, with different imbalance factors (ε):  
 
 |   Testcase   | Statistics |              |    Cutsize    |              |              |               |
