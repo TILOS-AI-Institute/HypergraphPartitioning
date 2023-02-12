@@ -158,7 +158,7 @@ Runtime and cutsize comparison of SpecPart vs hMETIS on Titan23 benchmark suite 
 | directrf      | 931275   | 1374742    | 71.34           | 143.19            | 588            | 574              | 2.38          |
 | bitcoin_miner | 1089284  | 1448151    | 83.26           | 165.34            | 1576           | 1514             | 3.93          |
  
-Cutsize comparison of 3-way SpecPart with hMETIS for imbalance factor 2: 
+Cutsize comparison of 3-way SpecPart with hMETIS for imbalance factor 2 (_more results will be added_): 
 | Benchmark     | Vertices | Hyperedges | hMETIS cutsize | SpecPart cutsize | % Improvement |
 |---------------|----------|------------|----------------|------------------| --------------|
 | sparcT1_core  | 91976    | 92827      | 2282           | 1914             | 16.12         |
@@ -171,7 +171,7 @@ Cutsize comparison of 3-way SpecPart with hMETIS for imbalance factor 2:
 | bitonic_mesh  | 192064   | 235328     | 895            | 895              | 0.00          |
 | dart          | 202354   | 223301     | 1177           | 1165             | 1.02          |
 
-Cutsize comparison of 4-way SpecPart with hMETIS for imbalance factor 2: 
+Cutsize comparison of 4-way SpecPart with hMETIS for imbalance factor 2 (_more results will be added_): 
 | Benchmark     | Vertices | Hyperedges | hMETIS cutsize | SpecPart cutsize | % Improvement |
 |---------------|----------|------------|----------------|------------------| --------------|
 | sparcT1_core  | 91976    | 92827      | 2586           | 2480             | 5.68          |
