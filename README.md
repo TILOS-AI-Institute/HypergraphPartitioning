@@ -218,7 +218,7 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 
 
 # Number of partitions = 4 #
-(_This section is being updated with more results)
+(_This section is being updated with more results_)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with different imbalance factors (ε): 
 |               | Statistics |             |    Cutsize   |
