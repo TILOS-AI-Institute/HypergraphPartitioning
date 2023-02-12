@@ -24,8 +24,8 @@ We hope to see pull requests with new solutions and optimization codes, and will
 * (SpecPart-specific) installation and run [instructions](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart)
 * [Leaderboard](#leaderboards-of-minimum-hyperedge-cut-values) of minimum hyperedge cutsize values
   * [Leaderboard](#number-of-partitions-2) for number of partitions = 2
-  * [Leaderboard](#number-of-partitions-=-3) for number of partitions = 3
-  * [Leaderboard](#number-of-partitions-=-4) for number of partitions = 4
+  * [Leaderboard](#number-of-partitions-3) for number of partitions = 3
+  * [Leaderboard](#number-of-partitions-4) for number of partitions = 4
 * [Authors](#authors)
 
 *******************************************************************************************
@@ -202,7 +202,7 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 |    directrf   |   931275   |   1374742   |      [673](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_1/directrf.hgr.k.2.UBfactor.1.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [574](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_2/directrf.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [574](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_5/directrf.hgr.k.2.UBfactor.5.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [378](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_10/directrf.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)      |      [295](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_20/directrf.hgr.k.2.UBfactor.20.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)      |
 | bitcoin_miner |   1089284  |   1448151   |     [1512](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/directrf.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |     [1297](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_2/bitcoin_miner.hgr.k.2.UBfactor.2.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |     [1232](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_5/bitcoin_miner.hgr.k.2.UBfactor.5.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [1232](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_Autotune_SpecPart/num_samples_5/UBfactor_10/bitcoin_miner.hgr.k.2.UBfactor.10.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |      [1225](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions/Titan23_benchmark_solutions/hMetis_SpecPart/UBfactor_20/bitcoin_miner.hgr.k.2.UBfactor.20.eig_vecs.2.num_cycles.2.h_threshold.300.solver_iters.80.spec_iters.2.best_solns.5.seed.0)     |
 
-# Number of partitions = 3 #
+# Number of partitions 3 #
 (_This section is being updated with more results_)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with imbalance factor (ε) = 2: 
@@ -220,7 +220,7 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 |      dart     |   202354   |    223301   |  [1165](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
 
 
-# Number of partitions = 4 #
+# Number of partitions 4 #
 (_This section is being updated with more results_)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with different imbalance factors (ε): 
