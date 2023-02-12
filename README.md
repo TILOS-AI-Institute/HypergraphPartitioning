@@ -91,7 +91,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
     │        └── hMetis_SpecPart              # SpecPart with initial solution generated from hMETIS   
     │            ├── UBfactor_2               # solutions with imbalance factor 2
     │            └── UBfactor_20              # solutions with imbalance factor 20
-    ├── solutions_kway                        # K-way solutions for all the benchmarks with different imbalance factors
+    ├── solutions_k_way                        # K-way solutions for all the benchmarks with different imbalance factors
     │   ├── ISPD_benchmark_solutions          # K-way solutions on ISPD98 testcases with unit vertex weights  
     │   ├── ISPD_weight_benchmark_solutions   # K-way solutions on ISPD98 testcases with actual vertex weights    
     └── └── Titan23_benchmark_solutions       # K-way solutions on Titan23 testcases
