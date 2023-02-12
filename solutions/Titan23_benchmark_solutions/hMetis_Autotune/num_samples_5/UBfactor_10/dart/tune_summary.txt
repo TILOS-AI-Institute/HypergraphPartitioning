@@ -1,7 +1,0 @@
-[INFO] runtime : 40.464 s
-[INFO] cutsize : 685
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/dart/CType=1,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=2/dart.hgr.k.2.UBfactor.10.seed.0 685 [59.97, 40.03]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/dart/CType=5,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=3/dart.hgr.k.2.UBfactor.10.seed.0 685 [59.97, 40.03]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/dart/CType=1,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/dart.hgr.k.2.UBfactor.10.seed.0 688 [40.0, 60.0]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/dart/CType=5,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/dart.hgr.k.2.UBfactor.10.seed.0 716 [40.17, 59.83]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/dart/CType=2,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/dart.hgr.k.2.UBfactor.10.seed.0 719 [59.87, 40.13]

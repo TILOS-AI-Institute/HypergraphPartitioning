@@ -1,7 +1,0 @@
-[INFO] runtime : 17.065 s
-[INFO] cutsize : 91
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stereo_vision/CType=3,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=3/stereo_vision.hgr.k.2.UBfactor.10.seed.0 91 [40.8, 59.2]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stereo_vision/CType=2,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=2/stereo_vision.hgr.k.2.UBfactor.10.seed.0 91 [40.8, 59.2]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stereo_vision/CType=2,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=3/stereo_vision.hgr.k.2.UBfactor.10.seed.0 91 [40.73, 59.27]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stereo_vision/CType=2,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/stereo_vision.hgr.k.2.UBfactor.10.seed.0 91 [40.73, 59.27]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/stereo_vision/CType=4,Nparts=2,RType=2,Reconst=0,UBfactor=10,Vcycle=2/stereo_vision.hgr.k.2.UBfactor.10.seed.0 169 [50.76, 49.24]

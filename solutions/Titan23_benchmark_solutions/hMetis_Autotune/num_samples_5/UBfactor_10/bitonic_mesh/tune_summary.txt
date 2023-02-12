@@ -1,7 +1,0 @@
-[INFO] runtime : 66.295 s
-[INFO] cutsize : 543
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitonic_mesh/CType=2,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=3/bitonic_mesh.hgr.k.2.UBfactor.10.seed.0 543 [40.34, 59.66]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitonic_mesh/CType=3,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=2/bitonic_mesh.hgr.k.2.UBfactor.10.seed.0 543 [40.34, 59.66]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitonic_mesh/CType=5,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=1/bitonic_mesh.hgr.k.2.UBfactor.10.seed.0 582 [58.23, 41.77]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitonic_mesh/CType=5,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=2/bitonic_mesh.hgr.k.2.UBfactor.10.seed.0 589 [49.62, 50.38]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/bitonic_mesh/CType=5,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=1/bitonic_mesh.hgr.k.2.UBfactor.10.seed.0 594 [50.0, 50.0]

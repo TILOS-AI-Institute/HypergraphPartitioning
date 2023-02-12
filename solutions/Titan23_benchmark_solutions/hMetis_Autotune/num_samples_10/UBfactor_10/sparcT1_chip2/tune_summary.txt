@@ -1,7 +1,0 @@
-[INFO] runtime : 127.933 s
-[INFO] cutsize : 805
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/sparcT1_chip2/CType=3,Nparts=2,RType=3,Reconst=1,UBfactor=10,Vcycle=2/sparcT1_chip2.hgr.k.2.UBfactor.10.seed.0 805 [58.95, 41.05]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/sparcT1_chip2/CType=1,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/sparcT1_chip2.hgr.k.2.UBfactor.10.seed.0 848 [58.66, 41.34]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/sparcT1_chip2/CType=5,Nparts=2,RType=3,Reconst=0,UBfactor=10,Vcycle=3/sparcT1_chip2.hgr.k.2.UBfactor.10.seed.0 878 [58.3, 41.7]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/sparcT1_chip2/CType=3,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=2/sparcT1_chip2.hgr.k.2.UBfactor.10.seed.0 949 [56.52, 43.48]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/num_samples_10/UBfactor_10/sparcT1_chip2/CType=1,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=3/sparcT1_chip2.hgr.k.2.UBfactor.10.seed.0 991 [50.26, 49.74]

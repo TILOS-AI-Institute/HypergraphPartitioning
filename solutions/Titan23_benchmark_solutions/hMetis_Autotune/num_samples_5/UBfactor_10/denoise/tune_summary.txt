@@ -1,7 +1,0 @@
-[INFO] runtime : 79.483 s
-[INFO] cutsize : 368
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/denoise/CType=4,Nparts=2,RType=2,Reconst=1,UBfactor=10,Vcycle=2/denoise.hgr.k.2.UBfactor.10.seed.0 368 [42.1, 57.9]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/denoise/CType=1,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=2/denoise.hgr.k.2.UBfactor.10.seed.0 382 [58.34, 41.66]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/denoise/CType=5,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=1/denoise.hgr.k.2.UBfactor.10.seed.0 574 [59.77, 40.23]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/denoise/CType=2,Nparts=2,RType=1,Reconst=1,UBfactor=10,Vcycle=1/denoise.hgr.k.2.UBfactor.10.seed.0 660 [44.96, 55.04]
-./solutions/Titan23_benchmark_solutions/hMetis_Autotune/UBfactor_10/denoise/CType=2,Nparts=2,RType=1,Reconst=0,UBfactor=10,Vcycle=1/denoise.hgr.k.2.UBfactor.10.seed.0 660 [44.96, 55.04]
