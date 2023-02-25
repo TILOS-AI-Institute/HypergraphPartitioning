@@ -236,10 +236,10 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 (_This section is being updated with more results_)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with different imbalance factors (ε): 
-|               | Statistics |             |    Cutsize   |
-|---------------|:----------:|:-----------:|:------------:|
-|    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
-|  sparcT1_core |    91976   |    92827    |  [2480](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/4_way/UBfactor_2/sparcT1_core.hgr.specpart.part.4)  |
+|               | Statistics |             |    Cutsize   |    Cutsize   |
+|---------------|:----------:|:-----------:|:------------:|:------------:|
+|    Testcase   |  #Vertices | #Hyperedges | ε = 2 | ε = 5 | ε = 10 | ε = 20 |
+|  sparcT1_core |    91976   |    92827    |  [2480](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/4_way/UBfactor_2/sparcT1_core.hgr.specpart.part.4) | 1776 | 1569 | 1253 |
 |     neuron    |    92290   |    125305   |  [416](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/4_way/UBfactor_2/neuron.hgr.specpart.part.4)   |
 |  stereovision |    94050   |    127085   |  [450](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/4_way/UBfactor_2/stereo_vision.hgr.specpart.part.4)   |
 |     des90     |   111221   |    139557   |  [765](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/4_way/UBfactor_2/des90.hgr.specpart.part.4)   |
