@@ -206,30 +206,31 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 (_This section is being updated with more results_)
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with imbalance factor (ε) = 2: 
-|               | Statistics |             |    Cutsize   |
-|---------------|:----------:|:-----------:|:------------:|
-|    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
-|  sparcT1_core |    91976   |    92827    |  [1914](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/sparcT1_core.hgr.specpart.part.3)  |
-|     neuron    |    92290   |    125305   |  [392](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/neuron.hgr.specpart.part.3)   |
-|  stereovision |    94050   |    127085   |  [324](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/stereo_vision.hgr.specpart.part.3)   |
-|     des90     |   111221   |    139557   |  [508](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/des90.hgr.specpart.part.3)   |
-|  SLAM_spheric |   113115   |    142408   |  [2678](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/SLAM_spheric.hgr.specpart.part.3)  |
-|  cholesky_mc  |   113250   |    144948   |  [889](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/cholesky_mc.hgr.specpart.part.3)   |
-|  segmentation |   138295   |    179051   |  [439](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/segmentation.hgr.specpart.part.3)   |
-|  bitonic_mesh |   192064   |    235328   |  [895](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/bitonic_mesh.hgr.specpart.part.3)   |
-|      dart     |   202354   |    223301   |  [1165](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      openCV     |   217453   |    284108   |  [525](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      stap_qrd     |   240240   |    290123   |  [494](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      minres     |   261359   |    320540   |  [309](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      cholesky_bdti     |   266422   |    342688   |  [1699](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      denoise     |   275638   |    356848   |  [884](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      sparcT2_core     |   300109   |    302663   |  [2595](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      gsm_switch     |   493260   |    507821   |  [3590](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      mes_noc     |   547544   |    577664   |  [1169](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      LU230     |   574372   |    669477   |  [4639](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      LU_Network     |   635456   |    726999   |  [926](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      sparcT1_chip2     |   820886   |    821274   |  [1579](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
-|      directrf     |   931275   |    1374742   |  [789](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  |
+|               | Statistics |             |    Cutsize   | Cutsize   |    Cutsize   |    Cutsize   |
+|---------------|:----------:|:-----------:|:------------:|:------------:|:------------:|:------------:|
+|    Testcase   |  #Vertices | #Hyperedges | ε = 2 | ε = 5 | ε = 10 | ε = 20 |
+|  sparcT1_core |    91976   |    92827    |  [1914](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/sparcT1_core.hgr.specpart.part.3)  | 1776 | 1569 | 1253 |
+|     neuron    |    92290   |    125305   |  [392](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/neuron.hgr.specpart.part.3)   | 379 | 350 | 359 |
+|  stereovision |    94050   |    127085   |  [324](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/stereo_vision.hgr.specpart.part.3)   | 268 | 259 | 180 |
+|     des90     |   111221   |    139557   |  [508](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/des90.hgr.specpart.part.3)   | 506 | 500 | 457 |
+|  SLAM_spheric |   113115   |    142408   |  [2678](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/SLAM_spheric.hgr.specpart.part.3)  | 2405 | 2001 | 1678 |
+|  cholesky_mc  |   113250   |    144948   |  [889](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/cholesky_mc.hgr.specpart.part.3)   | 865 | 536 | 380 |
+|  segmentation |   138295   |    179051   |  [439](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/segmentation.hgr.specpart.part.3)   | 459 | 361 | 119 |
+|  bitonic_mesh |   192064   |    235328   |  [895](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/bitonic_mesh.hgr.specpart.part.3)   | 895 | 855 | 740 |
+|      dart     |   202354   |    223301   |  [1165](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 1109 | 1031 | 908 |
+|      openCV     |   217453   |    284108   |  [525](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 496 | 506 | 502 |
+|      stap_qrd     |   240240   |    290123   |  [494](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 538 | 445 | 364 |
+|      minres     |   261359   |    320540   |  [309](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 309 | 277 | 246 |
+|      cholesky_bdti     |   266422   |    342688   |  [1699](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 1784 | 1393 | 1166 | 
+|      denoise     |   275638   |    356848   |  [884](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 699 | 821 | 399 |
+|      sparcT2_core     |   300109   |    302663   |  [2595](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 2023 | 2284 | 1706 |
+|      gsm_switch     |   493260   |    507821   |  [3590](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 3443 | 2965 | 2159 |
+|      mes_noc     |   547544   |    577664   |  [1169](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 1022 | 1014 | 913 |
+|      LU230     |   574372   |    669477   |  [4639](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 4914 | 4496 | 3592 |
+|      LU_Network     |   635456   |    726999   |  [926](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 784 | 784 | 784 |
+|      sparcT1_chip2     |   820886   |    821274   |  [1579](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 1389 | 1279 | 961 |
+|      directrf     |   931275   |    1374742   |  [789](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/solutions_k_way/Titan23_benchmark_solutions/hMetis_SpecPart/3_way/UBfactor_2/dart.hgr.specpart.part.3)  | 726 | 654 | 539 |
+| bitcoin_miner |   1089284  |   1448151   | 1917 | 1514 | 1296 | 2022 |
 
 
 # Number of partitions 4 #
