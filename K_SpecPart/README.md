@@ -15,6 +15,7 @@ In order to run SpecPart, the following requirements are mandatory:
   * [Laplacians](https://github.com/danspielman/Laplacians.jl)
   * [LinearMaps](https://github.com/JuliaLinearAlgebra/LinearMaps.jl)
 * [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290) 
+* [METIS](https://github.com/KarypisLab/METIS)
 * [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
 
 Julia libraries can be installed by doing the following in Julia REPL:
