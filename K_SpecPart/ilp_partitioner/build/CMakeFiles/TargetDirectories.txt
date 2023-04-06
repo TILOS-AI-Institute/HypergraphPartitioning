@@ -1,0 +1,3 @@
+/home/fetzfs_projects/SpecPart/src/ilp_partitioner/build/CMakeFiles/edit_cache.dir
+/home/fetzfs_projects/SpecPart/src/ilp_partitioner/build/CMakeFiles/rebuild_cache.dir
+/home/fetzfs_projects/SpecPart/src/ilp_partitioner/build/CMakeFiles/ilp_part.dir

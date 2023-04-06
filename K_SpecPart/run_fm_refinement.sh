@@ -1,0 +1,1 @@
+/home/bodhi91/TritonPart_OpenROAD/build/src/openroad run_triton_part_refiner.tcl | tee run.log
