@@ -125,8 +125,7 @@ m is the number of eigenvectors (we recommend m=2)
 δ is the number of solutions picked from candidate solutions for overlay based clustering (we recommend δ=5)
 
 ```
-
-Please note that current version of SpecPart supports bipartitions only. We will publish future versions of the code to tackle k-way partitions. A user guide is available [here](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart/README.md). 
+A user guide is available [here](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart/README.md). 
 
 *******************************************************************************************
 
