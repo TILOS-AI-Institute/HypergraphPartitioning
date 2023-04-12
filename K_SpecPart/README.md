@@ -4,7 +4,7 @@ K-SPecPart is an extension (and improvement) over SpecPart that can compute mult
 
 # Requirements #
 
-In order to run SpecPart, the following requirements are mandatory: 
+In order to run K-SpecPart, the following requirements are mandatory: 
 * [Julia](https://julialang.org/) version 1.6.0 or newer. 
 * The following Julia libraries:
   * [Shuffle](https://docs.juliahub.com/Shuffle/X0eqg/0.1.1/)
@@ -17,6 +17,7 @@ In order to run SpecPart, the following requirements are mandatory:
 * [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290) 
 * [METIS](https://github.com/KarypisLab/METIS)
 * [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
+* [FM](https://github.com/ABKGroup/TritonPart_OpenROAD.git)
 
 Julia libraries can be installed by doing the following in Julia REPL:
 
