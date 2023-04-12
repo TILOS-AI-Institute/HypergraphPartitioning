@@ -32,13 +32,13 @@ K-SpecPart accepts the following parameters:
 
 | Parameter   | Description |
 | ----------- | ----------- |
-| hypergraph_fixed_file      | The fixed file consisting of fixed vertices.       |
-| hint_file   | The hint partition file.        |
-| imb  | The imbalance factor.         |
+| hypergraph_fixed_file      | The fixed file consisting of fixed vertices       |
+| hint_file   | The hint partition file        |
+| imb  | The imbalance factor         |
 | num_parts   | The number of partitions        |
-| eigvecs   | The number of eigenvectors. (Default 2)        |
-| refine_iters   | The number of K-SpecPart iterations. (Default 2)        |
-| solver_iters   | The number of LOCPCG solver iterations. (Default 40)        |
-| best_solns   | The number of partition solutions picked for overlay-clustering. (Default 5)        |
-| ncycles   | The number of random cycles for constructing spectral sparsifier graph. (Default 2)        |
-| seed   | The random seed for K-SpecPart. (Default 0)       |
+| eigvecs   | The number of eigenvectors (Default 2)        |
+| refine_iters   | The number of K-SpecPart iterations (Default 2)        |
+| solver_iters   | The number of LOCPCG solver iterations (Default 40)        |
+| best_solns   | The number of partition solutions picked for overlay-clustering (Default 5)        |
+| ncycles   | The number of random cycles for constructing spectral sparsifier graph (Default 2)        |
+| seed   | The random seed for K-SpecPart (Default 0)       |
