@@ -25,9 +25,9 @@ julia> using Pkg
 julia> Pkg.add("Package name")
 ```
 
-# SpecPart Parameters #
+# K-SpecPart Parameters #
 
-SpecPart accepts the following parameters:
+K-SpecPart accepts the following parameters:
 
 | Parameter   | Description |
 | ----------- | ----------- |
