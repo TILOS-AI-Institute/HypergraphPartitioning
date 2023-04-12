@@ -3,7 +3,7 @@
 Hypergraph Partitioning Leaderboard: Leaderboard of minimum hyperedge cut values for different testcases with multiple imbalance factors.
 
 **SpecPart:** A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement\
-**K-SpecPart:** A Supervised Spectral Framework for Multi-way Hypergraph Partitioning Solution Improvement
+**[K-SpecPart](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/K_SpecPart):** A Supervised Spectral Framework for Multi-way Hypergraph Partitioning Solution Improvement
 
 *******************************************************************************************
 
