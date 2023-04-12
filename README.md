@@ -24,6 +24,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
 
 * [Current file/directory tree](#current-file-directory-tree-and-description) and description
 * (SpecPart-specific) installation and run [instructions](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart)
+* (K-SpecPart-specific) installation and run [instructions](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/K_SpecPart)
 * Leaderboard of minimum hyperedge cutsize values
   * [Leaderboard](#number-of-partitions-2) for number of partitions = 2
   * [Leaderboard](#number-of-partitions-3) for number of partitions = 3
