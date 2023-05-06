@@ -14,6 +14,7 @@ In order to run K-SpecPart, the following requirements are mandatory:
   * [IterativeSolvers](https://iterativesolvers.julialinearalgebra.org/stable/)
   * [Laplacians](https://github.com/danspielman/Laplacians.jl)
   * [LinearMaps](https://github.com/JuliaLinearAlgebra/LinearMaps.jl)
+  * [MultivariateStats](https://github.com/JuliaStats/MultivariateStats.jl)
 * [OR-Tools](https://developers.google.com/optimization)
 * If you have acces to [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290), you can use CPLEX in place of OR-Tools. 
 * [METIS](https://github.com/KarypisLab/METIS)
