@@ -16,7 +16,7 @@ In order to run K-SpecPart, the following requirements are mandatory:
   * [LinearMaps](https://github.com/JuliaLinearAlgebra/LinearMaps.jl)
   * [MultivariateStats](https://github.com/JuliaStats/MultivariateStats.jl)
 * [OR-Tools](https://developers.google.com/optimization)
-* If you have acces to [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290), you can use CPLEX in place of OR-Tools. This change can be made my modifications to ```CMakeLists.txt``` in ```ilp_partitioner``` directory. 
+* If you have acces to [CPLEX ILP solver](https://www.ibm.com/support/pages/downloading-ibm-ilog-cplex-optimization-studio-v1290), you can use CPLEX in place of OR-Tools. This change can be made by modifications to ```CMakeLists.txt``` in ```ilp_partitioner``` directory. 
 * [METIS](https://github.com/KarypisLab/METIS)
 * [hMETIS](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview)
 * [FM](https://github.com/ABKGroup/TritonPart_OpenROAD.git)
