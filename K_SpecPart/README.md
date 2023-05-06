@@ -46,6 +46,8 @@ K-SpecPart accepts the following parameters:
 | seed   | The random seed for K-SpecPart (Default 0)       |
 
 # K-SpecPart Runtime and cutsize comparison for K = 2 #
+hMETIS runtime and cutsizes reported are averaged over multiple (50) sampling of 20 hMETIS runs. hMETIS runtime and cutsizes are rounded off to one place of decimal.  
+
 | Benchmark     | Vertices | Hyperedges | Avg hMETIS time (s) | K-SpecPart time (s) | Avg hMETIS cutsize | K-SpecPart cutsize |
 |---------------|----------|------------|-----------------|-------------------|----------------|------------------| 
 | sparcT1_core  | 91976    | 92827      | 9.5            | 32.52             | 982.0           | 979             |
@@ -73,6 +75,8 @@ K-SpecPart accepts the following parameters:
 
 
 # K-SpecPart Runtime and cutsize comparison for K = 3 #
+hMETIS runtime and cutsizes reported are averaged over multiple (50) sampling of 20 hMETIS runs. hMETIS runtime and cutsizes are rounded off to one place of decimal. 
+
 | Benchmark     | Vertices | Hyperedges | Avg hMETIS time (s) | K-SpecPart time (s) | Avg hMETIS cutsize | K-SpecPart cutsize |
 |---------------|----------|------------|-----------------|-------------------|----------------|------------------| 
 | sparcT1_core  | 91976    | 92827      | 12.2            | 60.39             | 2530.0           | 1878             |
@@ -100,6 +104,8 @@ K-SpecPart accepts the following parameters:
 
 
 # K-SpecPart Runtime and cutsize comparison for K = 4 #
+hMETIS runtime and cutsizes reported are averaged over multiple (50) sampling of 20 hMETIS runs. hMETIS runtime and cutsizes are rounded off to one place of decimal. 
+
 | Benchmark     | Vertices | Hyperedges | Avg hMETIS time (s) | K-SpecPart time (s) | Avg hMETIS cutsize | K-SpecPart cutsize |
 |---------------|----------|------------|-----------------|-------------------|----------------|------------------| 
 | sparcT1_core  | 91976    | 92827      | 29.1            | 74.41             | 2543.3           | 2449             |
