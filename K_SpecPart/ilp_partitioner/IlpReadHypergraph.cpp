@@ -1,8 +1,31 @@
 #include "IlpReadHypergraph.h"
 #include "ilcplex/cplex.h"
 #include "ilcplex/ilocplex.h"
+#include <ortools/base/commandlineflags.h>
+//#include <ortools/base/init_google.h>
+#include <ortools/base/logging.h>
+#include <ortools/linear_solver/linear_solver.h>
+#include <ortools/linear_solver/linear_solver.pb.h>
+
+#include "ortools/base/logging.h"
+#include "ortools/sat/cp_model.h"
+#include "ortools/sat/cp_model.pb.h"
+#include "ortools/sat/cp_model_solver.h"
 
 namespace optimal_partitioner {
+using operations_research::MPConstraint;
+using operations_research::MPObjective;
+using operations_research::MPSolver;
+using operations_research::MPVariable;
+using operations_research::sat::BoolVar;
+using operations_research::sat::CpModelBuilder;
+using operations_research::sat::CpSolverResponse;
+using operations_research::sat::CpSolverStatus;
+using operations_research::sat::LinearExpr;
+using operations_research::sat::SolutionBooleanValue;
+using operations_research::sat::Solve;
+
+
 void Hypergraph::ReadHypergraph(int num_parts, float ub_factor,
                                 std::string hypergraph_file_name,
                                 std::string fixed_file_name)
@@ -130,7 +153,147 @@ std::vector<std::vector<float>> Hypergraph::GetVertexBalance() {
   return std::vector<std::vector<float>>(num_parts_, vertex_balance);
 }
 
-void Hypergraph::Solve() {
+void Hypergraph::SolveOR() {
+  auto start_time_stamp_global = std::chrono::high_resolution_clock::now();
+  partition_.resize(num_vertices_);
+  std::fill(partition_.begin(), partition_.end(), -1);
+  std::cout << "[STATUS]Starting OR tools " << std::endl;
+  auto max_block_balance = GetVertexBalance();
+  std::vector<int> edge_mask;  // store the hyperedges being used.
+  std::set<int> vertex_mask;   // store the vertices being used
+  // define comp structure to compare hyperedge ( function: >)
+  struct comp
+  {
+    // comparator function
+    bool operator()(const std::pair<int, float>& l,
+                    const std::pair<int, float>& r) const
+    {
+      if (l.second != r.second)
+        return l.second > r.second;
+      return l.first < r.first;
+    }
+  };
+
+  // Here we blow up the hyperedge cost to avoid the unstability due to
+  // conversion accuray We reserve the 6 digits after numeric point
+  const float blow_factor = 1000000.0;
+   // From here, we are going to create CP-SAT model for the reduced hypergraph
+  std::vector<std::vector<int>> x(num_parts_, std::vector<int>(num_vertices_, 0));
+  std::vector<std::vector<int>> y(num_parts_, std::vector<int>(num_hyperedges_, 0));
+  // Build CP Model
+  CpModelBuilder cp_model;
+  // Variables
+  // var_x[i][j] is an array of Boolean variables
+  // var_x[i][j] is true if vertex i to partition j
+  std::vector<std::vector<BoolVar>> var_x(num_parts_,
+                                          std::vector<BoolVar>(num_vertices_));
+  std::vector<std::vector<BoolVar>> var_y(num_parts_,
+                                          std::vector<BoolVar>(num_hyperedges_));
+  
+  std::cout << "[STATUS] Setting variables " << std::endl;
+
+  for (auto i = 0; i < num_parts_; i++) {
+    // initialize var_x
+    for (auto v = 0; v < num_vertices_; v++) {
+      var_x[i][v] = cp_model.NewBoolVar();
+    }
+    // initialize var_y
+    for (auto e = 0; e < num_hyperedges_; e++) {
+      var_y[i][e] = cp_model.NewBoolVar();
+    }
+  }
+
+  std::cout << "[STATUS] Setting balance constraints " << std::endl;
+
+  // define constraints
+  // balance constraint
+  // check each dimension
+  for (auto k = 0; k < vertex_dimensions_; k++) {
+    // allowed balance for each dimension
+    for (auto i = 0; i < num_parts_; i++) {
+      LinearExpr balance_expr;
+      for (int v = 0; v < num_vertices_; v++) {
+        balance_expr
+            += vertex_weights_[v][k] * var_x[i][v];
+      }
+      cp_model.AddLessOrEqual(balance_expr, max_block_balance[i][k]);
+    }
+  }
+
+  std::cout << "[STATUS] Setting vertex constraints " << std::endl;
+
+  // each vertex can only belong to one part
+  for (auto v = 0; v < num_vertices_; v++) {
+    std::vector<BoolVar> possible_partitions;
+    for (auto i = 0; i < num_parts_; i++) {
+      possible_partitions.push_back(var_x[i][v]);
+    }
+    cp_model.AddExactlyOne(possible_partitions);
+  }
+
+  std::cout << "[STATUS] Setting hyperedge constraints " << std::endl;
+
+  // Hyperedge constraint
+  for (auto e = 0; e < num_hyperedges_; e++) {
+    const int start_idx = eptr_[e];
+    const int end_idx = eptr_[e + 1];
+    for (int j = start_idx; j < end_idx; j++) {
+      const int v = eind_[j];
+      for (int i = 0; i < num_parts_; i++) {
+        cp_model.AddLessOrEqual(var_y[i][e], var_x[i][v]);
+      }
+    }
+  }
+
+  std::cout << "[STATUS] Setting objective function " << std::endl;
+
+  // Objective (Maximize objective function -> Minimize cutsize)
+  LinearExpr obj_expr;
+  for (auto e = 0; e < num_hyperedges_; e++) {
+    for (int i = 0; i < num_parts_; ++i) {
+      // obj_expr += var_y[i][e] * cost_value ;
+      obj_expr += var_y[i][e] * static_cast<int>(hyperedge_weights_[i].front() * blow_factor)
+                  * num_vertices_ * num_parts_;
+    }
+    for (int v = 0; v < num_vertices_; v++) {
+      for (int i = 0; i < num_parts_; i++) {
+        obj_expr -= var_x[i][v] * (i * num_vertices_ * num_vertices_ + v);
+      }
+    }
+  }
+  cp_model.Maximize(obj_expr);
+
+  std::cout << "[STATUS] Solving the ILP " << std::endl;
+
+  // solve
+  const CpSolverResponse response = Solve(cp_model.Build());
+
+  std::cout << "[STATUS] Finished solving the ILP " << std::endl;
+
+  // Print solution.
+  if (response.status() == CpSolverStatus::OPTIMAL) {
+    for (auto v = 0; v < num_vertices_; v++) {
+      for (auto i = 0; i < num_parts_; i++) {
+        if (SolutionBooleanValue(response, var_x[i][v])) {
+          partition_[v] = i;
+        }
+      }
+    }
+  } else {
+    for (auto &value : partition_)
+      value = (value == -1) ? 0 : value;
+  }
+  auto end_time_stamp_global = std::chrono::high_resolution_clock::now();
+  double total_global_time
+      = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            end_time_stamp_global - start_time_stamp_global)
+            .count();
+  total_global_time *= 1e-9;
+  std::cout << "Total time for ILP solve " << total_global_time << " seconds " << std::endl;
+}
+
+void Hypergraph::SolveCPLEX() {
+  auto start_time_stamp_global = std::chrono::high_resolution_clock::now();
   auto max_block_balance = GetVertexBalance();
   std::vector<std::vector<float>> min_block_balance(num_parts_, GetTotalVertexWeights());
   if (num_parts_ == 2) {
@@ -244,6 +407,13 @@ void Hypergraph::Solve() {
   }
   mycplex.clear();
   myenv.end();
+  auto end_time_stamp_global = std::chrono::high_resolution_clock::now();
+  double total_global_time
+      = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            end_time_stamp_global - start_time_stamp_global)
+            .count();
+  total_global_time *= 1e-9;
+  std::cout << "Total time for ILP solve " << total_global_time << " seconds " << std::endl;
 }
 
 void Hypergraph::Evaluator() {

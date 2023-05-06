@@ -230,11 +230,59 @@ CPLEX_LIBRARY:FILEPATH=/home/tool/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/st
 //CPLEX root directory.
 CPLEX_ROOT_DIR:PATH=
 
+//The directory containing a CMake configuration file for Cbc.
+Cbc_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/Cbc
+
+//The directory containing a CMake configuration file for Cgl.
+Cgl_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/Cgl
+
+//The directory containing a CMake configuration file for Clp.
+Clp_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/Clp
+
+//The directory containing a CMake configuration file for CoinUtils.
+CoinUtils_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/CoinUtils
+
+//The directory containing a CMake configuration file for Eigen3.
+Eigen3_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/share/eigen3/cmake
+
+//The directory containing a CMake configuration file for Osi.
+Osi_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/Osi
+
+//The directory containing a CMake configuration file for Protobuf.
+Protobuf_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/protobuf
+
+//The directory containing a CMake configuration file for SCIP.
+SCIP_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib/cmake/scip
+
+//Path to a file.
+ZLIB_INCLUDE_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/include
+
+//Path to a library.
+ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+ZLIB_LIBRARY_RELEASE:FILEPATH=/usr/lib64/libz.so
+
+//The directory containing a CMake configuration file for absl.
+absl_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/absl
+
 //Value Computed by CMake
 ilp_part_BINARY_DIR:STATIC=/home/fetzfs_projects/SpecPart/src/ilp_partitioner/build
 
 //Value Computed by CMake
 ilp_part_SOURCE_DIR:STATIC=/home/fetzfs_projects/SpecPart/src/ilp_partitioner
+
+//The directory containing a CMake configuration file for ortools.
+ortools_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/ortools
+
+//CMake built-in FindProtobuf.cmake module compatible
+protobuf_MODULE_COMPATIBLE:BOOL=OFF
+
+//Enable for verbose output
+protobuf_VERBOSE:BOOL=OFF
+
+//The directory containing a CMake configuration file for re2.
+re2_DIR:PATH=/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/re2
 
 
 ########################
@@ -406,6 +454,30 @@ CPLEX_INCLUDE_DIR-ADVANCED:INTERNAL=1
 CPLEX_LIBRARY-ADVANCED:INTERNAL=1
 //Details about finding CPLEX
 FIND_PACKAGE_MESSAGE_DETAILS_CPLEX:INTERNAL=[/home/tool/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/static_pic/libcplex.a][/home/tool/ILOG/CPLEX_Studio128/cplex/include][/home/tool/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/static_pic/libilocplex.a][/home/tool/ILOG/CPLEX_Studio128/concert/lib/x86-64_linux/static_pic/libconcert.a][/home/tool/ILOG/CPLEX_Studio128/concert/include][v()]
+//Details about finding Cbc
+FIND_PACKAGE_MESSAGE_DETAILS_Cbc:INTERNAL=[/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/Cbc/CbcConfig.cmake][v2.10.7()]
+//Details about finding Clp
+FIND_PACKAGE_MESSAGE_DETAILS_Clp:INTERNAL=[/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/Clp/ClpConfig.cmake][v1.17.7()]
+//Details about finding Eigen3
+FIND_PACKAGE_MESSAGE_DETAILS_Eigen3:INTERNAL=[/home/tool/ortools/install/CentOS7-gcc9/share/eigen3/cmake/Eigen3Config.cmake][v3.4.0()]
+//Details about finding SCIP
+FIND_PACKAGE_MESSAGE_DETAILS_SCIP:INTERNAL=[/home/tool/ortools/install/CentOS7-gcc9/lib/cmake/scip/scip-config.cmake][v8.0.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//Details about finding ZLIB
+FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[/usr/lib64/libz.so][/home/tool/ortools/install/CentOS7-gcc9/include][v1.2.11()]
+//Details about finding re2
+FIND_PACKAGE_MESSAGE_DETAILS_re2:INTERNAL=[/home/tool/ortools/install/CentOS7-gcc9/lib64/cmake/re2/re2Config.cmake][v9.0.0()]
+//Result of TRY_COMPILE
+THREADS_HAVE_PTHREAD_ARG:INTERNAL=TRUE
+//ADVANCED property for variable: ZLIB_INCLUDE_DIR
+ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
+ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
+ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: protobuf_MODULE_COMPATIBLE
+protobuf_MODULE_COMPATIBLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: protobuf_VERBOSE
+protobuf_VERBOSE-ADVANCED:INTERNAL=1
 

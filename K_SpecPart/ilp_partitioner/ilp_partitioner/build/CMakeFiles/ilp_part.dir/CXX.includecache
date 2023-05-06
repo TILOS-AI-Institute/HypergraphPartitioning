@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/fetzfs_projects/SpecPart/src/ilp_partitioner/IlpReadHypergraph.h
+algorithm
+-
+cassert
+-
+cstdlib
+-
+fstream
+-
+iostream
+-
+istream
+-
+iterator
+-
+memory
+-
+sstream
+-
+vector
+-
+
+/home/fetzfs_projects/SpecPart/src/ilp_partitioner/Main.cpp
+IlpReadHypergraph.h
+/home/fetzfs_projects/SpecPart/src/ilp_partitioner/IlpReadHypergraph.h
+string
+-
+

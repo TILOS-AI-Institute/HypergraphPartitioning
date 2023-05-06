@@ -45,7 +45,8 @@ public:
   void ReadHypergraph(int num_parts_, float ub_factor,
                       std::string graph_file_name,
                       std::string fixed_file_name = "");
-  void Solve();
+  void SolveCPLEX();
+  void SolveOR();
   void WritePartitionToFile(std::string file_name);
   void Evaluator();
 

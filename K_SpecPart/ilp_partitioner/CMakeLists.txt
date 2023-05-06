@@ -10,9 +10,11 @@ set(LINKER_OPTIONS                  "-Wl,--export-dynamic")
 
 find_package(Cplex)
 find_package(Threads REQUIRED)
+find_package(ortools REQUIRED)
 include_directories(SYSTEM ${CPLEX_INCLUDE_DIRS})
 add_executable(ilp_part Main.cpp IlpReadHypergraph.cpp)
 target_link_libraries(ilp_part
     PUBLIC
     ${CPLEX_LIBRARIES}
-    ${CMAKE_THREAD_LIBS_INIT})
+    ${CMAKE_THREAD_LIBS_INIT}
+    ortools::ortools)
