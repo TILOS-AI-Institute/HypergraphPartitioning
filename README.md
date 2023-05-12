@@ -207,8 +207,8 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 # Number of partitions 3 #
 
 Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https://www.eecg.utoronto.ca/~kmurray/titan.html) with imbalance factor (ε) = 2: 
-|               | Statistics |             |    Cutsize   | Cutsize   |    Cutsize   |    Cutsize   |
-|---------------|:----------:|:-----------:|:------------:|:------------:|:------------:|:------------:|
+|               | Statistics |             |    Cutsize   | 
+|---------------|:----------:|:-----------:|:------------:|
 |    Testcase   |  #Vertices | #Hyperedges | ε = 2 |
 |  sparcT1_core |    91976   |    92827    |  [1914](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/K_specpart_solutions/Titan23_benchmarks/ub_factor_2/3_way/sparcT1_core.hgr.specpart.ubfactor.2.part.3)  | 
 |     neuron    |    92290   |    125305   |  [392](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/K_specpart_solutions/Titan23_benchmarks/ub_factor_2/3_way/neuron.hgr.specpart.ubfactor.2.part.3)   |  
