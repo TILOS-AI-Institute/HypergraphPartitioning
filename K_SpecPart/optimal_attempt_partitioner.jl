@@ -53,15 +53,13 @@ function check_balance(hgraph::__hypergraph__, partition::Vector{Int}, num_parts
     return true
 end
 
-function optimal_partitioner(hgraph::__hypergraph__, num_parts::Int, ub_factor::Int)
+function optimal_partitioner(hmetis_path::String, cplex_path::String, hgraph::__hypergraph__, num_parts::Int, ub_factor::Int)
     partition = zeros(Int, hgraph.num_vertices)
-    hgr_file_name = source_dir * "coarse.hgr"
+    hgr_file_name = source_dir * "/" * "coarse.hgr"
     write_hypergraph(hgraph, hgr_file_name)
     if (hgraph.num_hyperedges < 1500 && num_parts == 2)
-        ilp_command = `/home/fetzfs_projects/SpecPart/src/ilp_partitioner/build/ilp_part
-                        $hgr_file_name
-                        $num_parts
-                        $ub_factor`
+        ilp_string = ilp_path * " " * hgr_file_name * " " * string(num_parts) * " " * string(ub_factor)
+        ilp_command = `sh -c $ilp_string`
         run(ilp_command, wait = true)
         pfile = hgr_file_name * ".part." * string(num_parts)
         f = open(pfile, "r")
@@ -80,16 +78,8 @@ function optimal_partitioner(hgraph::__hypergraph__, num_parts::Int, ub_factor::
             vcycle = 1
             reconst = 0
             dbglvl = 0
-            hmetis_command = `/home/fetzfs_projects/SpecPart/src/hmetis
-                            $hgr_file_name 
-                            $num_parts
-                            $ub_factor
-                            $runs
-                            $ctype
-                            $rtype
-                            $vcycle
-                            $reconst
-                            $dbglvl`
+            hmetis_string = hmetis_path * " " * hgr_file_name * " " * string(num_parts) * " " * string(ub_factor) * " " * string(runs) * " " * string(ctype) * " " * string(rtype) * " " * string(vcycle) * " " * string(reconst) * " " * string(dbglvl)
+            hmetis_command = `sh -c $hmetis_string`
             run(hmetis_command, wait=true)
         end
 
@@ -108,10 +98,8 @@ function optimal_partitioner(hgraph::__hypergraph__, num_parts::Int, ub_factor::
         rm_cmd = `rm $pfile`
         run(rm_cmd, wait=true)
     elseif (hgraph.num_hyperedges < 300 && num_parts > 2)
-        ilp_command = `/home/fetzfs_projects/SpecPart/src/ilp_partitioner/build/ilp_part
-                        $hgr_file_name
-                        $num_parts
-                        $ub_factor`
+        ilp_string = ilp_path * " " * hgr_file_name * " " * string(num_parts) * " " * string(ub_factor)
+        ilp_command = `sh -c $ilp_string`
         run(ilp_command, wait = true)
         pfile = hgr_file_name * ".part." * string(num_parts)
         f = open(pfile, "r")
@@ -130,16 +118,8 @@ function optimal_partitioner(hgraph::__hypergraph__, num_parts::Int, ub_factor::
             vcycle = 1
             reconst = 0
             dbglvl = 0
-            hmetis_command = `/home/fetzfs_projects/SpecPart/src/hmetis
-                            $hgr_file_name 
-                            $num_parts
-                            $ub_factor
-                            $runs
-                            $ctype
-                            $rtype
-                            $vcycle
-                            $reconst
-                            $dbglvl`
+            hmetis_string = hmetis_path * " " * hgr_file_name * " " * string(num_parts) * " " * string(ub_factor) * " " * string(runs) * " " * string(ctype) * " " * string(rtype) * " " * string(vcycle) * " " * string(reconst) * " " * string(dbglvl)
+            hmetis_command = `sh -c $hmetis_string`
             run(hmetis_command, wait=true)
         end
 
@@ -172,16 +152,8 @@ function optimal_partitioner(hgraph::__hypergraph__, num_parts::Int, ub_factor::
             local_hgr_name = hgr_file_name * "." * string(i)
             cmd = "cp " * hgr_file_name * " " * local_hgr_name
             run(`sh -c $cmd`, wait=true)
-            hmetis_command = `/home/fetzfs_projects/SpecPart/src/hmetis
-                $local_hgr_name 
-                $num_parts
-                $ub_factor
-                $runs
-                $ctype
-                $rtype
-                $vcycle
-                $reconst
-                $dbglvl`
+            hmetis_string = hmetis_path * " " * local_hgr_name * " " * string(num_parts) * " " * string(ub_factor) * " " * string(runs) * " " * string(ctype) * " " * string(rtype) * " " * string(vcycle) * " " * string(reconst) * " " * string(dbglvl)
+            hmetis_command = `sh -c $hmetis_string`
             run(hmetis_command, wait=true)
         end
         for i in 1:parallel_runs

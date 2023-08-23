@@ -23,8 +23,8 @@ design_list = ["sparcT1_core",
                "directrf",
                "bitcoin_miner"]
 
-num_parts_list = [5]
-ub_factor_list = [2, 5, 10, 20]
+num_parts_list = [3, 4]
+ub_factor_list = [2]
 benchmark_dir = "/home/fetzfs_projects/SpecPart/testcases/titan"
 
 for design in design_list

@@ -11,8 +11,6 @@ using SimpleWeightedGraphs
 using Dates
 using CRC32c
 
-source_dir = "/home/fetzfs_projects/SpecPart/src/"
-
 include("definitions.jl")
 include("dimensionality_reduction.jl")
 include("run_triton_part_refiner.jl")
@@ -85,7 +83,7 @@ function two_way_spectral_refine(hypergraph_file::String,
         @sync Threads.@threads for i in 1:length(partitions_vec)
             partition_file = "tree_partition" * string(i) * ".part.2" 
             write_partition(partitions_vec[i][1], partition_file)
-            triton_part_refine(processed_hg_name, partition_file, num_parts, ub_factor, seed, i)
+            triton_part_refine(triton_part_refiner_path, processed_hg_name, partition_file, num_parts, ub_factor, seed, i)
         end
         for i in 1:length(partitions_vec)
             partition_file = "tree_partition" * string(i) * ".part.2" 
@@ -123,7 +121,7 @@ function two_way_spectral_refine(hypergraph_file::String,
         push!(best_partitions, partition)
         hgraph_contracted, clusters = overlay(best_partitions, hgraph)
         @info "Running optimal attempt partitioning**"
-        refined_partition = optimal_partitioner(hgraph_contracted, num_parts, ub_factor)
+        refined_partition = optimal_partitioner(hmetis_path, ilp_path, hgraph_contracted, num_parts, ub_factor)
         cutsize = golden_evaluator(hgraph_contracted, num_parts, refined_partition)
         @info "specpart cutsize recorded: $cutsize" 
         # projecting partition on clustered hypergraph to original hypergraph
@@ -134,7 +132,7 @@ function two_way_spectral_refine(hypergraph_file::String,
         end
         specpart_partition_name = processed_hg_name * ".specpart" * ".part.2"
         write_partition(partition_projected, specpart_partition_name)
-        triton_part_refine(processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
+        triton_part_refine(triton_part_refiner_path, processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
         partition_projected = read_hint_file(specpart_partition_name)
         cutsize = golden_evaluator(hgraph, num_parts, partition_projected)
         @info "specpart cutsize recorded: $cutsize" 
@@ -147,7 +145,7 @@ function two_way_spectral_refine(hypergraph_file::String,
     push!(global_partitions, partition)
     hgraph_contracted, clusters = overlay(global_partitions, hgraph)
     @info "Running optimal attempt partitioning**"
-    specpart_partition = optimal_partitioner(hgraph_contracted, num_parts, ub_factor)
+    specpart_partition = optimal_partitioner(hmetis_path, ilp_path, hgraph_contracted, num_parts, ub_factor)
     cutsize = golden_evaluator(hgraph_contracted, num_parts, specpart_partition)
     @info "[specpart] refined cutsize recorded: $cutsize" 
     partition_projected = zeros(Int, hgraph.num_vertices)
@@ -157,7 +155,7 @@ function two_way_spectral_refine(hypergraph_file::String,
     end
     specpart_partition_name = processed_hg_name * ".specpart" * ".part.2"
     write_partition(partition_projected, specpart_partition_name)
-    triton_part_refine(processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
+    triton_part_refine(triton_part_refiner_path, processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
     partition_projected = read_hint_file(specpart_partition_name)
     cutsize = golden_evaluator(hgraph, num_parts, partition_projected)
     global_min_cut, idx = findmin(global_cutsizes)
@@ -313,7 +311,7 @@ function k_way_spectral_refine(hypergraph_file::String,
         @sync Threads.@threads for i in 1:length(partitions_vec)
             partition_file = "tree_partition" * string(i) * ".part." * string(num_parts) 
             write_partition(partitions_vec[i][1], partition_file)
-            triton_part_refine(processed_hg_name, partition_file, num_parts, ub_factor, seed, i)
+            triton_part_refine(triton_part_refiner_path, processed_hg_name, partition_file, num_parts, ub_factor, seed, i)
         end
         for i in 1:length(partitions_vec)
             partition_file = "tree_partition" * string(i) * ".part." * string(num_parts) 
@@ -353,7 +351,7 @@ function k_way_spectral_refine(hypergraph_file::String,
         hgraph_contracted, clusters = overlay(best_partitions, hgraph)
         #hgraph_contracted, clusters = iterative_overlay(best_partitions, hgraph)
         @info "Running optimal attempt partitioning**"
-        refined_partition = optimal_partitioner(hgraph_contracted, num_parts, ub_factor)
+        refined_partition = optimal_partitioner(hmetis_path, ilp_path, hgraph_contracted, num_parts, ub_factor)
         cutsize = golden_evaluator(hgraph_contracted, num_parts, refined_partition)
         @info "specpart cutsize recorded: $cutsize" 
         # projecting partition on clustered hypergraph to original hypergraph
@@ -365,7 +363,7 @@ function k_way_spectral_refine(hypergraph_file::String,
         #println("[debug], vertices ", hgraph.num_vertices, " , partition size ", length(partition_projected))
         specpart_partition_name = processed_hg_name * ".specpart" * ".part." * string(num_parts)
         write_partition(partition_projected, specpart_partition_name)
-        triton_part_refine(processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
+        triton_part_refine(triton_part_refiner_path, processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
         partition_projected = read_hint_file(specpart_partition_name)
         cutsize = golden_evaluator(hgraph, num_parts, partition_projected)
         @info "specpart cutsize recorded: $cutsize" 
@@ -378,7 +376,7 @@ function k_way_spectral_refine(hypergraph_file::String,
     push!(global_partitions, partition)
     hgraph_contracted, clusters = overlay(global_partitions, hgraph)
     @info "Running optimal attempt partitioning**"
-    specpart_partition = optimal_partitioner(hgraph_contracted, num_parts, ub_factor)
+    specpart_partition = optimal_partitioner(hmetis_path, ilp_path, hgraph_contracted, num_parts, ub_factor)
     cutsize = golden_evaluator(hgraph_contracted, num_parts, specpart_partition)
     @info "[specpart] refined cutsize recorded: $cutsize" 
     partition_projected = zeros(Int, hgraph.num_vertices)
@@ -390,7 +388,7 @@ function k_way_spectral_refine(hypergraph_file::String,
     pre_refined_cut, ~ = golden_evaluator(hgraph, num_parts, pre_refined_part)
     specpart_partition_name = processed_hg_name * ".specpart" * ".part.2"
     write_partition(partition_projected, specpart_partition_name)
-    triton_part_refine(processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
+    triton_part_refine(triton_part_refiner_path, processed_hg_name, specpart_partition_name, num_parts, ub_factor, seed, 0)
     partition_projected = read_hint_file(specpart_partition_name)
     cutsize = golden_evaluator(hgraph, num_parts, partition_projected)
     global_min_cut, idx = findmin(global_cutsizes)
@@ -488,7 +486,17 @@ function specpart_run(hypergraph_file::String;
                                                 best_solns=best_solns,
                                                 seed=seed)
     end
-    return refined_partition, cutsize
+
+    output_ptn = zeros(Int, hypergraph.num_vertices)
+    for i in 1:length(new_indices)
+       output_ptn[i] = refined_partition[new_indices[i]]
+    end
+    for i in 1:length(unused_indices)
+       output_ptn[i] = refined_partition[unused_indices[i]]
+    end
+
+    return output_ptn, cutsize
+    #return refined_partition, cutsize
 end
 end
 

@@ -1,4 +1,4 @@
-function triton_part_refine(hypergraph::String, partition::String, num_parts::Int, ub_factor::Int, seed::Int, id::Int)
+function triton_part_refine(refiner_path::String, hypergraph::String, partition::String, num_parts::Int, ub_factor::Int, seed::Int, id::Int)
     line = "triton_part_refine" * 
             " -hypergraph_file " * hypergraph *
             " -partition_file " * partition *
@@ -14,7 +14,7 @@ function triton_part_refine(hypergraph::String, partition::String, num_parts::In
     println(f, "exit")
     close(f)
     f = open(sh_name, "w")
-    line = "/home/bodhi91/TritonPart_OpenROAD/build/src/openroad " * 
+    line = refiner_path * 
                 tcl_name * " | tee " * log_name
     println(f, line)
     close(f)
@@ -23,7 +23,6 @@ function triton_part_refine(hypergraph::String, partition::String, num_parts::In
     cmd = "chmod 777 " * tcl_name
     run(`sh -c $cmd`, wait = true)
     triton_part_refiner_cmd = `$sh_name
-    
                                 $hypergraph
                                 $partition
                                 $num_parts

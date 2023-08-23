@@ -81,7 +81,7 @@ end
 
 function build_metis_graph(tree::SimpleWeightedGraph, 
                          metis_opts::Int)
-    file_name = source_dir * "metis_graph" * string(metis_opts) * "." * string(Dates.now()) * ".gr"
+    file_name = source_dir * "/" * "metis_graph" * string(metis_opts) * "." * string(Dates.now()) * ".gr"
     f = open(file_name, "w")
     wts = tree.weights
     println(f, SimpleWeightedGraphs.nv(tree), " ", SimpleWeightedGraphs.ne(tree), " 001")
@@ -106,12 +106,8 @@ function metis(metis_path::String,
             ub_factor::Int,
             metis_opts::Int)
     log_file = source_dir * "metis" * string(metis_opts) * "." * string(Dates.now()) * ".log.txt"
-    metis_command = `/home/fetzfs_projects/SpecPart/src/metis_script.sh
-                    $graph_file 
-                    $num_parts 
-                    $ub_factor
-                    $seed
-                    $log_file`
+    metis_script = metis_path * "/" * "metis_script.sh" * " " * graph_file * " " * string(num_parts) * " " * string(ub_factor) * " " * string(seed) * " " * log_file
+    metis_command = `sh -c $metis_script`
     run(metis_command, wait=true)
     #exit()
     rm_cmd = "rm -r " * log_file

@@ -170,4 +170,13 @@ function write_partition(partition::Vector{Int},
     close(f)
 end
 
-metis_path = "/home/bodhi91/SpecPart_extension/metis"
+# Update these paths based on your configuration
+
+source_dir = "/home/fetzfs_projects/SpecPart/K_SpecPart"
+metis_path = "/home/fetzfs_projects/SpecPart/K_SpecPart"
+hmetis_path = "/home/fetzfs_projects/SpecPart/K_SpecPart/hmetis "
+
+# use your OR-Tools / CPLEX exe here
+
+ilp_path = "/home/fetzfs_projects/SpecPart/K_SpecPart/ilp_partitioner/build/ilp_part " 
+triton_part_refiner_path = "/home/bodhi91/TritonPart_OpenROAD/build/src/openroad "

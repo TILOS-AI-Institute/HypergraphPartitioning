@@ -529,7 +529,7 @@ function tree_partition(adj::SparseMatrixCSC,
             end
         end
     end
-    rm_cmd = "rm -r " * source_dir * "*.part."*string(num_parts)
+    rm_cmd = "rm -r " * source_dir * "/" * "*.part."*string(num_parts)
     run(`sh -c $rm_cmd`, wait=true)
     return partitions
 end
