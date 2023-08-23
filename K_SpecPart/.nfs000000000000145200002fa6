@@ -1,3 +1,0 @@
-triton_part_refine -hypergraph_file /home/fetzfs_projects/SpecPart/testcases/titan/segmentation.hgr.processed -partition_file tree_partition1.part.4 -num_parts 4
-exit
-
