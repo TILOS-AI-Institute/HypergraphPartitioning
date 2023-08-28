@@ -44,6 +44,7 @@ function two_way_spectral_refine(hypergraph_file::String,
     @info "Solver iterations $solver_iters"
     @info "Num vecs $eigen_vecs"
     @info "Tol 1e-40"
+    hgraph = remove_single_hyperedges(hgraph)
     processed_hg_name = hypergraph_file * ".processed"
     pre_refined_part = deepcopy(partition)
     pre_refined_cut, ~ = golden_evaluator(hgraph, num_parts, pre_refined_part)
@@ -486,6 +487,8 @@ function specpart_run(hypergraph_file::String;
                                                 best_solns=best_solns,
                                                 seed=seed)
     end
+
+    return refined_partition, cutsize
 
     output_ptn = zeros(Int, hypergraph.num_vertices)
     for i in 1:length(new_indices)

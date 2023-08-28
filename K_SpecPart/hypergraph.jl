@@ -44,3 +44,28 @@ function build_hypergraph(num_vertices::Int,
                         vwts, 
                         hwts)
 end
+
+function remove_single_hyperedges(hgraph::__hypergraph__)
+    eptr = hgraph.eptr
+    eind = hgraph.eind
+    vptr = hgraph.vptr
+    vind = hgraph.vind
+    new_eptr = [1]
+    new_eind = Int[]
+    new_hwts = Int[]
+    for i in 1:length(eptr)-1
+        if eptr[i+1] - eptr[i] > 1
+            append!(new_eind, eind[eptr[i]:eptr[i+1]-1])
+            push!(new_eptr, length(new_eind)+1)
+            push!(new_hwts, hgraph.hwts[i])
+        end
+    end
+    
+    return build_hypergraph(hgraph.num_vertices, 
+                            length(new_eptr)-1, 
+                            new_eptr, 
+                            new_eind, 
+                            hgraph.fixed, 
+                            hgraph.vwts, 
+                            new_hwts)
+end
