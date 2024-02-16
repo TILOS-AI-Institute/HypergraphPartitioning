@@ -97,9 +97,11 @@ function metis(fname::String, seed::Int, opts::String)
     time_stamp = string(now())
     log_name = "metis" * opts * "." * time_stamp * "log.txt"
     twname = "twgts.wts"
+    num_parts = 2
+    ub_factor = 2
     #metis_r = "./gpmetis " * fname * " 2 -ptype=rb -ufactor=100 -dbglvl=0" # > 'metis_log.txt'"""
     #metis_r = `./gpmetis $fname 2 -ptype=rb -ufactor=100 -dbglvl=0` 
-    metis_r = `./metis_script.sh $fname $log_name $twname $seed`
+    metis_r = `./metis_script.sh $fname $num_parts $ub_factor $seed $log_name`
     run(metis_r, wait=true)
     cmd = "rm -r " * log_name
     run(`sh -c $cmd`, wait=true)
