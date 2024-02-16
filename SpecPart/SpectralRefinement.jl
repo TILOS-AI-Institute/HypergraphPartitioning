@@ -2,7 +2,7 @@ module SpectralRefinement
 
 using Shuffle
 using JuMP
-using Cbc
+#using Cbc
 using LinearAlgebra
 using DataStructures
 using SparseArrays
@@ -28,7 +28,7 @@ include("EstimateClusteringMistakes.jl")
 include("InitialPartitions.jl")
 include("FM.jl")
 include("WriteClusters.jl")
-include("ConvertXilinxFormatToHmetis.jl")
+#include("ConvertXilinxFormatToHmetis.jl")
 
 function kahypar(fname::String)
     cmd = `./KaHyPar -h $fname -k 2 -e 0.1 -o cut -m recursive -p ../kahypar/config/cut_rKaHyPar_sea20.ini`
@@ -168,7 +168,7 @@ function OverlayBasedClusteringAndILP(hg::String, ub_factor::Int, seeds::Vector{
         end
     else
         #@info "RUNNING HMETIS AS GOLDEN PARTITIONER"
-        t_part = @elapsed hmetis(hg_name_clustered, 2, ub_factor, 10, 1, 1, 0, 1, 0, "zhiang_for_bodhi/hmetis/hmetis") #"SpectralCommunityDetection/hmetis")
+        t_part = @elapsed hmetis(hg_name_clustered, 2, ub_factor, 10, 1, 1, 0, 1, 0, "./hmetis") #"SpectralCommunityDetection/hmetis")
         pname = hg_name_clustered * ".part." * string(2)
         f = open(pname, "r")
 
@@ -250,7 +250,7 @@ function SpectralHmetisRefinement(;refine_iters::Int = 4, solver_iters::Int = 20
 
             @info "RUNNING HMETIS ON ORIGINAL HG TO GENERATE HINT FOR SPECTRAL"
 
-            run(`zhiang_for_bodhi/hmetis/hmetis $hypergraph_file "" $num_parts $ub_factor 10 1 1 0 1 0 $pseed`, wait=true)
+            run(`hmetis $hypergraph_file "" $num_parts $ub_factor 10 1 1 0 1 0 $pseed`, wait=true)
             #run(`hmetis_standalone/hmetis $hypergraph_file $num_parts $ub_factor 10 1 1 0 1 0`, wait=true)
 
             #hmetis(hg, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "zhiang_for_bodhi/hmetis/hmetis")
@@ -379,7 +379,7 @@ function SpectralHmetisRefinement(;refine_iters::Int = 4, solver_iters::Int = 20
         end
     else
         @info "RUNNING HMETIS AS GOLDEN PARTITIONER"
-        t_part = @elapsed hmetis(hg_name_clustered, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "zhiang_for_bodhi/hmetis/hmetis") #"SpectralCommunityDetection/hmetis")
+        t_part = @elapsed hmetis(hg_name_clustered, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "./hmetis") #"SpectralCommunityDetection/hmetis")
         pname = hg_name_clustered * ".part." * string(Nparts)
         f = open(pname, "r")
 
