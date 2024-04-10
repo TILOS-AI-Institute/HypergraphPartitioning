@@ -33,80 +33,83 @@ We hope to see pull requests with new solutions and optimization codes, and will
 
 *******************************************************************************************
 ## Current File/Directory Tree and Description ##
-
-    .
-    ├── SpecPart                              # SpecPart Implementation
-    │   ├── SpectralCommunityDetection
-    │   │   ├── cmg                           # Combinatorial Multigrid Implementation
-    |
-    ├── benchmark                             # hypergraph files for each benchmark
-    │   ├── ISPD_benchmark                    # ISPD98 VLSI Circuit Benchmark Suite with unit vertex weights
-    │   ├── ISPD_weight_benchmark             # ISPD98 VLSI Circuit Benchmark Suite with actual vertex weights
-    │   └── Titan23_benchmark                 # Titan23 Benchmark Suite
-    │   
-    ├── golden_evaluator                      # script for evaluating partitioning solutions
-    │ 
-    ├── solutions_2way                        # 2-way solutions for all the benchmarks with different imbalance factors
-    │   ├── ISPD_benchmark_solutions          # solutions on ISPD98 testcases with unit vertex weights
-    │   |   ├── hMetis                        # solutions using hMETIS
-    │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
-    │   |   |   └── UBfactor_10               # solutions with imbalance factor 10
-    │   |   |   
-    │   |   ├── KaHyPar                       # solutions with KaHyPar
-    │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
-    │   |   |   └── UBfactor_10               # solutions with imbalance factor 10
-    │   |   |   
-    |   |   └── SpecPart                      # solutions with SpecPart
-    │   |       ├── hMetis_SpecPart           # SpecPart with initial solution generated from hMETIS
-    |   │       |   ├── UBfactor_2            # solutions with imbalance factor 2
-    │   |       |   └── UBfactor_10           # solutions with imbalance factor 10
-    │   |       |
-    │   |       └── KaHyPar_SpecPart          # SpecPart with initial solution generated from KaHyPar
-    |   │           ├── UBfactor_2            # solutions with imbalance factor 2
-    │   |           └── UBfactor_10           # solutions with imbalance factor 10
-    │   |       
-    │   ├── ISPD_weight_benchmark_solutions   # solutions on ISPD98 testcases with actual vertex weights
-    │   |   ├── hMetis                        # solutions with hMETIS
-    │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
-    │   |   |   └── UBfactor_10               # solutions with imbalance factor 10
-    │   |   |   
-    │   |   ├── KaHyPar                       # solutions with KaHyPar
-    │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
-    │   |   |   └── UBfactor_10               # solutions with imbalance factor 10
-    │   |   |   
-    │   |   └── SpecPart                      # solutions with SpecPart
-    │   |       ├── hMetis_SpecPart           # SpecPart with initial solution generated from hMETIS
-    |   │       |   ├── UBfactor_2            # solutions with imbalance factor 2
-    │   |       |   └── UBfactor_10           # solutions with imbalance factor 10
-    │   |       |   
-    │   |       └── KaHyPar_SpecPart          # SpecPart with initial solution generated from KaHyPar
-    |   │           ├── UBfactor_2            # solutions with imbalance factor 2
-    │   |           └── UBfactor_10           # solutions with imbalance factor 10
-    │   |       
-    └── └── Titan23_benchmark_solutions       # solutions on Titan23 testcases
-    │        ├── hMetis                       # solutions with hMETIS
-    │        |   ├── UBfactor_2               # solutions with imbalance factor 2
-    │        |   └── UBfactor_20              # solutions with imbalance factor 20
-    │        |   
-    │        ├── hMetis_Autotune              # solutions with Autotuned hMETIS
-    │        |   └── UBfactor_10              # solutions with imbalance factor 10
-    │        |   
-    │        ├── hMetis_Autotune_SpecPart     # SpecPart with initial solution generated from Autotuned hMETIS   
-    │        |   └── UBfactor_10              # solutions with imbalance factor 10
-    │        |   
-    │        └── hMetis_SpecPart              # SpecPart with initial solution generated from hMETIS   
-    │            ├── UBfactor_2               # solutions with imbalance factor 2
-    │            └── UBfactor_20              # solutions with imbalance factor 20
-    ├── solutions_k_way                        # K-way solutions for all the benchmarks with different imbalance factors
-    │   ├── ISPD_benchmark_solutions          # K-way solutions on ISPD98 testcases with unit vertex weights  
-    │   ├── ISPD_weight_benchmark_solutions   # K-way solutions on ISPD98 testcases with actual vertex weights    
-    └── └── Titan23_benchmark_solutions       # K-way solutions on Titan23 testcases
-            └── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS 
-                ├── 3way                      # 3-way solutions
-                |   └── UBfactor_2            # 3-way solutions with imbalance factor 2
-                └── 4way                      # 4-way solutions
-                    └── UBfactor_2            # 4-way solutions with imbalance factor 2
-    
+```
+.
+├── benchmark                                 # hypergraph files for each benchmark 
+│   ├── ISPD_benchmark                        # ISPD98 VLSI Circuit Benchmark Suite with unit vertex weights
+│   ├── ISPD_weight_benchmark                 # ISPD98 VLSI Circuit Benchmark Suite with actual vertex weights
+│   └── Titan23_benchmark                     # Titan23 Benchmark Suite
+├── golden_evaluator                          # script for evaluating partitioning solutions
+│   ├── markdown_leaderboard_generator.py
+│   ├── README.md
+│   └── utils.py
+├── K_SpecPart                                # K-SpecPart implementation
+│   ├── cmg                                   # Combinatorial Multigrid Implementation
+│   ├── README.md                             # Guidelines to run K-SpecPart
+│   ├── rmq
+├── K_specpart_solutions                      # K-SpecPart partitioning solutions
+│   ├── ISPD_benchmarks
+│   ├── ISPD_weight_benchmarks
+│   └── Titan23_benchmarks
+├── LICENSE
+├── medpart_solutions                         # MedPart partitioning solutions 
+│   └── 2_way
+├── README.md
+├── solutions_2way                            # 2-way solutions for all the benchmarks with different imbalance factors
+│   ├── ISPD_benchmark_solutions              # solutions on ISPD98 testcases with unit vertex weights
+│   |   ├── hMetis                            # solutions using hMETIS
+│   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
+│   |   |   └── UBfactor_10                   # solutions with imbalance factor 10
+│   |   |   
+│   |   ├── KaHyPar                           # solutions with KaHyPar
+│   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
+│   |   |   └── UBfactor_10                   # solutions with imbalance factor 10
+│   |   |   
+|   |   └── SpecPart                          # solutions with SpecPart
+│   |       ├── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS
+|   │       |   ├── UBfactor_2                # solutions with imbalance factor 2
+│   |       |   └── UBfactor_10               # solutions with imbalance factor 10
+│   |       |
+│   |       └── KaHyPar_SpecPart              # SpecPart with initial solution generated from KaHyPar
+|   │           ├── UBfactor_2                # solutions with imbalance factor 2
+│   |           └── UBfactor_10               # solutions with imbalance factor 10
+│   |       
+│   ├── ISPD_weight_benchmark_solutions       # solutions on ISPD98 testcases with actual vertex weights
+│   |   ├── hMetis                            # solutions with hMETIS
+│   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
+│   |   |   └── UBfactor_10                   # solutions with imbalance factor 10
+│   |   |   
+│   |   ├── KaHyPar                           # solutions with KaHyPar
+│   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
+│   |   |   └── UBfactor_10                   # solutions with imbalance factor 10
+│   |   |   
+│   |   └── SpecPart                          # solutions with SpecPart
+│   |       ├── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS
+|   │       |   ├── UBfactor_2                # solutions with imbalance factor 2
+│   |       |   └── UBfactor_10               # solutions with imbalance factor 10
+│   |       |   
+│   |       └── KaHyPar_SpecPart              # SpecPart with initial solution generated from KaHyPar
+|   │           ├── UBfactor_2                # solutions with imbalance factor 2
+│   |           └── UBfactor_10               # solutions with imbalance factor 10
+│   |       
+└── └── Titan23_benchmark_solutions           # solutions on Titan23 testcases
+│        ├── hMetis                           # solutions with hMETIS
+│        |   ├── UBfactor_2                   # solutions with imbalance factor 2
+│        |   └── UBfactor_20                  # solutions with imbalance factor 20
+│        |   
+│        ├── hMetis_Autotune                  # solutions with Autotuned hMETIS
+│        |   └── UBfactor_10                  # solutions with imbalance factor 10
+│        |   
+│        ├── hMetis_Autotune_SpecPart         # SpecPart with initial solution generated from Autotuned hMETIS   
+│        |   └── UBfactor_10                  # solutions with imbalance factor 10
+│        |   
+│        └── hMetis_SpecPart                  # SpecPart with initial solution generated from hMETIS   
+│            ├── UBfactor_2                   # solutions with imbalance factor 2
+│            └── UBfactor_20                  # solutions with imbalance factor 20
+└── SpecPart                                  # SpecPart Implementation
+│   ├── SpectralCommunityDetection
+│       └── cmg                               # Combinatorial Multigrid Implementation
+ ```   
 *******************************************************************************************
   
 ## Installation and Run Instructions ## 
