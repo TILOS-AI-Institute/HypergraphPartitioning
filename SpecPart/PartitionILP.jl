@@ -1,6 +1,3 @@
-import JuMP.MathOptInterface.TerminationStatusCode
-import JuMP.MathOptInterface.TerminationStatus
-
 function PartitionILP(H::Hypergraph, fixed::Vector{Int}, capacities::Vector{Int})
     k = 0
     n = H.n
@@ -39,7 +36,7 @@ function PartitionILP(H::Hypergraph, fixed::Vector{Int}, capacities::Vector{Int}
     @objective(model, Min, y'f)
     optimize!(model)
 
-    if termination_status(model) == TerminationStatusCode(2)
+    if termination_status(model) == INFEASIBLE
         return -ones(Int, n)
     end
 
