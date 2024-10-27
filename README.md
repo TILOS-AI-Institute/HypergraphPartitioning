@@ -18,7 +18,7 @@ This repository supports "Data, Benchmarking and Roadmapping" goals for the bala
 5. We provide a "Golden Evaluator" which processes a partition file to report the cutsize and the block balances. 
 6. We provide a leaderboard of minimum hyperedge cutsize values found on the ISPD98 benchmarks and the Titan23 benchmarks. We encourage fellow researchers to update the leaderboard if better solutions are found. 
 
-We hope to see pull requests with new solutions and optimization codes, and will continue to update the repository and leaderboard as we this happens.
+We hope to see pull requests with new solutions and optimization codes, and will continue to update the repository and leaderboard as this happens.
 
 ## Table of Contents ##
 
