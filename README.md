@@ -66,15 +66,19 @@ We hope to see pull requests with new solutions and optimization codes, and will
 │   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
 │   |   |   └── UBfactor_10                   # solutions with imbalance factor 10
 │   |   |   
-|   |   └── SpecPart                          # solutions with SpecPart
-│   |       ├── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS
-|   │       |   ├── UBfactor_2                # solutions with imbalance factor 2
-│   |       |   └── UBfactor_10               # solutions with imbalance factor 10
-│   |       |
-│   |       └── KaHyPar_SpecPart              # SpecPart with initial solution generated from KaHyPar
-|   │           ├── UBfactor_2                # solutions with imbalance factor 2
-│   |           └── UBfactor_10               # solutions with imbalance factor 10
-│   |       
+|   |   ├── SpecPart                          # solutions with SpecPart
+│   |   |   ├── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS
+|   │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
+│   |   |   |   └── UBfactor_10               # solutions with imbalance factor 10
+│   |   |   |
+│   |   |   └── KaHyPar_SpecPart              # SpecPart with initial solution generated from KaHyPar
+|   │   |       ├── UBfactor_2                # solutions with imbalance factor 2
+│   |   |       └── UBfactor_10               # solutions with imbalance factor 10
+│   |   |
+|   |   └── HyperEF_2.0                       # solutions with HyperEF 2.0
+│   |       ├── UBfactor_2                    # solutions with imbalance factor 2
+│   |       └── UBfactor_10                   # solutions with imbalance factor 10
+│   |
 │   ├── ISPD_weight_benchmark_solutions       # solutions on ISPD98 testcases with actual vertex weights
 │   |   ├── hMetis                            # solutions with hMETIS
 │   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
