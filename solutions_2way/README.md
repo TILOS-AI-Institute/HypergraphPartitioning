@@ -80,24 +80,24 @@ Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https:
 | Instance | Statistics | | Cutsize | |
 |:------------:|:------------:|:------------:|:------------:|:------------:|
 |  | # Vertices | # Hyperedges | ε = 2% | ε = 10% |
-| ibm01 | 12752 | 14111 | 202<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> | 166<br><sub>KaHyPar</sub> |
-| ibm02 | 19601 | 19584 | 336<br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub> | 262<br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> |
-| ibm03 | 23136 | 27401 | 954<br><sub>KaHyPar</sub> | 950<br><sub>MtKaHyPar</sub> |
-| ibm05 | 29347 | 28446 | 1719<br><sub>KaHyPar</sub> | 1645<br><sub>KaHyPar</sub> |
-| ibm04 | 27507 | 31970 | 579<br><sub>KaHyPar</sub> | 388<br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>KaHyPar_SpecPart</sub> |
-| ibm06 | 32498 | 34826 | 966<br><sub>KaHyPar</sub> | 733<br><sub>KaHyPar_SpecPart</sub> |
-| ibm07 | 45926 | 48117 | 904<br><sub>KaHyPar</sub> | 760<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> |
-| ibm08 | 51309 | 50513 | 1140<br><sub>KaHyPar</sub><br><sub>MtKaHyPar</sub> | 1120<br><sub>KaHyPar</sub> |
-| ibm09 | 53395 | 60902 | 620<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> | 519<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> |
-| ibm10 | 69429 | 75196 | 1313<br><sub>hMetis</sub><br><sub>KaHyPar</sub> | 1250<br><sub>KaHyPar</sub> |
-| ibm12 | 71076 | 77240 | 1920<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> | 1842<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> |
-| ibm11 | 70558 | 81454 | 1062<br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub> | 764<br><sub>hMetis_SpecPart</sub> |
-| ibm13 | 84199 | 99666 | 831<br><sub>KaHyPar</sub> | 671<br><sub>KaHyPar</sub> |
-| ibm14 | 147605 | 152772 | 1850<br><sub>MtKaHyPar</sub> | 1518<br><sub>KaHyPar</sub> |
-| ibm15 | 161570 | 186608 | 2728<br><sub>KaHyPar</sub> | 2135<br><sub>KaHyPar</sub> |
-| ibm17 | 185495 | 189581 | 2310<br><sub>KaHyPar</sub> | 1989<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> |
-| ibm16 | 183484 | 190048 | 1882<br><sub>KaHyPar</sub> | 1619<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub> |
-| ibm18 | 210613 | 201920 | 1539<br><sub>hMetis_SpecPart</sub> | 1550<br><sub>hMetis</sub><br><sub>hMetis_SpecPart</sub> |
+| ibm01 | 12752 | 14111 | 201<br><sub>HyperEF 2.0</sub> | 166<br><sub>KaHyPar</sub><br><sub>HyperEF 2.0</sub> |
+| ibm02 | 19601 | 19584 | 325<br><sub>HyperEF 2.0</sub> | 262<br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub><br><sub>HyperEF 2.0</sub> |
+| ibm03 | 23136 | 27401 | 952<br><sub>HyperEF 2.0</sub> | 950<br><sub>MtKaHyPar</sub><br><sub>HyperEF 2.0</sub> |
+| ibm04 | 27507 | 31970 | 579<br><sub>KaHyPar</sub><br><sub>HyperEF 2.0</sub> | 388<br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> |
+| ibm05 | 29347 | 28446 | 1707<br><sub>HyperEF 2.0</sub> | 1645<br><sub>KaHyPar</sub><br><sub>HyperEF 2.0</sub> |
+| ibm06 | 32498 | 34826 | 963<br><sub>HyperEF 2.0</sub> | 733<br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> |
+| ibm07 | 45926 | 48117 | 881<br><sub>HyperEF 2.0</sub> | 760<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> |
+| ibm08 | 51309 | 50513 | 1140<br><sub>KaHyPar</sub><br><sub>MtKaHyPar</sub><br><sub>HyperEF 2.0</sub> | 1120<br><sub>KaHyPar</sub><br><sub>HyperEF 2.0</sub> |
+| ibm09 | 53395 | 60902 | 620<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> | 519<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> |
+| ibm10 | 69429 | 75196 | 1254<br><sub>HyperEF 2.0</sub> | 1244<br><sub>HyperEF 2.0</sub> |
+| ibm11 | 70558 | 81454 | 1051<br><sub>HyperEF 2.0</sub> | 763<br><sub>HyperEF 2.0</sub> |
+| ibm12 | 71076 | 77240 | 1920<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> | 1841<br><sub>HyperEF 2.0</sub> |
+| ibm13 | 84199 | 99666 | 831<br><sub>KaHyPar</sub><br><sub>HyperEF 2.0</sub> | 655<br><sub>HyperEF 2.0</sub> |
+| ibm14 | 147605 | 152772 | 1842<br><sub>HyperEF 2.0</sub> | 1518<br><sub>KaHyPar</sub> |
+| ibm15 | 161570 | 186608 | 2728<br><sub>KaHyPar</sub><br><sub>HyperEF 2.0</sub> | 2127<br><sub>HyperEF 2.0</sub> |
+| ibm16 | 183484 | 190048 | 1881<br><sub>HyperEF 2.0</sub> | 1619<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> |
+| ibm17 | 185495 | 189581 | 2285<br><sub>HyperEF 2.0</sub> | 1989<br><sub>KaHyPar</sub><br><sub>KaHyPar_SpecPart</sub><br><sub>HyperEF 2.0</sub> |
+| ibm18 | 210613 | 201920 | 1521<br><sub>HyperEF 2.0</sub> | 1520<br><sub>HyperEF 2.0</sub> |
 
 Current Leaderboard of minimum hyperedge cut values on [ISPD98 testcases](https://dl.acm.org/doi/10.1145/274535.274546) with actual vertex weights, with different imbalance factors (ε):
 
