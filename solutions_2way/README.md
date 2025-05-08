@@ -25,6 +25,10 @@ Following is a map of the directories in this folder:
     │   |   |   └── UBfactor_10               # solutions with imbalance factor 10
     │   |   |
     │   |   └── KaHyPar_SpecPart              # solutions with KaHyPar_SpecPart
+    │   |   |   ├── UBfactor_2                # solutions with imbalance factor 2
+    │   |   |   └── UBfactor_10               # solutions with imbalance factor 10
+    |   |   |
+    │   |   └── HyperEF_2_0                   # solutions with HyperEF 2.0
     │   |       ├── UBfactor_2                # solutions with imbalance factor 2
     │   |       └── UBfactor_10               # solutions with imbalance factor 10
     │   |
