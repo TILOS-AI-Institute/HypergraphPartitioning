@@ -101,7 +101,7 @@ function metis(fname::String, seed::Int, opts::String)
     ub_factor = 2
     #metis_r = "./gpmetis " * fname * " 2 -ptype=rb -ufactor=100 -dbglvl=0" # > 'metis_log.txt'"""
     #metis_r = `./gpmetis $fname 2 -ptype=rb -ufactor=100 -dbglvl=0` 
-    metis_r = `./metis_script.sh $fname $num_parts $ub_factor $seed $log_name`
+    metis_r = `./SpecPart/metis_script.sh $fname $num_parts $ub_factor $seed $log_name`
     run(metis_r, wait=true)
     cmd = "rm -r " * log_name
     run(`sh -c $cmd`, wait=true)
@@ -120,7 +120,7 @@ function WriteTreeToFile(tree::SimpleWeightedGraph, fname::String)
 end
 
 function ComputeTreePartition(adj_mat::SparseMatrixCSC, X::Array{Float64}, wt_matrix::SparseMatrixCSC, hypergraph::Hypergraph, incidence_struct::Incidence, fixed_vertices::Pindex, capacities::Vector{Int}, opts::Int, seed::Int)
-    @match opts begin
+    tree, treeMatrix = @match opts begin
         1 => begin
         clique_graph = ModifyExpanderWts(adj_mat, X[:, 1], 1, false)
         tree, treeMatrix = GenEigenTree(clique_graph, wt_matrix, X[:, 1], 2)

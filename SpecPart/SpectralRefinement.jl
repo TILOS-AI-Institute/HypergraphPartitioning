@@ -3,6 +3,7 @@ module SpectralRefinement
 using Shuffle
 using JuMP
 #using Cbc
+using Gurobi
 using LinearAlgebra
 using DataStructures
 using SparseArrays
@@ -358,8 +359,8 @@ function SpectralHmetisRefinement(;refine_iters::Int = 4, solver_iters::Int = 20
     i = 0
 
     if hypergraph_clustered.e < hyperedges_threshold
-        @info "RUNNING CPLEX AS GOLDEN PARTITIONER"
-        cmd = "zhiang_for_bodhi/ilp_cplex_k_way/build/ilp_k_solver" * " " * hg_name_clustered * " " * string(num_parts) * " " * string(ub_factor) * " > ilp_log.txt"
+        @info "RUNNING GUROBI AS GOLDEN PARTITIONER"
+        cmd = "python3 SpecPart/ilp_k_solver.py" * " " * hg_name_clustered * " " * string(num_parts) * " " * string(ub_factor) * " > ilp_log.txt"
         t_part = @elapsed begin
             run(`sh -c $cmd`, wait=true)
             pname = hg_name_clustered * ".part." * string(Nparts)
@@ -379,7 +380,7 @@ function SpectralHmetisRefinement(;refine_iters::Int = 4, solver_iters::Int = 20
         end
     else
         @info "RUNNING HMETIS AS GOLDEN PARTITIONER"
-        t_part = @elapsed hmetis(hg_name_clustered, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "./hmetis") #"SpectralCommunityDetection/hmetis")
+        t_part = @elapsed hmetis(hg_name_clustered, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "./SpecPart/hmetis") #"SpectralCommunityDetection/hmetis")
         pname = hg_name_clustered * ".part." * string(Nparts)
         f = open(pname, "r")
 

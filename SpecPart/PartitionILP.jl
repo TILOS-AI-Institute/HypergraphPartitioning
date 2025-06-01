@@ -1,5 +1,5 @@
-import JuMP.MathOptInterface.TerminationStatusCode
-import JuMP.MathOptInterface.TerminationStatus
+import MathOptInterface.TerminationStatusCode
+import MathOptInterface.TerminationStatus
 
 function PartitionILP(H::Hypergraph, fixed::Vector{Int}, capacities::Vector{Int})
     k = 0
