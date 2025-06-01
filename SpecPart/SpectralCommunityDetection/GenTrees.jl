@@ -1,4 +1,5 @@
 @inline combine(x, y) = x
+import Graphs
 
 function ModifyExpanderWts(A::SparseMatrixCSC, eigvec::Array{Float64}, nev::Int, lst::Bool)
 	n = size(A, 1)
@@ -62,7 +63,8 @@ function GenEigenTree(g::SimpleWeightedGraph, A_wts::SparseMatrixCSC, eigvec::Ar
 	elseif tree_type == 2
 		#r = LightGraphs.kruskal_mst(g)
 		#tree = SimpleGraph(nv(g))
-		r = SimpleWeightedGraphs.prim_mst(g)
+		#r = SimpleWeightedGraphs.prim_mst(g)
+		r = Graphs.prim_mst(g)
 		i = Vector{Int}(undef, length(r))
 		j = Vector{Int}(undef, length(r))
 		v = Vector{Float64}(undef, length(r))

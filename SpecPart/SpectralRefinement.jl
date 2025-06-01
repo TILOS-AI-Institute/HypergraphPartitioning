@@ -3,6 +3,7 @@ module SpectralRefinement
 using Shuffle
 using JuMP
 #using Cbc
+using Gurobi
 using LinearAlgebra
 using DataStructures
 using SparseArrays
@@ -379,7 +380,7 @@ function SpectralHmetisRefinement(;refine_iters::Int = 4, solver_iters::Int = 20
         end
     else
         @info "RUNNING HMETIS AS GOLDEN PARTITIONER"
-        t_part = @elapsed hmetis(hg_name_clustered, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "./hmetis") #"SpectralCommunityDetection/hmetis")
+        t_part = @elapsed hmetis(hg_name_clustered, num_parts, ub_factor, 10, 1, 1, 0, 1, 0, "./SpecPart/hmetis") #"SpectralCommunityDetection/hmetis")
         pname = hg_name_clustered * ".part." * string(Nparts)
         f = open(pname, "r")
 
