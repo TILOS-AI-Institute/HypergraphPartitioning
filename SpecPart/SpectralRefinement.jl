@@ -359,8 +359,8 @@ function SpectralHmetisRefinement(;refine_iters::Int = 4, solver_iters::Int = 20
     i = 0
 
     if hypergraph_clustered.e < hyperedges_threshold
-        @info "RUNNING CPLEX AS GOLDEN PARTITIONER"
-        cmd = "zhiang_for_bodhi/ilp_cplex_k_way/build/ilp_k_solver" * " " * hg_name_clustered * " " * string(num_parts) * " " * string(ub_factor) * " > ilp_log.txt"
+        @info "RUNNING GUROBI AS GOLDEN PARTITIONER"
+        cmd = "python3 SpecPart/ilp_k_solver.py" * " " * hg_name_clustered * " " * string(num_parts) * " " * string(ub_factor) * " > ilp_log.txt"
         t_part = @elapsed begin
             run(`sh -c $cmd`, wait=true)
             pname = hg_name_clustered * ".part." * string(Nparts)
