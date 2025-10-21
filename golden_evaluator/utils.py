@@ -1,5 +1,6 @@
 import os
 
+import sys
 
 """
 Evaluator:  Calculate cutsize and blocks_balance for a partitioning solution
@@ -92,3 +93,18 @@ def Evaluator(hypergraph_file, solution_file, Nparts, UBfactor):
         return 1e9, blocks_balance, num_vertices, num_hyperedges
 
     return num_cut, blocks_balance, num_vertices, num_hyperedges
+
+
+#benchmark = sys.argv[1]
+#partition = sys.argv[2]
+#num_parts = int(sys.argv[3])
+#imbalance = int(sys.argv[4])
+
+#num_cut, blocks_balance, vtxs, hes = Evaluator(benchmark, partition, num_parts, imbalance)
+
+#print("Partition: ", num_cut)
+#print("Block balance: ", blocks_balance)
+
+
+
+
