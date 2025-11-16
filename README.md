@@ -111,16 +111,9 @@ We hope to see pull requests with new solutions and optimization codes, and will
 │        └── hMetis_SpecPart                  # SpecPart with initial solution generated from hMETIS   
 │            ├── UBfactor_2                   # solutions with imbalance factor 2
 │            └── UBfactor_20                  # solutions with imbalance factor 20
-├── SpecPart                                  # SpecPart Implementation
+└── SpecPart                                  # SpecPart Implementation
 │   ├── SpectralCommunityDetection
 │       └── cmg                               # Combinatorial Multigrid Implementation
-└── TritonPart-agent                          # TritonPart-agent improved solutions (19 new best results)
-    ├── 2_way                                 # 2-way partitioning improvements
-    │   └── ub_factor_2                       # 8 improved solutions with imbalance factor 2
-    ├── 3_way                                 # 3-way partitioning improvements
-    │   └── ub_factor_2                       # 8 improved solutions with imbalance factor 2
-    └── 4_way                                 # 4-way partitioning improvements
-        └── ub_factor_2                       # 3 improved solutions with imbalance factor 2
  ```   
 *******************************************************************************************
   
