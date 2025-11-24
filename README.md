@@ -284,4 +284,4 @@ I. Bustany, A. B. Kahng, Y. Koutis, B. Pramanik and Z. Wang, "SpecPart: A Superv
 *Proc. ACM/IEEE International Conference on Computer-Aided Design*, 2022.
 
 ## Acknowledgments ##
-This work was partially supported by NSF CCF-2112665, CCF-2039863, CCF-1813374, DARPA HR0011-18-0-2-0032
+This work was partially supported by NSF CCF-2112665, CCF-2039863, CCF-1813374, DARPA HR0011-18-0-2-0032.
