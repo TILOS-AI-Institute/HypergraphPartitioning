@@ -108,7 +108,10 @@ We hope to see pull requests with new solutions and optimization codes, and will
 │        ├── hMetis_Autotune_SpecPart         # SpecPart with initial solution generated from Autotuned hMETIS   
 │        |   └── UBfactor_10                  # solutions with imbalance factor 10
 │        |   
-│        └── hMetis_SpecPart                  # SpecPart with initial solution generated from hMETIS   
+│        ├── hMetis_SpecPart                  # SpecPart with initial solution generated from hMETIS   
+│        |   ├── UBfactor_2                   # solutions with imbalance factor 2
+│        |   └── UBfactor_20                  # solutions with imbalance factor 20
+│        └── HyperEF_2.0                   # solutions with HyperEF 2.0
 │            ├── UBfactor_2                   # solutions with imbalance factor 2
 │            └── UBfactor_20                  # solutions with imbalance factor 20
 └── SpecPart                                  # SpecPart Implementation
