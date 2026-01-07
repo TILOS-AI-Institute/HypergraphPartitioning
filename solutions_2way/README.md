@@ -68,7 +68,10 @@ Following is a map of the directories in this folder:
             ├── hMetis_Autotune_SpecPart      # SpecPart with initial solution generated from Autotuned hMETIS
             |   └── UBfactor_10               # solutions with imbalance factor 10
             |
-            └── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS
+            ├── hMetis_SpecPart               # SpecPart with initial solution generated from hMETIS
+            |   ├── UBfactor_2                # solutions with imbalance factor 2
+            |   └── UBfactor_20               # solutions with imbalance factor 20
+            └── HyperEF_2.0                   # solutions with HyperEF 2.0
                 ├── UBfactor_2                # solutions with imbalance factor 2
                 └── UBfactor_20               # solutions with imbalance factor 20
 ```
@@ -128,15 +131,15 @@ Current Leaderboard of minimum hyperedge cut values on [Titan23 testcases](https
 | Instance | Statistics | | Cutsize | |
 |------------|:------------:|:------------:|:------------:|:------------:|
 |  | # Vertices | # Hyperedges | ε = 2% | ε = 20% |
-| sparcT1_core | 91976 | 92827 | 976<br><sub>MtKaHyPar</sub> | 903<br><sub>hMetis_SpecPart</sub> |
-| neuron | 92290 | 125305 | 252<br><sub>hMetis_SpecPart</sub> | 206<br><sub>hMetis_SpecPart</sub> |
-| stereo_vision | 94050 | 127085 | 169<br><sub>KaHyPar</sub> | 91<br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> |
-| des90 | 111221 | 139557 | 402<br><sub>hMetis_SpecPart</sub> | 358<br><sub>hMetis_SpecPart</sub> |
-| SLAM_spheric | 113115 | 142408 | 1061<br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> | 1061<br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> |
-| cholesky_mc | 113250 | 144948 | 285<br><sub>hMetis_SpecPart</sub> | 281<br><sub>KaHyPar</sub><br><sub>MtKaHyPar</sub> |
-| segmentation | 138295 | 179051 | 126<br><sub>hMetis_SpecPart</sub> | 78<br><sub>hMetis_SpecPart</sub> |
-| dart | 202354 | 223301 | 784<br><sub>MtKaHyPar</sub> | 543<br><sub>hMetis_SpecPart</sub> |
-| bitonic_mesh | 192064 | 235328 | 585<br><sub>hMetis_SpecPart</sub> | 483<br><sub>hMetis_SpecPart</sub> |
+| sparcT1_core | 91976 | 92827 | 974<br><sub>HyperEF 2.0</sub> | 583<br><sub>HyperEF 2.0</sub> |
+| neuron | 92290 | 125305 | 243<br><sub>HyperEF 2.0</sub> | 200<br><sub>HyperEF 2.0</sub> |
+| stereo_vision | 94050 | 127085 | 169<br><sub>HyperEF 2.0</sub><br><sub>KaHyPar</sub> | 91<br><sub>HyperEF 2.0</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> |
+| des90 | 111221 | 139557 | 383<br><sub>HyperEF 2.0</sub> | 353<br><sub>HyperEF 2.0</sub> |
+| SLAM_spheric | 113115 | 142408 | 1061<br><sub>HyperEF 2.0</sub><br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> | 1061<br><sub>HyperEF 2.0</sub><br><sub>hMetis</sub><br><sub>KaHyPar</sub><br><sub>hMetis_SpecPart</sub><br><sub>MtKaHyPar</sub> |
+| cholesky_mc | 113250 | 144948 | 283<br><sub>HyperEF 2.0</sub> | 281<br><sub>HyperEF 2.0</sub><br><sub>KaHyPar</sub><br><sub>MtKaHyPar</sub> |
+| segmentation | 138295 | 179051 | 107<br><sub>HyperEF 2.0</sub> | 78<br><sub>HyperEF 2.0</sub><br><sub>hMetis_SpecPart</sub> |
+| dart | 202354 | 223301 | 784<br><sub>HyperEF 2.0</sub><br><sub>MtKaHyPar</sub> | 539<br><sub>HyperEF 2.0</sub> |
+| bitonic_mesh | 192064 | 235328 | 585<br><sub>HyperEF 2.0</sub><br><sub>hMetis_SpecPart</sub> | 483<br><sub>hMetis_SpecPart</sub> |
 | openCV | 217453 | 284108 | 511<br><sub>hMetis_SpecPart</sub> | 518<br><sub>hMetis_SpecPart</sub> |
 | stap_qrd | 240240 | 290123 | 399<br><sub>hMetis</sub> | 275<br><sub>MtKaHyPar</sub> |
 | sparcT2_core | 300109 | 302663 | 1185<br><sub>MtKaHyPar</sub> | 1183<br><sub>KaHyPar</sub><br><sub>MtKaHyPar</sub> |
