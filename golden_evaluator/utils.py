@@ -66,10 +66,14 @@ def Evaluator(hypergraph_file, solution_file, Nparts, UBfactor):
 
     max_balance = (100.0 / Nparts  + UBfactor) * 0.01;
     max_balance = max_balance * total_weight
+    min_balance = (100.0 / Nparts  - UBfactor) * 0.01;
+    min_balance = min_balance * total_weight
 
     flag = True
     for block_balance in blocks_balance:
         if (block_balance > max_balance):
+            flag = False
+        if (block_balance < min_balance):
             flag = False
 
     for i in range(len(blocks_balance)):
