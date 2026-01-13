@@ -57,6 +57,7 @@ We hope to see pull requests with new solutions and optimization codes, and will
 │   └── 2_way
 ├── README.md
 ├── solutions_2way                            # 2-way solutions for all the benchmarks with different imbalance factors
+│   ├── TritonPart_solutions                  # TritonPart solutions (best of 20 seeds) for various imbalance factors
 │   ├── ISPD_benchmark_solutions              # solutions on ISPD98 testcases with unit vertex weights
 │   |   ├── hMetis                            # solutions using hMETIS
 │   |   |   ├── UBfactor_2                    # solutions with imbalance factor 2
