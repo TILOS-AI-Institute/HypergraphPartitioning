@@ -2,11 +2,11 @@
 
 Hypergraph Partitioning Leaderboard: Leaderboard of minimum hyperedge cut values for different testcases with multiple imbalance factors.
 
-<span style="color:red"><b>Note (Jan 10, 2026):</b> The golden evaluator (see <a href="https://github.com/TILOS-AI-Institute/HypergraphPartitioning/blob/main/golden_evaluator/utils.py">golden_evaluator/utils.py</a>) was patched on Jan 10, 2026. Prior to this fix, the evaluator only enforced the <i>maximum</i> balance constraint (i.e., it flagged a partition only when a part’s total weight exceeded the allowed upper bound) and did <b>not</b> check the <i>minimum</i> balance constraint (lower bound) for each part. This has now been corrected, and the evaluator enforces <b>both</b> minimum and maximum balance constraints. All solutions submitted prior to Jan 10 were generated and verified using the earlier evaluator. All solutions currently reported in the leaderboard have been evaluated using the updated evaluator and only include <b>legally balanced</b> partitions.</span>
-
-
 **[SpecPart](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/SpecPart):** A Supervised Spectral Framework for Hypergraph Partitioning Solution Improvement\
 **[K-SpecPart](https://github.com/TILOS-AI-Institute/HypergraphPartitioning/tree/main/K_SpecPart):** A Supervised Spectral Framework for Multi-way Hypergraph Partitioning Solution Improvement
+
+> 🔴 **Note (Jan 10, 2026):**  
+> The golden evaluator (see [golden_evaluator/utils.py](golden_evaluator/utils.py)) was patched on Jan 10, 2026. Prior to this fix, the evaluator only enforced the *maximum* balance constraint (i.e., it flagged a partition only when a part’s total weight exceeded the allowed upper bound) and did not check the *minimum* balance constraint (lower bound) for each part. This has now been corrected, and the evaluator enforces both minimum and maximum balance constraints. All solutions submitted prior to Jan 10 were generated and verified using the earlier evaluator. All solutions currently reported in the leaderboard have been evaluated using the updated evaluator and only include **legally balanced partitions**.
 
 *******************************************************************************************
 
