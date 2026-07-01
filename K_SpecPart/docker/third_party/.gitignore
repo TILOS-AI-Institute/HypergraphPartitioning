@@ -1,0 +1,4 @@
+# Ignore the non-redistributable binaries, but keep the directory + docs.
+*
+!.gitkeep
+!.gitignore

@@ -1,6 +1,8 @@
 #include "IlpReadHypergraph.h"
+#ifdef USE_CPLEX
 #include "ilcplex/cplex.h"
 #include "ilcplex/ilocplex.h"
+#endif
 #include <ortools/base/commandlineflags.h>
 //#include <ortools/base/init_google.h>
 #include <ortools/base/logging.h>
@@ -292,6 +294,7 @@ void Hypergraph::SolveOR() {
   std::cout << "Total time for ILP solve " << total_global_time << " seconds " << std::endl;
 }
 
+#ifdef USE_CPLEX
 void Hypergraph::SolveCPLEX() {
   auto start_time_stamp_global = std::chrono::high_resolution_clock::now();
   auto max_block_balance = GetVertexBalance();
@@ -415,6 +418,14 @@ void Hypergraph::SolveCPLEX() {
   total_global_time *= 1e-9;
   std::cout << "Total time for ILP solve " << total_global_time << " seconds " << std::endl;
 }
+#else
+// CPLEX not compiled in: fall back to the OR-Tools solver so the binary still
+// works. Selected at build time via the USE_CPLEX definition (see CMakeLists).
+void Hypergraph::SolveCPLEX() {
+  std::cout << "CPLEX support not compiled in; using OR-Tools solver." << std::endl;
+  SolveOR();
+}
+#endif
 
 void Hypergraph::Evaluator() {
   float cost = 0.0;

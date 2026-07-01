@@ -83,15 +83,42 @@ mutable struct __tree_cuts__
     hyperedges_flag::Vector{Int}
 end
 
-function hypl(hypergraph::__hypergraph__, x::AbstractArray, epsilon::Int)
+# Set KSPECPART_SERIAL_KERNELS=1 to force the serial code paths in the
+# matrix-free operators. This makes runs bit-for-bit reproducible regardless of
+# the thread count (parallel float reduction is deterministic for a fixed thread
+# count but not identical to the serial summation order).
+const SERIAL_KERNELS = get(ENV, "KSPECPART_SERIAL_KERNELS", "0") == "1"
+
+# Below this hyperedge count `hypl` runs serially. `hypl` is memory-bandwidth
+# bound and per-call cheap, so the task-spawn + per-thread-buffer overhead only
+# pays off for large hypergraphs; benchmarking showed mid-size instances (~10^5
+# hyperedges) are neutral-to-slower, so the threshold is set conservatively.
+const HYPL_PARALLEL_THRESHOLD = 200_000
+
+# Partition 1:n into (at most) k contiguous ranges. Fixed assignment so the
+# parallel reduction order is deterministic.
+function chunk_ranges(n::Int, k::Int)
+    k = max(1, min(k, n))
+    base, extra = divrem(n, k)
+    ranges = Vector{UnitRange{Int}}(undef, k)
+    start = 1
+    @inbounds for t in 1:k
+        len = base + (t <= extra ? 1 : 0)
+        ranges[t] = start:(start + len - 1)
+        start += len
+    end
+    return ranges
+end
+
+# Accumulate the hyperedge-Laplacian contribution of hyperedges `jrange` into y.
+# The arithmetic is identical to the original serial loop, so the serial path
+# (jrange == 1:m) is bit-for-bit unchanged.
+function hypl_kernel!(y::Vector{Float64}, hypergraph::__hypergraph__,
+                      x::AbstractArray, epsilon::Int, jrange::UnitRange{Int})
     eind = hypergraph.eind
     eptr = hypergraph.eptr
-    n = length(x)
-    m = hypergraph.num_hyperedges
-    y = zeros(Float64, n)
     w = hypergraph.hwts
-
-    for j in 1:m
+    @inbounds for j in jrange
         first_valid_entry = eptr[j]
         first_invalid_entry = eptr[j+1]
         k = first_invalid_entry - first_valid_entry
@@ -103,9 +130,30 @@ function hypl(hypergraph::__hypergraph__, x::AbstractArray, epsilon::Int)
         sm /= k
         for t in first_valid_entry:first_invalid_entry-1
             idx = eind[t]
-            #y[idx] += w[j] * (x[idx] - sm)/scale
             y[idx] += w[j] * (x[idx] - sm)/(scale*epsilon)
         end
+    end
+    return y
+end
+
+function hypl(hypergraph::__hypergraph__, x::AbstractArray, epsilon::Int)
+    n = length(x)
+    m = hypergraph.num_hyperedges
+    nt = Threads.nthreads()
+    if SERIAL_KERNELS || nt == 1 || m < HYPL_PARALLEL_THRESHOLD
+        return hypl_kernel!(zeros(Float64, n), hypergraph, x, epsilon, 1:m)
+    end
+    # Each task accumulates into its own buffer (no write conflicts); buffers are
+    # then reduced in a fixed order so the result is deterministic.
+    ranges = chunk_ranges(m, nt)
+    nb = length(ranges)
+    ybuf = [zeros(Float64, n) for _ in 1:nb]
+    @sync for t in 1:nb
+        Threads.@spawn hypl_kernel!(ybuf[t], hypergraph, x, epsilon, ranges[t])
+    end
+    y = ybuf[1]
+    @inbounds for t in 2:nb
+        y .+= ybuf[t]
     end
     return y
 end
@@ -118,7 +166,10 @@ function clique(x::AbstractArray,
     y = zeros(Float64, n)
     s = multiplier[1]/twt
     kvec = vwts'x
-    @sync Threads.@threads for j in 1:n
+    # O(n) and applied inside the (possibly block-parallel) eigensolves; kept
+    # serial so it composes without nested-@threads oversubscription. Each y[j]
+    # is independent, so this is numerically identical to the threaded version.
+    @inbounds for j in 1:n
         y[j] += twt * ((vwts[j] * x[j]) - ((kvec * vwts[j])/twt)) * s
     end
     return y
@@ -170,13 +221,49 @@ function write_partition(partition::Vector{Int},
     close(f)
 end
 
-# Update these paths based on your configuration
+# ---------------------------------------------------------------------------
+# External-tool and scratch-directory configuration.
+#
+# Defaults are derived from the directory containing this file, so K-SpecPart
+# runs from wherever it is checked out. Every path can be overridden with an
+# environment variable -- the recommended way to point at your own binaries
+# without editing source.
+#
+#   KSPECPART_SOURCE_DIR  scratch directory for temporary files (default: here)
+#   KSPECPART_METIS_DIR   directory holding metis_script.sh   (default: here)
+#   KSPECPART_HMETIS      hMETIS binary
+#   KSPECPART_ILP         OR-Tools / CPLEX ILP partitioner binary
+#   KSPECPART_REFINER     TritonPart / OpenROAD FM refiner binary
+# ---------------------------------------------------------------------------
 
-source_dir = "/home/fetzfs_projects/SpecPart/K_SpecPart"
-metis_path = "/home/fetzfs_projects/SpecPart/K_SpecPart"
-hmetis_path = "/home/fetzfs_projects/SpecPart/K_SpecPart/hmetis "
+const _PKG_DIR = @__DIR__
 
-# use your OR-Tools / CPLEX exe here
+# A trailing space is intentionally appended to the binary paths because every
+# caller builds command strings by concatenating arguments after the path.
+source_dir = get(ENV, "KSPECPART_SOURCE_DIR", _PKG_DIR)
+metis_path = get(ENV, "KSPECPART_METIS_DIR", _PKG_DIR)
+hmetis_path = get(ENV, "KSPECPART_HMETIS",
+                  "/home/fetzfs_projects/SpecPart/K_SpecPart/hmetis") * " "
+# Optional direct k-way partitioner (khmetis / HMETIS_PartKway). When set, it is
+# used for the overlay solve at k > 2 with a direct per-block imbalance bound
+# (UBfactor = k*epsilon), as recommended by the hMETIS manual for large k. Empty
+# => fall back to recursive-bisection hmetis. Set via KSPECPART_KHMETIS.
+khmetis_path = get(ENV, "KSPECPART_KHMETIS", "")
+ilp_path = get(ENV, "KSPECPART_ILP",
+               joinpath(_PKG_DIR, "ilp_partitioner", "build", "ilp_part")) * " "
+triton_part_refiner_path = get(ENV, "KSPECPART_REFINER",
+                               "/home/bodhi91/TritonPart_OpenROAD/build/src/openroad") * " "
 
-ilp_path = "/home/fetzfs_projects/SpecPart/K_SpecPart/ilp_partitioner/build/ilp_part " 
-triton_part_refiner_path = "/home/bodhi91/TritonPart_OpenROAD/build/src/openroad "
+# The OpenROAD refiner and the ILP partitioner are dynamically linked against
+# OR-Tools (libortools.so.9), which is found only via LD_LIBRARY_PATH (no rpath).
+# Prepend its directory to LD_LIBRARY_PATH here so every child process inherits
+# it regardless of the shell the run was launched from. Override the directory
+# with KSPECPART_ORTOOLS_LIB (set it empty to disable this behavior).
+const ORTOOLS_LIB = get(ENV, "KSPECPART_ORTOOLS_LIB",
+    "/home/tool/ortools/install/or-tools_cpp_CentOSStream-8-64bit_v9.4.1874/lib64")
+if !isempty(ORTOOLS_LIB)
+    existing = get(ENV, "LD_LIBRARY_PATH", "")
+    if !occursin(ORTOOLS_LIB, existing)
+        ENV["LD_LIBRARY_PATH"] = isempty(existing) ? ORTOOLS_LIB : ORTOOLS_LIB * ":" * existing
+    end
+end

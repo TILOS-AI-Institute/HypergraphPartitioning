@@ -17,8 +17,11 @@ int main(int argc, char **argv) {
   }
   hypergraph_ptr hgraph = std::make_shared<Hypergraph>(num_parts, ub_factor);
   hgraph->ReadHypergraph(num_parts, ub_factor, hypergraph_file);
-  //hgraph->SolveOR();
+#ifdef USE_CPLEX
   hgraph->SolveCPLEX();
+#else
+  hgraph->SolveOR();
+#endif
   hgraph->Evaluator();
   hgraph->WritePartitionToFile(hypergraph_file + ".part." +
                                std::to_string(num_parts));

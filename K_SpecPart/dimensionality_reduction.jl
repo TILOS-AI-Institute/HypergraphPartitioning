@@ -7,10 +7,25 @@ function pca(mat::Array{Float64}, labels::Vector{Int})
     return Ypca
 end
 
-function lda(mat::Array{Float64}, labels::Vector{Int})
+function lda(mat::Array{Float64}, labels::Vector{Int}, num_parts::Int)
     mat_t = mat'
-    lda = fit(MulticlassLDA, mat_t, labels; outdim=2)
-    Ylda = predict(lda, mat_t)
+    # MulticlassLDA produces at most (num_classes - 1) discriminative axes, and
+    # cannot exceed the input dimension. Use all available axes (was hard-coded
+    # to 2) so K-way tree construction gets a richer embedding for K > 3.
+    # Set KSPECPART_LDA_FULL=0 to recover the old fixed 2-dimensional behavior.
+    full_dims = get(ENV, "KSPECPART_LDA_FULL", "1") == "1"
+    maxdim = full_dims ? num_parts - 1 : 2
+    outdim = clamp(maxdim, 1, size(mat, 2))
+    # MulticlassLDA throws when a class is empty/singleton (common for large k
+    # with sparse hints). Fall back to the leading embedding columns so the run
+    # continues rather than aborting.
+    try
+        model = fit(MulticlassLDA, mat_t, labels; outdim=outdim)
+        return predict(model, mat_t)
+    catch e
+        @warn "MulticlassLDA failed (degenerate classes?); using leading embedding columns" exception=e
+        return permutedims(mat[:, 1:outdim])
+    end
 end
 
 function write_embedding_to_file(mat::Array{Float64}, embedding_file::String)

@@ -13,10 +13,25 @@ function LinearAlgebra.ldiv!(c::AbstractVecOrMat{T},
 	end
 end
 
-@inline function make_b_func(vWts::Vector, 
-                        pindex::__pindex__, 
-                        multiplier::Vector)
-	bfunc = X -> clique(X, vWts, multiplier) + 500*bi_clique(X, pindex)
+# Relative weight of the supervision (bi-clique) term against the vertex-mass
+# (clique) term in the generalized eigenproblem's B operator.
+const BICLIQUE_SUPERVISION_WEIGHT = 500
+
+# LOBPCG requires the right-hand operator B to be symmetric POSITIVE DEFINITE.
+# Both `clique` and `bi_clique` are only positive *semi*-definite (they
+# annihilate the constant vector), and for large k or empty/degenerate
+# supervision blocks B becomes singular -> LOBPCG's CholQR throws
+# "matrix is not positive definite". Adding a small diagonal term `reg*I` makes
+# B strictly SPD. `reg` is increased by the retry loop in `solve_eigs` if needed.
+const B_REGULARIZATION = 1e-3
+
+@inline function make_b_func(vWts::Vector,
+                        pindex::__pindex__,
+                        multiplier::Vector,
+                        reg::Float64 = B_REGULARIZATION)
+	bfunc = X -> clique(X, vWts, multiplier) +
+	             BICLIQUE_SUPERVISION_WEIGHT * bi_clique(X, pindex) +
+	             reg .* X
 	return bfunc
 end
 
@@ -54,33 +69,41 @@ function solve_eigs(hgraph::__hypergraph__,
     multiplier = ones(size(hgraph.vwts, 2))
     afunc = make_a_func(hgraph, epsilon)
     amap = LinearMap(afunc, issymmetric=true, hgraph.num_vertices)
-    if bmap == nothing
-        bfunc = make_b_func(hgraph.vwts, pindex, multiplier)
-        bmap = LinearMap(bfunc, hgraph.num_vertices)
-    end
-    evecs = Float64[]
+
+    # Small problems: dense symmetric eigensolve on the (regularized) Laplacian.
     if size(lap_matrix, 1) < 100
         results = lobpcg(lap_matrix, largest, nev+1, maxiter=solver_iters)
-        evecs = results.X[:, 2:nev+1]
-    else 
-        (pfunc, hierarchy) = CombinatorialMultigrid.cmg_preconditioner_lap(lap_matrix)
-        results = lobpcg(amap, 
-                        bmap, 
-                        false, 
-                        nev, 
-                        tol=1e-40, 
-                        maxiter=solver_iters, 
-                        P = CombinatorialMultigrid.lPreconditioner(pfunc), 
-                        log = true)
-        evecs = results.X
-        line_log = repeat("=", 60)
-        @info "$line_log"
-        @info "$results"
-        @info "$line_log"
+        return results.X[:, 2:nev+1]
     end
- 
-    #=projection_step!(evecs, 
-                    GraphLaplacians.degrees(adj), 
-                    bfunc)=#
-    return evecs
+
+    (pfunc, hierarchy) = CombinatorialMultigrid.cmg_preconditioner_lap(lap_matrix)
+
+    # Try the generalized eigenproblem A x = λ B x with increasing B
+    # regularization. If LOBPCG still fails (e.g. "matrix is not positive
+    # definite" from a degenerate/ill-conditioned B), fall back to the
+    # unsupervised Laplacian eigenvectors so the run continues instead of
+    # aborting.
+    for reg in (B_REGULARIZATION, 1e-1, 1.0, 10.0)
+        local_bmap = bmap
+        if local_bmap === nothing
+            bfunc = make_b_func(hgraph.vwts, pindex, multiplier, reg)
+            local_bmap = LinearMap(bfunc, hgraph.num_vertices)
+        end
+        try
+            results = lobpcg(amap, local_bmap, false, nev,
+                             tol=1e-40, maxiter=solver_iters,
+                             P = CombinatorialMultigrid.lPreconditioner(pfunc),
+                             log = true)
+            @debug "LOBPCG finished" reg results
+            return results.X
+        catch e
+            @warn "LOBPCG failed; retrying with larger B regularization" reg exception=e
+            bmap === nothing || rethrow(e)  # caller-supplied B: don't silently re-reg
+        end
+    end
+
+    @warn "LOBPCG could not converge a generalized eigenproblem; " *
+          "falling back to unsupervised Laplacian eigenvectors"
+    results = lobpcg(lap_matrix, false, nev+1, maxiter=solver_iters)
+    return results.X[:, 2:nev+1]
 end

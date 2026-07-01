@@ -1,0 +1,17 @@
+# Keep the Docker build context small and free of host-specific artifacts.
+.git
+**/build/
+**/*.o
+terminals/
+*.log
+*.pdf
+# large benchmark / solution data (mount at runtime instead)
+K_specpart_solutions/
+Titan23_benchmarks/
+*.hgr
+*.mtx
+# keep the tiny bundled test instance (used by smoke_test.jl)
+!ilp_partitioner/test/ibm10.hgr
+# NOTE: docker/third_party/ (hMETIS binaries + the OpenROAD source tarball) is
+# intentionally NOT ignored here -- it must reach the build context. It is kept
+# out of git by docker/third_party/.gitignore instead.

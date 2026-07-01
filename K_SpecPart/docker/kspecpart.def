@@ -1,0 +1,106 @@
+# Apptainer / Singularity definition for K-SpecPart (HPC-friendly).
+#
+# Mirrors docker/Dockerfile: bundles Julia + METIS + OR-Tools + the OpenROAD FM
+# refiner (from the local source snapshot) + the OR-Tools ILP partitioner.
+#
+# Build (run from the repository root so the %files paths resolve):
+#   # supply the closed hMETIS binary first (required):
+#   cp /path/to/hmetis docker/third_party/hmetis
+#   apptainer build --fakeroot kspecpart.sif docker/kspecpart.def
+#
+# If you lack fakeroot/subuid on the cluster, build the OCI image on a
+# Docker-capable host and convert instead:
+#   docker build -f docker/Dockerfile -t kspecpart . && docker save kspecpart -o kspecpart.tar
+#   apptainer build kspecpart.sif docker-archive://kspecpart.tar
+#
+# Run (a .sif is READ-ONLY, so point scratch at a writable bind mount):
+#   apptainer run --bind "$PWD/data:/data" --env KSPECPART_SOURCE_DIR=/data/scratch \
+#     kspecpart.sif /data/design.hgr --hint /data/hint.part.4 --k 4 --out /data/out.part.4
+
+Bootstrap: docker
+From: debian:bullseye
+
+%files
+    . /opt/kspecpart
+
+%post
+    set -e
+    export DEBIAN_FRONTEND=noninteractive
+    JULIA_VERSION=1.7.2
+    ORTOOLS_VERSION=9.4.1874
+
+    # 32-bit hMETIS needs i386 libc; base build tools for everything else.
+    dpkg --add-architecture i386
+    apt-get update && apt-get install -y --no-install-recommends \
+        build-essential cmake git wget ca-certificates pkg-config \
+        libgomp1 flex bison tcl-dev libreadline-dev python3 libc6:i386
+    rm -rf /var/lib/apt/lists/*
+
+    # Julia
+    wget -qO /tmp/julia.tgz \
+      "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%.*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz"
+    tar -xzf /tmp/julia.tgz -C /opt && rm /tmp/julia.tgz
+    ln -s /opt/julia-${JULIA_VERSION}/bin/julia /usr/local/bin/julia
+
+    # OR-Tools (prebuilt C++)
+    wget -qO /tmp/ortools.tgz \
+      "https://github.com/google/or-tools/releases/download/v${ORTOOLS_VERSION%.*}/or-tools_amd64_debian-11_cpp_v${ORTOOLS_VERSION}.tar.gz"
+    mkdir -p /opt/ortools
+    tar -xzf /tmp/ortools.tgz -C /opt/ortools --strip-components=1 && rm /tmp/ortools.tgz
+
+    # METIS (gpmetis)
+    git clone --depth 1 https://github.com/KarypisLab/GKlib /tmp/gklib
+    cd /tmp/gklib && make config prefix=/opt/metis && make -j"$(nproc)" install
+    git clone --depth 1 https://github.com/KarypisLab/METIS /tmp/metis
+    cd /tmp/metis && make config prefix=/opt/metis gklib_path=/opt/metis && make -j"$(nproc)" install
+    rm -rf /tmp/gklib /tmp/metis
+
+    # OpenROAD FM refiner from the bundled source snapshot
+    bash /opt/kspecpart/docker/build_openroad.sh --tarball \
+      /opt/kspecpart/docker/third_party/openroad-src.tar.gz /opt/openroad
+
+    # hMETIS (supplied under docker/third_party/); mount at runtime if absent
+    mkdir -p /opt/hmetis
+    cp /opt/kspecpart/docker/third_party/hmetis  /opt/hmetis/hmetis  2>/dev/null || true
+    cp /opt/kspecpart/docker/third_party/khmetis /opt/hmetis/khmetis 2>/dev/null || true
+
+    # ILP partitioner (OR-Tools backend; CPLEX auto-detected if present)
+    rm -rf /opt/kspecpart/ilp_partitioner/build
+    cmake -S /opt/kspecpart/ilp_partitioner -B /opt/kspecpart/ilp_partitioner/build \
+      -DCMAKE_PREFIX_PATH=/opt/ortools
+    cmake --build /opt/kspecpart/ilp_partitioner/build -j"$(nproc)"
+
+    # Julia environment
+    julia --project=/opt/kspecpart -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
+
+    # Trim the bulky snapshot from the image (already consumed above)
+    rm -f /opt/kspecpart/docker/third_party/openroad-src.tar.gz
+
+%environment
+    export LD_LIBRARY_PATH=/opt/ortools/lib:$LD_LIBRARY_PATH
+    export GPMETIS=/opt/metis/bin/gpmetis
+    export KSPECPART_HMETIS=/opt/hmetis/hmetis
+    export KSPECPART_ILP=/opt/kspecpart/ilp_partitioner/build/ilp_part
+    export KSPECPART_REFINER=/opt/openroad/openroad
+    export KSPECPART_ORTOOLS_LIB=/opt/ortools/lib
+    # A .sif is read-only; K-SpecPart writes scratch files, so default the scratch
+    # dir to a writable location (/tmp is bind-mounted read-write by default).
+    # Override with --env KSPECPART_SOURCE_DIR=/your/bind/mount for big runs.
+    export KSPECPART_SOURCE_DIR="${KSPECPART_SOURCE_DIR:-/tmp/kspecpart-scratch}"
+
+%runscript
+    mkdir -p "${KSPECPART_SOURCE_DIR:-/tmp/kspecpart-scratch}"
+    exec julia --project=/opt/kspecpart -t auto /opt/kspecpart/run_kspecpart.jl "$@"
+
+%labels
+    Name K-SpecPart
+    OpenROAD_Commit a3f3153c22e2511ee28f79a3650655682eaa20a1
+    Julia 1.7.2
+    ORTools 9.4.1874
+
+%help
+    K-SpecPart: supervised spectral hypergraph partitioner.
+    Run:  apptainer run --bind "$PWD/data:/data" \
+            --env KSPECPART_SOURCE_DIR=/data/scratch kspecpart.sif \
+            /data/design.hgr --hint /data/hint.part.K --k K --out /data/out.part.K
+    See docker/README.md for details.

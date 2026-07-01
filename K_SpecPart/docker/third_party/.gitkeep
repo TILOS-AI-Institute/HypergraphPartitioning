@@ -1,0 +1,5 @@
+# Drop non-redistributable binaries here before building the image:
+#   docker/third_party/hmetis     (required)
+#   docker/third_party/khmetis    (optional, direct k-way)
+# They are copied to /opt/hmetis/ inside the container. This directory is kept
+# in git only via this placeholder; the binaries themselves are gitignored.

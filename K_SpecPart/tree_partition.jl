@@ -1,10 +1,88 @@
 using Combinatorics
 using Laplacians 
 using SimpleGraphs
+using Clustering
 include("cut_distillation.jl")
 include("metis.jl")
 include("degree_aware_prims.jl")
 include("extract_hypergraph.jl")
+
+# Number of k-means restarts used to generate direct (non-tree) spectral
+# clustering candidates from the embedding. Default 0 (opt-in via
+# KSPECPART_KMEANS_SEEDS): on the tested designs the balance-repaired k-means
+# candidates had much higher cuts than the tree candidates and did not improve
+# results, while adding FM/runtime cost. Code retained for experimentation.
+const NUM_KMEANS_SEEDS = parse(Int, get(ENV, "KSPECPART_KMEANS_SEEDS", "0"))
+
+# Greedy capacity-respecting assignment of points (rows of distance matrix D,
+# n x num_parts, smaller = closer) to blocks so no block exceeds `maxcap`.
+# Vertices that are most decisive (smallest min distance) are placed first.
+function balanced_assign(D::Matrix{Float64}, vwts::Vector{Int},
+                         num_parts::Int, maxcap::Int)
+    n = size(D, 1)
+    part = fill(-1, n)
+    load = zeros(Int, num_parts)
+    order = sortperm([minimum(@view D[i, :]) for i in 1:n])
+    for i in order
+        prefs = sortperm(@view D[i, :])
+        placed = false
+        for b in prefs
+            if load[b] + vwts[i] <= maxcap
+                part[i] = b - 1
+                load[b] += vwts[i]
+                placed = true
+                break
+            end
+        end
+        if !placed
+            b = argmin(load)
+            part[i] = b - 1
+            load[b] += vwts[i]
+        end
+    end
+    return part
+end
+
+# Direct spectral-clustering candidates: cluster the embedding into num_parts
+# groups (k-means), repair to balance, and return `[partition, cutsize]` entries.
+# These are a distinct candidate class from the tree sweeps; they are FM-refined
+# downstream like any other candidate.
+function kmeans_candidates(X::Array{Float64}, hgraph::__hypergraph__,
+                           num_parts::Int, capacities::Vector{Int}, seed::Int)
+    cands = []
+    NUM_KMEANS_SEEDS <= 0 && return cands
+    n = size(X, 1)
+    d = size(X, 2)
+    (n <= num_parts || num_parts < 2) && return cands
+    maxcap = capacities[2]
+    Xt = permutedims(X)          # d x n, as Clustering.kmeans expects
+    for s in 1:NUM_KMEANS_SEEDS
+        Random.seed!(hash((seed, :kmeans, s)))
+        local result
+        try
+            result = kmeans(Xt, num_parts; maxiter=100)
+        catch
+            continue
+        end
+        centers = result.centers  # d x num_parts
+        D = zeros(Float64, n, num_parts)
+        @inbounds for b in 1:num_parts
+            for i in 1:n
+                acc = 0.0
+                for q in 1:d
+                    diff = X[i, q] - centers[q, b]
+                    acc += diff * diff
+                end
+                D[i, b] = acc
+            end
+        end
+        part = balanced_assign(D, hgraph.vwts, num_parts, maxcap)
+        (cut, ~) = golden_evaluator(hgraph, num_parts, part)
+        @debug "k-means candidate (seed $s) cut=$cut"
+        push!(cands, [part, cut])
+    end
+    return cands
+end
 
 function reweigh_graph(adj::SparseMatrixCSC, 
                     X::AbstractArray, 
@@ -53,6 +131,7 @@ function reweigh_graph_with_cuts(adj::SparseMatrixCSC,
     (~, ~, he_wts) = findnz(ewts)
     (min_wt, max_wt) = extrema(he_wts)
     norm_factor = max_wt - min_wt
+    norm_factor == 0 && (norm_factor = 1.0)
     he_wts ./= norm_factor
     for i in 1:length(ewts.colptr)-1
         row_len = ewts.colptr[i+1] - ewts.colptr[i]
@@ -78,13 +157,11 @@ function reweigh_graph_with_cuts(adj::SparseMatrixCSC,
     (ii, jj, algebraic_wts) = findnz(ewts)
     (min_wt, max_wt) = extrema(algebraic_wts)
     norm_factor = max_wt - min_wt
+    norm_factor == 0 && (norm_factor = 1.0)
     algebraic_wts ./= norm_factor
     he_factor = 100.0 
     algebraic_factor = 1000.0
     total_wts = he_factor .* he_wts + algebraic_factor .* algebraic_wts
-    println("he wts ", he_wts[1:10])
-    println("algebraic_wts ", algebraic_wts[1:10])
-    println("total_wts ", total_wts[1:10])
     g_matrix = sparse(ii, jj, total_wts)
     return SimpleWeightedGraph(g_matrix)
 end
@@ -265,10 +342,10 @@ function two_way_linear_tree_sweep(T::SimpleWeightedGraphs.SimpleGraph,
         SimpleWeightedGraphs.rem_edge!(T, cut_point, pred[cut_point])
         comps = SimpleWeightedGraphs.connected_components(T)
         partition = find_labels(comps, num_vertices)
-        @info "Cutsize from tree sweep $(cut_cost[cut_point])"
+        @debug "tree sweep cut=$(cut_cost[cut_point])"
         (cutsize, ~) = golden_evaluator(hgraph, num_parts, partition)
     else
-        @info "Tree sweep failed to return a valid cut"
+        @debug "tree sweep found no valid balanced cut"
     end
     return (partition, cutsize, cut_point)
 end
@@ -280,7 +357,7 @@ function METIS_tree_partition(T::SimpleWeightedGraphs.SimpleGraph,
                             metis_path::String,
                             metis_opts::Int,
                             num_parts::Int,
-                            ub_factor::Int)
+                            ub_factor::Real)
     hwts = hgraph.hwts
     num_vertices = hgraph.num_vertices
     num_hyperedges = hgraph.num_hyperedges
@@ -323,16 +400,15 @@ function METIS_tree_partition(T::SimpleWeightedGraphs.SimpleGraph,
     gname = build_metis_graph(g, metis_opts)
     metis(metis_path, gname, num_parts, seed, ub_factor, metis_opts)
     pname = gname * ".part." * string(num_parts)
-    pfile = open(pname, "r")
     partition = zeros(Int, hgraph.num_vertices)
     partition_i = 0
-    for ln in eachline(pname) 
+    for ln in eachline(pname)
         partition_i += 1
         partition[partition_i] = parse(Int, ln)
     end
-    close(pfile)
+    rm(pname, force=true)
     (cutsize, ~) = golden_evaluator(hgraph, num_parts, partition)
-    @info "Cutsize from metis  $cutsize"
+    @debug "METIS-on-tree cut=$cutsize"
     return (partition, cutsize)
 end
 
@@ -399,10 +475,10 @@ function k_way_linear_tree_sweep(T::SimpleWeightedGraphs.SimpleGraph,
         comps = SimpleWeightedGraphs.connected_components(tree_recursive)
         recursive_partition = find_labels(comps, hgraph.num_vertices)
         (cutsize, balance) = golden_evaluator(hgraph, num_parts, recursive_partition)
-        @info "Cutsize from tree sweep $cutsize with balance $balance"
+        @debug "k-way tree sweep cut=$cutsize balance=$balance"
     else 
-        @info "Tree sweep failed to return a valid cut"
-    end
+        @debug "k-way tree sweep found no valid balanced cut"
+    end 
     return (recursive_partition, cutsize)
 end
 
@@ -438,11 +514,125 @@ function generate_next_level(partition::Vector{Int},
                             clusters)
 end
 
+# Process one (tree_type, eigenvector-subset) task: build the reweighted graph,
+# construct the spanning tree, distill cuts, and produce candidate partitions
+# from both the linear tree sweep and METIS-on-tree. Returns the candidate
+# `[partition, cutsize]` entries for this task (1 or 2 of them).
+# Number of randomized low-stretch (akpw) trees built per eigenvector subset.
+# akpw is randomized, so distinct replicates yield distinct candidate trees and
+# thus more diverse candidate partitions for the overlay/solve stage. MST trees
+# (type 2) are deterministic, so only one replicate is built for them.
+# Override with KSPECPART_LSST_TREES (set to 1 to recover the old behavior).
+const NUM_LSST_TREES = parse(Int, get(ENV, "KSPECPART_LSST_TREES", "2"))
+
+# Whether to also build one cut-aware-reweighted tree per (type, subset).
+# Default off (opt-in via KSPECPART_CUTAWARE_TREES=1): did not improve results
+# on the tested designs and adds tree/FM work. Code retained for experimentation.
+const ENABLE_CUTAWARE_TREES = get(ENV, "KSPECPART_CUTAWARE_TREES", "0") == "1"
+
+# Cap on the number of eigenvector subsets enumerated per tree type. The full
+# enumeration is 2^d - 1 (d = embedding dimension); for the K-way path d = K-1,
+# so without a cap large k explodes (e.g. k=64 -> 2^63 subsets). Below the cap
+# we enumerate ALL subsets (preserving the original behavior for small d, e.g.
+# 2-way eigvecs and k up to ~6); above it we use a bounded, informative set.
+const MAX_TREE_SUBSETS = parse(Int, get(ENV, "KSPECPART_MAX_TREE_SUBSETS", "31"))
+
+# Upper bound on the total number of tree candidates generated per refinement
+# iteration. Each candidate is FM-refined (an external, per-candidate-expensive
+# step at large k), so an unbounded count made k>=~6 runs impractical (~90+
+# candidates). candidates ~ #subsets x (lsst_reps + 1).
+const MAX_TREE_CANDIDATES = parse(Int, get(ENV, "KSPECPART_MAX_TREE_CANDIDATES", "24"))
+
+# Auto-scale candidate generation with k. For small k (k <= 4) the natural
+# subset count is tiny (2^(K-1)-1 <= 7) and the LSST replication is kept, so
+# this is inert -- behavior is unchanged. For larger k (where the LDA embedding
+# has ~K-1 dimensions and the subset enumerator would otherwise hit the full
+# MAX_TREE_SUBSETS cap and be multiplied by the replicate count) it drops the
+# LSST replicates to 1 and caps the subset count so the total candidate count
+# stays near MAX_TREE_CANDIDATES.
+function tree_generation_limits(num_parts::Int)
+    reps = num_parts > 4 ? 1 : NUM_LSST_TREES
+    max_subsets = max(1, min(MAX_TREE_SUBSETS, fld(MAX_TREE_CANDIDATES, reps + 1)))
+    return max_subsets, reps
+end
+
+function tree_eigvec_subsets(dims::Vector{Int}, max_subsets::Int)
+    d = length(dims)
+    d <= 1 && return [copy(dims)]
+    if (1 << min(d, 62)) - 1 <= max_subsets
+        # All non-empty subsets (cheap for small d).
+        subs = Vector{Vector{Int}}()
+        for i in 1:d, s in Combinatorics.combinations(dims, i)
+            push!(subs, s)
+        end
+        return subs
+    end
+    # Bounded set for large d: as many singletons as fit, plus the full set.
+    subs = Vector{Vector{Int}}()
+    for i in dims
+        length(subs) >= max_subsets - 1 && break
+        push!(subs, [i])
+    end
+    push!(subs, copy(dims))
+    return subs
+end
+
+function process_tree_task(adj::SparseMatrixCSC,
+                           X::Array{Float64},
+                           hgraph::__hypergraph__,
+                           fixed_vertices::__pindex__,
+                           ub_factor::Real,
+                           capacities::Vector{Int},
+                           metis_path::String,
+                           num_parts::Int,
+                           seed::Int,
+                           kway::Bool,
+                           type::Int,
+                           subset::Vector{Int},
+                           rep::Int,
+                           cutaware::Bool)
+    results = Vector{Any}()
+    # Seed this task's (task-local) RNG deterministically (including the
+    # replicate index) so randomized akpw construction is both diverse across
+    # replicates and reproducible regardless of how tasks are scheduled.
+    Random.seed!(hash((seed, type, subset, rep, cutaware)))
+    lst = type == 1
+    X_thr = X[:, subset]
+    if size(X_thr, 2) > 1 && type == 3
+        return results
+    end
+    if type == 3
+        X_thr = X_thr[:, 1]
+    end
+    @debug "tree task: eigenvectors=$(subset) type=$type cutaware=$cutaware"
+    # Cut-aware reweighting blends the hyperedge-derived edge weights with the
+    # embedding distance, biasing trees away from heavily-cut nets.
+    clique_expansion = cutaware ? reweigh_graph_with_cuts(adj, hgraph, X_thr, lst) :
+                                  reweigh_graph(adj, X_thr, lst)
+    (tree, tree_matrix) = construct_tree(clique_expansion, X_thr, type)
+    distilled_cuts = distill_cuts_on_tree(hgraph, fixed_vertices, tree)
+    cutsize_tree = 1e09
+    if kway == false
+        (partition_tree, cutsize_tree, ~) = two_way_linear_tree_sweep(
+            tree, distilled_cuts, hgraph, capacities, num_parts, 2)
+    else
+        (partition_tree, cutsize_tree) = k_way_linear_tree_sweep(
+            tree, distilled_cuts, fixed_vertices, hgraph, capacities, num_parts, 2)
+    end
+    (partition_metis, cutsize_metis) = METIS_tree_partition(
+        tree, distilled_cuts, hgraph, seed, metis_path, type, num_parts, ub_factor)
+    push!(results, [partition_metis, cutsize_metis])
+    if cutsize_tree < 1e09
+        push!(results, [partition_tree, cutsize_tree])
+    end
+    return results
+end
+
 function tree_partition(adj::SparseMatrixCSC,
                         X::Array{Float64},
                         hgraph::__hypergraph__,
                         fixed_vertices::__pindex__,
-                        ub_factor::Int,
+                        ub_factor::Real,
                         capacities::Vector{Int},
                         metis_path::String,
                         num_parts::Int,
@@ -450,86 +640,42 @@ function tree_partition(adj::SparseMatrixCSC,
                         kway::Bool)
     dims = Vector{Int}(1:size(X, 2))
     types = 2
-    partitions = []
-    best_partition = zeros(Int, hgraph.num_vertices)
-    best_cutsize = -1
-
+    # The (tree_type, eigenvector-subset) tasks are independent; enumerate them
+    # in the original order, then run them concurrently. Each task writes into
+    # its own results slot (no shared push!), and METIS-on-tree now uses unique
+    # temp filenames and cleans up after itself, so there is no shared state.
+    max_subsets, lsst_reps = tree_generation_limits(num_parts)
+    subsets = tree_eigvec_subsets(dims, max_subsets)
+    tasks = Tuple{Int, Vector{Int}, Int, Bool}[]
     for type in 1:types
-        lst = type == 1 ? true : false
-        for i in 1:length(dims)
-            evecs = collect(Combinatorics.combinations(dims, i))
-            for j in eachindex(evecs)
-                X_thr = X[:, evecs[j]]
-                if (size(X_thr, 2) > 1 && type == 3)
-                    continue
-                end
-                if type == 3
-                    X_thr = X_thr[:,1]
-                end
-                @info "Using eigenvectors $(evecs[j])"
-                #clique_expansion = reweigh_graph_with_cuts(adj, hgraph, X_thr, lst)
-                clique_expansion = reweigh_graph(adj, X_thr, lst)
-                (tree, tree_matrix) = construct_tree(clique_expansion, X_thr, type)
-                #=degs = [SimpleWeightedGraphs.degree(tree, i) for i in 1:SimpleWeightedGraphs.nv(tree)]
-                (max_deg, node) = findmax(degs)
-                println("Node ", node, " has max degree of ", max_deg)=#
-                distilled_cuts = distill_cuts_on_tree(hgraph, fixed_vertices, tree)
-                cutsize_tree = 1e09
-                cutsize_metis = 1e09
-                if kway == false
-                    (partition_tree, cutsize_tree, ~) = 
-                                                two_way_linear_tree_sweep(
-                                                    tree, 
-                                                    distilled_cuts, 
-                                                    hgraph, 
-                                                    capacities, 
-                                                    num_parts, 
-                                                    2)
-                    (partition_metis, cutsize_metis) = 
-                                                METIS_tree_partition(
-                                                    tree, 
-                                                    distilled_cuts,
-                                                    hgraph, 
-                                                    seed, 
-                                                    metis_path, 
-                                                    type, 
-                                                    num_parts, 
-                                                    ub_factor)
-                else 
-                    partition_tree, cutsize_tree = k_way_linear_tree_sweep(tree, 
-                                                    distilled_cuts,
-                                                    fixed_vertices,
-                                                    hgraph, 
-                                                    capacities, 
-                                                    num_parts,
-                                                    2)
-                    (partition_metis, cutsize_metis) = 
-                                                METIS_tree_partition(
-                                                    tree, 
-                                                    distilled_cuts, 
-                                                    hgraph, 
-                                                    seed, 
-                                                    metis_path, 
-                                                    type, 
-                                                    num_parts, 
-                                                    ub_factor)
-                end
-                #=if cutsize_metis < cutsize_tree
-                    best_partition = partition_metis
-                    best_cutsize = cutsize_metis
-                else
-                    best_partition = partition_tree
-                    best_cutsize = cutsize_tree
-                end
-                push!(partitions, (best_partition, best_cutsize))=#
-                push!(partitions, [partition_metis, cutsize_metis])
-                if (cutsize_tree < 1e09)
-                    push!(partitions, [partition_tree, cutsize_tree])
-                end
+        # Randomized LSSTs (type 1) get multiple replicates; deterministic MSTs
+        # (type 2) get a single one. Replicates are auto-scaled down at large k.
+        nreps = type == 1 ? lsst_reps : 1
+        for subset in subsets
+            for rep in 1:nreps
+                push!(tasks, (type, subset, rep, false))
+            end
+            # One extra cut-aware variant per (type, subset) for diversity.
+            if ENABLE_CUTAWARE_TREES
+                push!(tasks, (type, subset, 1, true))
             end
         end
     end
-    rm_cmd = "rm -r " * source_dir * "/" * "*.part."*string(num_parts)
-    run(`sh -c $rm_cmd`, wait=true)
+    task_results = Vector{Vector{Any}}(undef, length(tasks))
+    @sync for k in 1:length(tasks)
+        (type, subset, rep, cutaware) = tasks[k]
+        Threads.@spawn begin
+            task_results[k] = process_tree_task(adj, X, hgraph, fixed_vertices,
+                ub_factor, capacities, metis_path, num_parts, seed, kway,
+                type, subset, rep, cutaware)
+        end
+    end
+    partitions = []
+    # Direct spectral (k-means) clustering candidates, in addition to the
+    # tree-sweep / METIS-on-tree candidates.
+    append!(partitions, kmeans_candidates(X, hgraph, num_parts, capacities, seed))
+    for res in task_results
+        append!(partitions, res)
+    end
     return partitions
 end

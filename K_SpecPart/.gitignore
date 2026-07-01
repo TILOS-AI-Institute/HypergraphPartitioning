@@ -1,0 +1,33 @@
+# =========================================================================
+# K-SpecPart .gitignore
+# Excludes transient run artifacts (created during solves and sweeps) and
+# generated outputs, while keeping all source, docs, and configuration.
+# =========================================================================
+
+# --- Partition outputs & tree-sweep candidate files ---
+*.part
+*.part.*
+tree_partition*.part.*
+
+# --- External-solver scratch (auto-created during a run) ---
+coarse.hgr*
+metis_graph*
+run_refiner.*.sh
+run_triton_part_refiner.*.tcl
+run.log*
+
+# --- Sweep results (generated data; large) ---
+titan_sweep_results/
+
+# --- Logs ---
+*.log
+
+# --- Build outputs ---
+ilp_partitioner/build/
+
+# --- Large third-party reference manuals (not project source) ---
+*.pdf
+
+# --- OS / editor cruft ---
+.DS_Store
+*.swp

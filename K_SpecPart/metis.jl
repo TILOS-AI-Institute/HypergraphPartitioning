@@ -71,7 +71,7 @@ end
 
 function julia_metis_partition(tree::SimpleWeightedGraph,
                                 num_parts::Int,
-                                ub_factor::Int)
+                                ub_factor::Real)
     if num_parts > 2 
         return Metis.partition(tree, num_parts, alg=:KWAY)
     else
@@ -79,9 +79,14 @@ function julia_metis_partition(tree::SimpleWeightedGraph,
     end
 end
 
+# Monotonic counter guaranteeing unique temp-file names across threads.
+const METIS_FILE_COUNTER = Threads.Atomic{Int}(0)
+
 function build_metis_graph(tree::SimpleWeightedGraph, 
                          metis_opts::Int)
-    file_name = source_dir * "/" * "metis_graph" * string(metis_opts) * "." * string(Dates.now()) * ".gr"
+    uid = Threads.atomic_add!(METIS_FILE_COUNTER, 1)
+    file_name = source_dir * "/" * "metis_graph" * string(metis_opts) * "." *
+                string(Threads.threadid()) * "." * string(uid) * ".gr"
     f = open(file_name, "w")
     wts = tree.weights
     println(f, SimpleWeightedGraphs.nv(tree), " ", SimpleWeightedGraphs.ne(tree), " 001")
@@ -103,15 +108,18 @@ function metis(metis_path::String,
             graph_file::String, 
             num_parts::Int, 
             seed::Int, 
-            ub_factor::Int,
+            ub_factor::Real,
             metis_opts::Int)
-    log_file = source_dir * "metis" * string(metis_opts) * "." * string(Dates.now()) * ".log.txt"
-    metis_script = metis_path * "/" * "metis_script.sh" * " " * graph_file * " " * string(num_parts) * " " * string(ub_factor) * " " * string(seed) * " " * log_file
-    metis_command = `sh -c $metis_script`
-    run(metis_command, wait=true)
-    #exit()
-    rm_cmd = "rm -r " * log_file
-    run(`sh -c $rm_cmd`, wait=true)
-    rm_cmd = "rm -r " * graph_file
-    run(`sh -c $rm_cmd`, wait=true)
+    # Derive the log name from the (unique) graph file so concurrent calls do
+    # not collide. (The original used source_dir * "metis"... which both
+    # collided under threads and, lacking a "/", wrote to the parent dir.)
+    log_file = graph_file * ".log.txt"
+    # gpmetis' -ufactor is specified in PER-MILLE: max allowed imbalance ratio is
+    # (1 + ufactor/1000). Convert the per-block percentage-point slack so the
+    # tree partition targets the same per-block tolerance (1 + k*ub_factor/100).
+    gp_ufactor = max(1, round(Int, 10 * num_parts * ub_factor))
+    metis_script = metis_path * "/" * "metis_script.sh" * " " * graph_file * " " * string(num_parts) * " " * string(gp_ufactor) * " " * string(seed) * " " * log_file
+    run(`sh -c $metis_script`, wait=true)
+    rm(log_file, force=true)
+    rm(graph_file, force=true)
 end

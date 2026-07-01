@@ -56,7 +56,9 @@ function contract_hypergraph(hgraph::__hypergraph__, clusters::Vector{Int})
     fixed_contracted = -ones(Int, num_vertices_contracted)
     for i in 1:length(fixed)
         if fixed[i] > -1
-            fixed_contracted[clusters[i]] - fixed[i]
+            # Was `fixed_contracted[clusters[i]] - fixed[i]` (a discarded
+            # expression), so fixed vertices never propagated. Now assigned.
+            fixed_contracted[clusters[i]] = fixed[i]
         end
     end
 
