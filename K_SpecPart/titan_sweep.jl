@@ -28,8 +28,13 @@ include("collect_best_cuts.jl")
 # --------------------------------------------------------------------------
 # Configuration (edit as needed)
 # --------------------------------------------------------------------------
-const BENCH_DIR = "/home/fetzfs_projects/SpecPart/HypergraphPartitioning/benchmark/Titan23_benchmark"
-const HINT_DIR  = "/home/fetzfs_projects/SpecPart/HypergraphPartitioning/K_specpart_solutions/Titan23_benchmarks/ub_factor_2"
+# Benchmark hypergraphs and hint partitions. Both are environment-overridable.
+# HINT_DIR defaults to the in-repo hints/ folder (see hints/README.md for the
+# expected layout); point SWEEP_HINT_DIR elsewhere to use a different hint set.
+const BENCH_DIR = get(ENV, "SWEEP_BENCH_DIR",
+    "/home/fetzfs_projects/SpecPart/HypergraphPartitioning/benchmark/Titan23_benchmark")
+const HINT_DIR  = get(ENV, "SWEEP_HINT_DIR",
+    joinpath(@__DIR__, "hints", "Titan23", "ub_factor_2"))
 const OUT_DIR   = get(ENV, "SWEEP_OUT", joinpath(@__DIR__, "titan_sweep_results"))
 
 parse_int_list(s, default) = isempty(strip(s)) ? default :

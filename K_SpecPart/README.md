@@ -346,88 +346,111 @@ The generalized eigenproblem is `A x = λ B x`, solved matrix-free with LOBPCG +
 
 ## Benchmarks
 
-Results on the [Titan23](https://www.eecg.utoronto.ca/~kmurray/titan.html) suite. hMETIS times/cuts are averaged over 50 samplings of 20 runs. K-SpecPart used an hMETIS hint with `eigvecs=2`, `best_solns=5`, `solver_iters=40`, `refine_iters=2`.
+Latest results on the [Titan23](https://www.eecg.utoronto.ca/~kmurray/titan.html) suite: **22 designs × K ∈ {2,3,4} × 3 seeds = 198 runs**. Each run starts from an **hMETIS hint** (the `ub_factor_2` solutions) and refines it with `imb=2`, `eigvecs=2`, `best_solns=5`, `solver_iters=40`, `refine_iters=2`. Columns: **Hint cut** = hMETIS starting point; **K-SpecPart best** = lowest cut over the 3 seeds; **Improvement** = reduction vs. the hint; **Mean runtime** = mean over 3 seeds on 8 threads.
 
-### K = 2
+K-SpecPart never worsens the hint (incumbent tracking guarantees a valid, equal-or-better result). Average improvement grows with K — **+2.4% (K=2), +4.6% (K=3), +6.2% (K=4)** — with per-design gains up to **~29%** (`bitcoin_miner`, K=4) and **~41%** (`gsm_switch`, K=3). Reproduce with [`titan_sweep.jl`](titan_sweep.jl) — see [Reproducing the benchmarks](#reproducing-the-benchmarks).
 
-| Benchmark | Vertices | Hyperedges | Avg hMETIS time (s) | K-SpecPart time (s) | Avg hMETIS cut | K-SpecPart cut |
-|-----------|----------|------------|---------------------|---------------------|----------------|----------------|
-| sparcT1_core  | 91976   | 92827   | 9.5  | 32.52  | 982.2  | 977  |
-| neuron        | 92290   | 125305  | 6.3  | 33.14  | 245.0  | 244  |
-| stereovision  | 94050   | 127085  | 8.3  | 22.19  | 171.0  | 169  |
-| des90         | 111221  | 139557  | 10.2 | 18.22  | 376.8  | 374  |
-| SLAM_spheric  | 113115  | 142408  | 12.7 | 45.18  | 1061.0 | 1061 |
-| cholesky_mc   | 113250  | 144948  | 8.6  | 30.36  | 282.0  | 282  |
-| segmentation  | 138295  | 179051  | 13.2 | 47.12  | 120.1  | 120  |
-| bitonic_mesh  | 192064  | 235328  | 17.6 | 64.24  | 585.2  | 584  |
-| dart          | 202354  | 223301  | 14.4 | 51.22  | 837.0  | 805  |
-| openCV        | 217453  | 284108  | 11.7 | 42.17  | 435.4  | 434  |
-| stap_qrd      | 240240  | 290123  | 15.9 | 56.31  | 377.4  | 464  |
-| minres        | 261359  | 320540  | 18.2 | 82.92  | 207.0  | 207  |
-| cholesky_bdti | 266422  | 342688  | 19.8 | 91.33  | 1156.0 | 1136 |
-| denoise       | 275638  | 356848  | 26.3 | 95.75  | 496.9  | 418  |
-| sparcT2_core  | 300109  | 302663  | 29.7 | 112.31 | 1220.7 | 1188 |
-| gsm_switch    | 493260  | 507821  | 27.2 | 110.25 | 4235.3 | 1833 |
-| mes_noc       | 547544  | 577664  | 42.3 | 121.92 | 634.6  | 633  |
-| LU230         | 574372  | 669477  | 46.6 | 162.32 | 3333.3 | 3363 |
-| LU_Network    | 635456  | 726999  | 64.1 | 182.23 | 524.0  | 524  |
-| sparcT1_chip2 | 820886  | 821274  | 76.8 | 216.82 | 914.2  | 876  |
-| directrf      | 931275  | 1374742 | 85.6 | 223.47 | 602.6  | 515  |
-| bitcoin_miner | 1089284 | 1448151 | 89.7 | 369.19 | 1514.1 | 1562 |
+### K = 2  (improved 10/22 designs, mean +2.4%)
 
-### K = 3
+| Benchmark | Hint cut (hMETIS) | K-SpecPart best | Improvement % | Mean runtime (s) |
+|-----------|-------------------|-----------------|---------------|------------------|
+| LU230 | 3363 | 3363 | 0.00 | 386.98 |
+| LU_Network | 524 | 524 | 0.00 | 849.96 |
+| SLAM_spheric | 1061 | 1061 | 0.00 | 151.97 |
+| bitcoin_miner | 1562 | 1336 | 14.47 | 1246.82 |
+| bitonic_mesh | 584 | 583 | 0.17 | 439.91 |
+| cholesky_bdti | 1156 | 1156 | 0.00 | 725.74 |
+| cholesky_mc | 282 | 282 | 0.00 | 366.98 |
+| dart | 805 | 785 | 2.48 | 190.68 |
+| denoise | 418 | 418 | 0.00 | 91.92 |
+| des90 | 374 | 374 | 0.00 | 411.91 |
+| directrf | 515 | 494 | 4.08 | 383.67 |
+| gsm_switch | 1833 | 1811 | 1.20 | 585.10 |
+| mes_noc | 633 | 632 | 0.16 | 118.46 |
+| minres | 207 | 207 | 0.00 | 323.41 |
+| neuron | 244 | 244 | 0.00 | 154.20 |
+| openCV | 434 | 434 | 0.00 | 327.23 |
+| segmentation | 120 | 107 | 10.83 | 218.50 |
+| sparcT1_chip2 | 876 | 875 | 0.11 | 1455.71 |
+| sparcT1_core | 977 | 976 | 0.10 | 107.65 |
+| sparcT2_core | 1188 | 1188 | 0.00 | 210.85 |
+| stap_qrd | 464 | 371 | 20.04 | 177.82 |
+| stereo_vision | 169 | 169 | 0.00 | 120.02 |
 
-| Benchmark | Vertices | Hyperedges | Avg hMETIS time (s) | K-SpecPart time (s) | Avg hMETIS cut | K-SpecPart cut |
-|-----------|----------|------------|---------------------|---------------------|----------------|----------------|
-| sparcT1_core  | 91976   | 92827   | 12.2 | 60.39  | 2187.9 | 1889 |
-| neuron        | 92290   | 125305  | 16.7 | 70.55  | 371.6  | 396  |
-| stereovision  | 94050   | 127085  | 14.1 | 64.06  | 332.7  | 336  |
-| des90         | 111221  | 139557  | 14.8 | 79.95  | 536.5  | 535  |
-| SLAM_spheric  | 113115  | 142408  | 19.2 | 72.23  | 2797.1 | 2720 |
-| cholesky_mc   | 113250  | 144948  | 21.3 | 82.79  | 886.5  | 864  |
-| segmentation  | 138295  | 179051  | 22.4 | 86.86  | 476.1  | 453  |
-| bitonic_mesh  | 192064  | 235328  | 23.7 | 107.24 | 895.0  | 895  |
-| dart          | 202354  | 223301  | 29.1 | 112.64 | 1189.9 | 1243 |
-| openCV        | 217453  | 284108  | 28.8 | 137.72 | 501.8  | 525  |
-| stap_qrd      | 240240  | 290123  | 39.3 | 153.39 | 501.2  | 497  |
-| minres        | 261359  | 320540  | 42.4 | 167.89 | 309.0  | 309  |
-| cholesky_bdti | 266422  | 342688  | 41.8 | 171.23 | 1769.2 | 1755 |
-| denoise       | 275638  | 356848  | 37.9 | 189.67 | 952.8  | 915  |
-| sparcT2_core  | 300109  | 302663  | 46.7 | 176.26 | 2827.2 | 2249 |
-| gsm_switch    | 493260  | 507821  | 52.1 | 172.92 | 4148.6 | 3694 |
-| mes_noc       | 547544  | 577664  | 49.8 | 181.42 | 1164.3 | 1125 |
-| LU230         | 574372  | 669477  | 48.6 | 192.18 | 4549.5 | 4548 |
-| LU_Network    | 635456  | 726999  | 52.3 | 210.04 | 787.1  | 882  |
-| sparcT1_chip2 | 820886  | 821274  | 55.8 | 212.23 | 1453.4 | 1404 |
-| directrf      | 931275  | 1374742 | 59.2 | 222.18 | 728.2  | 762  |
-| bitcoin_miner | 1089284 | 1448151 | 60.3 | 265.86 | 1944.8 | 1917 |
+### K = 3  (improved 13/22 designs, mean +4.6%)
 
-### K = 4
+| Benchmark | Hint cut (hMETIS) | K-SpecPart best | Improvement % | Mean runtime (s) |
+|-----------|-------------------|-----------------|---------------|------------------|
+| LU230 | 4548 | 4548 | 0.00 | 555.41 |
+| LU_Network | 882 | 785 | 11.00 | 789.15 |
+| SLAM_spheric | 2720 | 2689 | 1.14 | 137.15 |
+| bitcoin_miner | 1917 | 1695 | 11.58 | 2416.52 |
+| bitonic_mesh | 895 | 895 | 0.00 | 469.65 |
+| cholesky_bdti | 1701 | 1701 | 0.00 | 568.90 |
+| cholesky_mc | 864 | 833 | 3.59 | 101.91 |
+| dart | 1243 | 1243 | 0.00 | 137.46 |
+| denoise | 915 | 837 | 8.52 | 191.60 |
+| des90 | 535 | 534 | 0.19 | 88.19 |
+| directrf | 762 | 605 | 20.60 | 689.21 |
+| gsm_switch | 3694 | 2194 | 40.61 | 300.18 |
+| mes_noc | 1125 | 1125 | 0.00 | 474.21 |
+| minres | 309 | 309 | 0.00 | 456.06 |
+| neuron | 396 | 395 | 0.25 | 169.46 |
+| openCV | 525 | 525 | 0.00 | 376.42 |
+| segmentation | 453 | 444 | 1.99 | 238.07 |
+| sparcT1_chip2 | 1404 | 1397 | 0.50 | 1193.94 |
+| sparcT1_core | 1889 | 1881 | 0.42 | 79.35 |
+| sparcT2_core | 2249 | 2249 | 0.00 | 262.27 |
+| stap_qrd | 497 | 495 | 0.40 | 316.15 |
+| stereo_vision | 336 | 336 | 0.00 | 118.07 |
 
-| Benchmark | Vertices | Hyperedges | Avg hMETIS time (s) | K-SpecPart time (s) | Avg hMETIS cut | K-SpecPart cut |
-|-----------|----------|------------|---------------------|---------------------|----------------|----------------|
-| sparcT1_core  | 91976   | 92827   | 29.1 | 74.41  | 2532.3 | 2492 |
-| neuron        | 92290   | 125305  | 23.7 | 84.64  | 431.5  | 431  |
-| stereovision  | 94050   | 127085  | 21.5 | 79.42  | 440.2  | 475  |
-| des90         | 111221  | 139557  | 20.8 | 89.25  | 695.5  | 747  |
-| SLAM_spheric  | 113115  | 142408  | 22.9 | 97.31  | 3371.1 | 3241 |
-| cholesky_mc   | 113250  | 144948  | 21.2 | 101.24 | 982.2  | 984  |
-| segmentation  | 138295  | 179051  | 33.2 | 116.52 | 496.3  | 490  |
-| bitonic_mesh  | 192064  | 235328  | 37.8 | 130.87 | 1304.4 | 1311 |
-| dart          | 202354  | 223301  | 47.3 | 145.51 | 1429.9 | 1401 |
-| openCV        | 217453  | 284108  | 52.9 | 192.14 | 526.2  | 522  |
-| stap_qrd      | 240240  | 290123  | 55.2 | 207.81 | 714.5  | 674  |
-| minres        | 261359  | 320540  | 56.9 | 184.54 | 407.0  | 407  |
-| cholesky_bdti | 266422  | 342688  | 59.1 | 174.65 | 1874.4 | 1865 |
-| denoise       | 275638  | 356848  | 66.3 | 182.19 | 1172.1 | 1001 |
-| sparcT2_core  | 300109  | 302663  | 69.1 | 198.42 | 3523.5 | 3558 |
-| gsm_switch    | 493260  | 507821  | 67.2 | 202.65 | 5169.2 | 4404 |
-| mes_noc       | 547544  | 577664  | 62.7 | 201.18 | 1314.7 | 1346 |
-| LU230         | 574372  | 669477  | 66.9 | 204.73 | 6325.3 | 6310 |
-| LU_Network    | 635456  | 726999  | 71.2 | 265.67 | 1495.6 | 1417 |
-| sparcT1_chip2 | 820886  | 821274  | 72.8 | 395.13 | 1609.8 | 1601 |
-| directrf      | 931275  | 1374742 | 85.6 | 301.45 | 1103.6 | 1092 |
-| bitcoin_miner | 1089284 | 1448151 | 89.7 | 312.23 | 2605.4 | 2737 |
+### K = 4  (improved 19/22 designs, mean +6.2%)
+
+| Benchmark | Hint cut (hMETIS) | K-SpecPart best | Improvement % | Mean runtime (s) |
+|-----------|-------------------|-----------------|---------------|------------------|
+| LU230 | 6310 | 6267 | 0.68 | 1003.94 |
+| LU_Network | 1417 | 1360 | 4.02 | 1153.85 |
+| SLAM_spheric | 3241 | 2995 | 7.59 | 251.11 |
+| bitcoin_miner | 2737 | 1955 | 28.57 | 5018.48 |
+| bitonic_mesh | 1311 | 1306 | 0.38 | 679.47 |
+| cholesky_bdti | 1865 | 1865 | 0.00 | 972.04 |
+| cholesky_mc | 984 | 978 | 0.61 | 193.71 |
+| dart | 1401 | 1391 | 0.71 | 279.18 |
+| denoise | 1001 | 813 | 18.78 | 398.37 |
+| des90 | 747 | 679 | 9.10 | 182.83 |
+| directrf | 1092 | 1092 | 0.00 | 1871.79 |
+| gsm_switch | 4404 | 3647 | 17.19 | 580.14 |
+| mes_noc | 1346 | 1339 | 0.52 | 1286.94 |
+| minres | 407 | 407 | 0.00 | 758.99 |
+| neuron | 431 | 418 | 3.02 | 245.42 |
+| openCV | 522 | 521 | 0.19 | 614.68 |
+| segmentation | 490 | 480 | 2.04 | 422.44 |
+| sparcT1_chip2 | 1601 | 1590 | 0.69 | 1459.78 |
+| sparcT1_core | 2492 | 2309 | 7.34 | 122.61 |
+| sparcT2_core | 3558 | 3136 | 11.86 | 549.10 |
+| stap_qrd | 674 | 535 | 20.62 | 436.81 |
+| stereo_vision | 475 | 465 | 2.11 | 196.60 |
+
+### Reproducing the benchmarks
+
+The full sweep is driven by [`titan_sweep.jl`](titan_sweep.jl); per-run best cuts are aggregated by [`collect_best_cuts.jl`](collect_best_cuts.jl) (invoked automatically at the end):
+
+```bash
+julia -t 8 --project=. titan_sweep.jl > sweep.stdout.log 2>&1
+```
+
+Paths and scope are environment-overridable:
+
+| Variable | Meaning | Default |
+|----------|---------|---------|
+| `SWEEP_BENCH_DIR` | directory of `*.hgr` benchmarks | site path (edit or override) |
+| `SWEEP_HINT_DIR` | directory of hint partitions | `hints/Titan23/ub_factor_2` |
+| `SWEEP_OUT` | output dir (CSVs + partitions) | `titan_sweep_results/` |
+| `SWEEP_DESIGNS` | comma-separated designs to restrict to | all `*.hgr` |
+| `SWEEP_KS` | comma-separated K values | `2,3,4` |
+| `SWEEP_SEEDS` | comma-separated seeds | `0,1,2` |
+
+Hints follow the layout in [`hints/`](hints/) (`<k>_way/<design>.hgr.specpart.ubfactor.2.part.<k>`). Results stream to `titan_sweep_results/sweep_results.csv` (one row per run) and are summarized into `best_cuts.csv` / `best_cuts_pivot.csv`. The sweep is **resumable** (existing partition files are skipped) and **fault-tolerant** (one failure never aborts the run).
 
 ---
 

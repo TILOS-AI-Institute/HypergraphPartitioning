@@ -31,3 +31,8 @@ ilp_partitioner/build/
 # --- OS / editor cruft ---
 .DS_Store
 *.swp
+
+# --- Tracked hint partitions (exception to *.part / *.part.* above) ---
+# Hint files live under hints/ and MUST be committed, so re-include the folder.
+!hints/
+!hints/**
