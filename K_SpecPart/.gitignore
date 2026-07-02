@@ -36,3 +36,8 @@ ilp_partitioner/build/
 # Hint files live under hints/ and MUST be committed, so re-include the folder.
 !hints/
 !hints/**
+
+# --- Tracked K-SpecPart solutions (exception to *.part / *.part.* above) ---
+# Best-per-design output partitions live under solutions/ and are committed.
+!solutions/
+!solutions/**
