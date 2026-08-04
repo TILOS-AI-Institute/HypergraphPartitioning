@@ -26,11 +26,18 @@ distribute K-SpecPart given its heavy, partly non-redistributable toolchain.
 before building (it is git-ignored). If you don't, mount it at runtime and set
 `KSPECPART_HMETIS` instead.
 
-**OpenROAD source:** the exact refiner commit (`a3f3153c`, originally the
-`master` branch of `TILOS-AI-Institute/HypergraphPartitioning`) was never pushed
-to a remote, so it is bundled as a self-contained tarball
-(`docker/third_party/openroad-src.tar.gz`, provenance in `openroad-commit.txt` /
-`openroad-submodules.txt`). Both are git-ignored. Regenerate the tarball with:
+**OpenROAD source:** the custom OpenROAD/TritonPart FM refiner (commit
+`a3f3153c`) is a self-contained source tarball (submodules included). Because it
+is 372 MB it is **not** committed to git; it is distributed as a **`v1.0.0`
+Release asset**:
+
+```bash
+curl -L -o docker/third_party/openroad-src.tar.gz \
+  https://github.com/TILOS-AI-Institute/HypergraphPartitioning/releases/download/v1.0.0/openroad-src.tar.gz
+```
+
+Provenance is in `openroad-commit.txt` / `openroad-submodules.txt`. To
+regenerate the tarball from a local checkout:
 
 ```bash
 tar czf docker/third_party/openroad-src.tar.gz \
@@ -119,9 +126,14 @@ You received the K-SpecPart repository (or a release). To run it:
 1. **Get hMETIS** (closed binary, not shipped). Download it from the
    [hMETIS site](http://glaros.dtc.umn.edu/gkhome/metis/hmetis/overview) and
    place it at `docker/third_party/hmetis`.
-2. **Get the OpenROAD source snapshot.** If it isn't already at
-   `docker/third_party/openroad-src.tar.gz`, download it from the project's
-   GitHub **Release assets** and put it there.
+2. **Get the OpenROAD source snapshot** (the custom OpenROAD/TritonPart FM
+   refiner, commit `a3f3153c`). If it isn't already at
+   `docker/third_party/openroad-src.tar.gz`, download it from the `v1.0.0`
+   **Release assets**:
+   ```bash
+   curl -L -o docker/third_party/openroad-src.tar.gz \
+     https://github.com/TILOS-AI-Institute/HypergraphPartitioning/releases/download/v1.0.0/openroad-src.tar.gz
+   ```
 3. **Build** with whatever you have:
    - Docker: `docker build -f docker/Dockerfile -t kspecpart .`
    - Podman: `podman build -f docker/Dockerfile -t kspecpart .`
