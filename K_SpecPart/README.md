@@ -16,7 +16,7 @@ On the Titan23 suite, K-SpecPart typically matches or beats the best of many hME
 - [How It Works](#how-it-works)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Quick Start](#quick-start)
+- [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Containers (Docker / Apptainer)](#containers-docker--apptainer)
@@ -134,23 +134,75 @@ If building the whole toolchain is inconvenient, use the [container](#containers
 
 ---
 
-## Quick Start
+## Getting Started
+
+This walks you from zero to a refined partition. There are two ways to get the
+toolchain: the **container** (easiest — everything bundled) or a **native**
+install. Both finish with the same four steps.
+
+### First, get the toolchain
+
+**Option A — Container (recommended, no manual tool setup):**
 
 ```bash
-# 1. produce a hint with hMETIS (K=4, 2% imbalance)
-hmetis design.hgr 4 2 10 1 1 1 0 0          # -> design.hgr.part.4
+git clone https://github.com/TILOS-AI-Institute/HypergraphPartitioning
+cd HypergraphPartitioning/K_SpecPart
 
-# 2. refine it with K-SpecPart
+# the custom OpenROAD refiner source (see docker/README.md)
+curl -L -o docker/third_party/openroad-src.tar.gz \
+  https://github.com/TILOS-AI-Institute/HypergraphPartitioning/releases/download/v1.0.0/openroad-src.tar.gz
+cp /path/to/hmetis docker/third_party/hmetis          # you supply hMETIS
+
+docker build -f docker/Dockerfile -t kspecpart .      # builds everything
+```
+
+**Option B — Native:** install the Julia packages and build the ILP partitioner
+(see [Installation](#installation)), then make sure `gpmetis`, `hmetis`, and the
+OpenROAD refiner are on disk and pointed to via the `KSPECPART_*`/`GPMETIS`
+environment variables (see [Configuration](#configuration)).
+
+### Then, run it (4 steps)
+
+**Step 1 — Prepare the hypergraph.** K-SpecPart reads the hMETIS format
+(`design.hgr`): the first line is `num_hyperedges num_vertices`, then one line
+per hyperedge listing its (1-indexed) vertices. See
+[Input / Output Formats](#input--output-formats).
+
+**Step 2 — Get a hint partition.** K-SpecPart *refines* an existing partition,
+so you must provide one (K-SpecPart does not partition from scratch). Generate it
+with hMETIS, or reuse a previous solution:
+
+```bash
+hmetis design.hgr 4 2 10 1 1 1 0 0     # K=4, 2% imbalance  ->  design.hgr.part.4
+```
+
+The hint is one **0-indexed block id per line**, in vertex order.
+
+**Step 3 — Run K-SpecPart.** One command (`-t auto` uses all cores):
+
+```bash
+# native:
 julia --project=. -t auto run_kspecpart.jl design.hgr \
     --hint design.hgr.part.4 --k 4 --imb 2 \
     --out design.hgr.kspecpart.part.4
+
+# container: wrap the same arguments with the docker runner
+docker run --rm -v "$PWD/data:/data" kspecpart \
+    /data/design.hgr --hint /data/design.hgr.part.4 --k 4 --imb 2 \
+    --out /data/out.part.4
 ```
 
-Sanity-check the Julia environment without any external binaries:
+**Step 4 — Read the result.** The log ends with `K-SpecPart finished
+cutsize=<N>` — the hyperedge cut of the refined partition (equal to or better
+than the hint's cut). With `--out`, the partition is written as one block id per
+line. Tune quality/runtime with `--refine-iters`, `--best-solns`, `--eigvecs`,
+etc. (see [Usage](#usage) and [Parameters](#parameters)).
 
-```bash
-julia --project=. smoke_test.jl ilp_partitioner/test/ibm10.hgr
-```
+> **Just want to check your setup works?** Run the dependency-free self-check
+> (no external binaries needed):
+> ```bash
+> julia --project=. smoke_test.jl ilp_partitioner/test/ibm10.hgr
+> ```
 
 ---
 
