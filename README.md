@@ -1,3 +1,18 @@
+![Leaderboard Deprecated](https://img.shields.io/badge/LEADERBOARD-DEPRECATED-red?style=for-the-badge)
+
+> [!CAUTION]
+> ### This leaderboard is deprecated!
+>
+> The leaderboard in this repository is **outdated and no longer maintained**.
+>
+> **For the latest results and best-known partitioning solutions, please use the new leaderboard:**
+>
+> [![Current Leaderboard](https://img.shields.io/badge/VIEW-CURRENT_LEADERBOARD-blue?style=for-the-badge)](https://vlsicad.ucsd.edu/partitioning/)
+>
+> The results below are retained for **historical reference only**.
+
+
+
 # Hypergraph Partitioning for VLSI: Benchmarks, Code and Leaderboard
 
 Hypergraph Partitioning Leaderboard: Leaderboard of minimum hyperedge cut values for different testcases with multiple imbalance factors.
